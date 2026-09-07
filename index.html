@@ -1,83 +1,145 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Yudha 3D Design — Interior Exterior. Architecture, interior design and 3D visualization portfolio by Yudhanto Hendra P., ST.">
-<title>YUDHA 3D DESIGN — INTERIOR EXTERIOR</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Yudha 3D Design — Interior Exterior. Architecture, Interior and 3D Visualization portfolio by Yudhanto Hendra P., ST.">
+  <title>Yudha 3D Design — Interior Exterior | Yudhanto Hendra P., ST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header" id="siteHeader">
-  <a class="brand" href="#home" aria-label="Yudha 3D Design home">
-    <span class="brand-name">YUDHANTO HENDRA P., ST</span>
-    <span class="brand-sub">YUDHA 3D DESIGN — INTERIOR EXTERIOR</span>
-  </a>
-  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
-  <nav class="nav" id="nav">
-    <a href="#home">HOME</a><a href="#projects">PROJECTS</a><a href="#about">ABOUT</a><a href="#services">SERVICES</a><a href="#contact">CONTACT</a>
-  </nav>
-</header>
+  <div class="cursor"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Home">
+      <strong>YUDHANTO HENDRA P., ST</strong>
+      <span>YUDHA 3D DESIGN — INTERIOR EXTERIOR</span>
+    </a>
+    <button class="menu-toggle" aria-label="Open menu"><span></span><span></span></button>
+    <nav class="nav">
+      <a href="#home">HOME</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#services">SERVICES</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-media"></div><div class="hero-shade"></div>
-  <div class="hero-content reveal">
-    <div class="eyebrow"><span></span> ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
-    <h1>YUDHA 3D DESIGN<br><em>INTERIOR EXTERIOR</em></h1>
-    <p>Transforming architectural ideas into precise, immersive visual experiences.</p>
-    <div class="hero-actions"><a class="btn btn-light" href="#projects">VIEW PROJECTS <b>→</b></a><a class="btn btn-outline" href="#contact">GET IN TOUCH</a></div>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-media"><img src="hero.jpg" alt="Architectural visualization from Proyek MRT Blok M"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content reveal">
+        <div class="eyebrow"><i></i> ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
+        <h1>Yudha 3D Design<br><em>Interior Exterior</em></h1>
+        <p>Transforming architectural ideas into precise, immersive visual experiences.</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#projects">VIEW PROJECTS <span>→</span></a>
+          <a class="btn btn-line" href="#contact">GET IN TOUCH</a>
+        </div>
+      </div>
+      <div class="scroll-mark">SCROLL <span></span></div>
+    </section>
+
+    <section id="projects" class="section projects-section">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">SELECTED WORK</div>
+          <h2>Projects</h2>
+        </div>
+        <p>A selection of architectural design, interior design and 3D visualization work from the 2025 portfolio.</p>
+      </div>
+      <div class="filters reveal">
+        <button class="filter active" data-filter="all">ALL</button>
+        <button class="filter" data-filter="architecture">ARCHITECTURE</button>
+        <button class="filter" data-filter="interior">INTERIOR</button>
+        <button class="filter" data-filter="visualization">3D VISUALIZATION</button>
+      </div>
+      <div id="projectGrid" class="project-grid"></div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="about-image reveal"><img src="portrait.jpg" alt="Yudhanto Hendra P., ST"></div>
+      <div class="about-copy reveal">
+        <div class="kicker">ABOUT</div>
+        <h2>Yudhanto Hendra P., ST</h2>
+        <p class="lead">3D Artist Architectural</p>
+        <p>Saya seorang 3d artist arsitektural dengan latar belakang pendidikan arsitektur di Universitas Pancasila, Jakarta, Indonesia.</p>
+        <p>Saya telah bekerja di industri 3d desain arsitektur selama lebih dari sepuluh tahun, dengan fokus di desain eksterior dan interior pada pengembangan ruang minimalis yang berfokus pada fungsi dan estetika.</p>
+        <p>Pengalaman saya mencakup berbagai proyek, dari perumahan hingga komersial. Latar belakang pendidikan saya memberikan pemahaman yang kuat tentang prinsip-prinsip desain dan gaya arsitektural yang mengikuti zaman.</p>
+        <div class="about-meta">
+          <div><span>EDUCATION</span><strong>Universitas Pancasila<br>Fakultas Teknik — Arsitektur<br>2004–2010</strong></div>
+          <div><span>EXPERIENCE</span><strong>Arsitek Staff<br>Anugerah Mitra Gemilang<br>2022–Now</strong></div>
+          <div><span>FOCUS</span><strong>Exterior & Interior<br>Architectural 3D Design<br>Visualization</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services-section">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">CAPABILITIES</div>
+          <h2>Services</h2>
+        </div>
+        <p>Design and visualization capabilities developed through architectural practice and more than ten years in 3D architectural design.</p>
+      </div>
+      <div class="service-list">
+        <article class="service reveal"><span>01</span><div><h3>Architecture</h3><p>Architectural planning, design development and visual communication.</p></div></article>
+        <article class="service reveal"><span>02</span><div><h3>Interior Design</h3><p>Functional and aesthetic interior concepts for residential and commercial spaces.</p></div></article>
+        <article class="service reveal"><span>03</span><div><h3>3D Visualization</h3><p>Exterior and interior 3D visualization for communicating architectural ideas clearly.</p></div></article>
+      </div>
+      <div class="software reveal">
+        <div class="kicker">SOFTWARE</div>
+        <div class="software-grid">
+          <span>AutoCAD</span><span>SketchUp</span><span>3ds Max</span><span>Revit</span><span>LayOut</span><span>V-Ray</span><span>Corona</span><span>Enscape</span><span>Lumion</span><span>D5 Render</span><span>Photoshop</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="contact-copy reveal">
+        <div class="kicker">CONTACT</div>
+        <h2>Let’s build something<br><em>considered.</em></h2>
+        <p>For project enquiries, collaboration and visualization work, get in touch.</p>
+      </div>
+      <div class="contact-cards reveal">
+        <a href="mailto:YOUR_EMAIL@example.com" class="contact-card">
+          <span>EMAIL</span><strong>YOUR_EMAIL@example.com</strong><small>Replace with your email</small>
+        </a>
+        <a href="https://wa.me/YOURNUMBER" class="contact-card">
+          <span>WHATSAPP</span><strong>+62 — YOUR NUMBER</strong><small>Replace with your WhatsApp number</small>
+        </a>
+        <a href="https://instagram.com/y3d.inex" class="contact-card" target="_blank" rel="noopener">
+          <span>INSTAGRAM</span><strong>@y3d.inex</strong><small>Instagram</small>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>YUDHA 3D DESIGN</strong><span>INTERIOR EXTERIOR</span></div>
+    <p>© <span id="year"></span> Yudhanto Hendra P., ST</p>
+  </footer>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-inner">
+      <img id="modalImage" src="" alt="">
+      <div class="modal-info">
+        <div class="kicker" id="modalCategory"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalLocation"></p>
+        <p id="modalDescription"></p>
+        <div class="modal-year" id="modalYear"></div>
+      </div>
+    </div>
   </div>
-  <div class="scroll-cue">SCROLL <span></span></div>
-</section>
 
-<section class="projects section" id="projects">
-  <div class="section-head reveal"><div><p class="kicker">PORTFOLIO</p><h2>Selected Projects</h2></div><p>A selection of architectural design, interior design and 3D visualization work.</p></div>
-  <div class="filters reveal" role="tablist" aria-label="Project filters">
-    <button class="filter active" data-filter="ALL">ALL</button><button class="filter" data-filter="ARCHITECTURE">ARCHITECTURE</button><button class="filter" data-filter="INTERIOR">INTERIOR</button><button class="filter" data-filter="3D VISUALIZATION">3D VISUALIZATION</button>
-  </div>
-  <div class="project-list" id="projectList"></div>
-</section>
-
-<section class="about section" id="about">
- <div class="about-grid">
-  <div class="about-image reveal"><img src="assets/interior-rumah-tinggal.jpg" alt="Architectural interior visualization"></div>
-  <div class="about-copy reveal"><p class="kicker">ABOUT</p><h2>Designing with precision.<br><em>Visualizing with intent.</em></h2>
-   <p>Yudhanto Hendra P., ST is a 3D architectural artist with an architecture background from Universitas Pancasila, Jakarta, Indonesia. His experience spans more than ten years in architectural 3D design, with a focus on exterior and interior design for functional, aesthetic and contemporary spaces.</p>
-   <p>His portfolio covers residential and commercial work, combining architectural understanding with visualization to translate design ideas into clear, immersive images.</p>
-   <div class="about-meta"><div><strong>10+</strong><span>YEARS EXPERIENCE</span></div><div><strong>ARCH</strong><span>EDUCATION</span></div><div><strong>3D</strong><span>VISUALIZATION</span></div></div>
-  </div>
- </div>
-</section>
-
-<section class="services section" id="services">
- <div class="section-head reveal"><div><p class="kicker">CAPABILITIES</p><h2>Services</h2></div><p>From architectural development to polished visualization, focused on clarity, function and visual quality.</p></div>
- <div class="service-grid">
-  <article class="service reveal"><span>01</span><h3>Architecture Design</h3><p>Architectural planning and design development for residential and commercial spaces.</p></article>
-  <article class="service reveal"><span>02</span><h3>Interior Design</h3><p>Interior concepts and spatial visualization balancing function, material and atmosphere.</p></article>
-  <article class="service reveal"><span>03</span><h3>3D Architectural Visualization</h3><p>Photorealistic exterior and interior imagery for presentations, design development and communication.</p></article>
-  <article class="service reveal"><span>04</span><h3>3D Rendering</h3><p>High-quality rendering workflows using established visualization software and post-production.</p></article>
- </div>
-</section>
-
-<section class="contact section" id="contact">
- <div class="contact-grid reveal">
-  <div><p class="kicker">CONTACT</p><h2>Let's build the<br><em>next visual.</em></h2><p>If you are interested in discussing a project, visualization work or design collaboration, get in touch.</p></div>
-  <div class="contact-links">
-   <a href="mailto:you_tha23@hotmail.com"><span>EMAIL</span><strong>you_tha23@hotmail.com</strong><b>↗</b></a>
-   <a href="https://instagram.com/y3d.inex" target="_blank" rel="noopener"><span>INSTAGRAM</span><strong>@y3d.inex</strong><b>↗</b></a>
-   <a href="https://wa.me/6289518184180" target="_blank" rel="noopener"><span>WHATSAPP</span><strong>+62 895 1818 4180</strong><b>↗</b></a>
-  </div>
- </div>
-</section>
-</main>
-<footer><span>Y3D.INEX</span><span>YUDHA 3D DESIGN — INTERIOR EXTERIOR</span><span>© <span id="year"></span></span></footer>
-
-<div class="modal" id="projectModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" data-close aria-label="Close project">×</button><div class="modal-image-wrap"><img id="modalImage" src="" alt=""></div><div class="modal-info"><p class="kicker" id="modalCategory"></p><h2 id="modalTitle"></h2><p id="modalLocation"></p><div class="modal-line"></div><p class="modal-desc" id="modalDesc"></p><p class="modal-tools" id="modalTools"></p></div></div></div>
-<script>window.PROJECTS = [{"slug": "mrt-blok-m", "title": "Proyek MRT Blok M", "location": "Blok M, Jakarta Selatan", "category": "ARCHITECTURE · 3D VISUALIZATION", "tools": "3ds Max · V-Ray · Photoshop", "image": "assets/mrt-blok-m.jpg"}, {"slug": "rsud-tarakan", "title": "Proyek RSUD Tarakan", "location": "Tarakan, Kalimantan Utara", "category": "ARCHITECTURE · 3D VISUALIZATION", "tools": "3ds Max · V-Ray · Photoshop", "image": "assets/rsud-tarakan.jpg"}, {"slug": "asmara-coffee-cafe", "title": "Proyek Asmara Coffee Cafe", "location": "Cibinong, Kabupaten Bogor", "category": "ARCHITECTURE · INTERIOR · 3D VISUALIZATION", "tools": "SketchUp · Lumion · Photoshop", "image": "assets/asmara-coffee-cafe.jpg"}, {"slug": "myeongdong-topokki", "title": "Interior MyeongDong Topokki", "location": "Gandaria City Mall, Jakarta Selatan", "category": "INTERIOR DESIGN · 3D VISUALIZATION", "tools": "SketchUp · Enscape · Photoshop", "image": "assets/myeongdong-topokki.jpg"}, {"slug": "interior-rumah-tinggal", "title": "Interior Ruangan Rumah Tinggal", "location": "Depok, Jawa Barat", "category": "INTERIOR DESIGN · 3D VISUALIZATION", "tools": "3ds Max · Corona · Photoshop", "image": "assets/interior-rumah-tinggal.jpg"}, {"slug": "masjid-al-hijrah", "title": "Proyek Masjid Al-Hijrah", "location": "Grand Depok City, Kota Depok, Jawa Barat, Indonesia", "category": "ARCHITECTURE · 3D VISUALIZATION", "tools": "SketchUp · LayOut · Lumion · Photoshop", "image": "assets/masjid-al-hijrah.jpg"}, {"slug": "rumah-tinggal-type-60", "title": "Proyek Rumah Tinggal Type 60", "location": "Sukatani, Kabupaten Bogor", "category": "ARCHITECTURE · 3D VISUALIZATION", "tools": "SketchUp · LayOut · Lumion · Photoshop", "image": "assets/rumah-tinggal-type-60.jpg"}, {"slug": "rumah-tinggal-minimalis", "title": "Proyek Rumah Tinggal Minimalis", "location": "Cipondoh, Tangerang", "category": "ARCHITECTURE · 3D VISUALIZATION", "tools": "AutoCAD · SketchUp · Lumion · Photoshop", "image": "assets/rumah-tinggal-minimalis.jpg"}, {"slug": "apca-design", "title": "Interior APCA Design", "location": "Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan", "category": "INTERIOR DESIGN · 3D VISUALIZATION", "tools": "SketchUp · LayOut · Enscape · Photoshop", "image": "assets/apca-design.jpg"}, {"slug": "kanakafe-desain", "title": "Interior Kanakafe Desain", "location": "Kawasan RS. Hermina, Depok, Jawa Barat", "category": "INTERIOR DESIGN · 3D VISUALIZATION", "tools": "SketchUp · LayOut · Enscape · Photoshop", "image": "assets/kanakafe-desain.jpg"}, {"slug": "resepsionis-kantor-uob", "title": "Interior Resepsionis Kantor", "location": "Gedung UOB, Sudirman, Jakarta", "category": "INTERIOR DESIGN · 3D VISUALIZATION", "tools": "SketchUp · D5 Render · Photoshop", "image": "assets/resepsionis-kantor-uob.jpg"}];</script>
-<script src="script.js"></script>
+  <script>
+    window.PROJECTS = [{"name": "Proyek MRT Blok M", "location": "Blok M, Jakarta Selatan", "category": "Architecture", "year": "2025", "image": "project-01.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Blok M, Jakarta Selatan."}, {"name": "Proyek RSUD Tarakan", "location": "Tarakan, Kalimantan Utara", "category": "Architecture", "year": "2025", "image": "project-02.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Tarakan, Kalimantan Utara."}, {"name": "Proyek Asmara Coffee Cafe", "location": "Cibinong, Kabupaten Bogor", "category": "Architecture · Interior", "year": "2025", "image": "project-03.jpg", "filters": ["architecture", "interior"], "description": "Architecture · Interior work presented in the 2025 portfolio. Location: Cibinong, Kabupaten Bogor."}, {"name": "Interior MyeongDong Topokki", "location": "Gandaria City Mall, Jakarta Selatan", "category": "Interior", "year": "2025", "image": "project-04.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Gandaria City Mall, Jakarta Selatan."}, {"name": "Interior Ruangan Rumah Tinggal", "location": "Depok, Jawa Barat", "category": "Interior", "year": "2025", "image": "project-05.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Depok, Jawa Barat."}, {"name": "Proyek Masjid Al-Hijrah", "location": "Grand Depok City, Cluster Alpinia, Kota Depok, Jawa Barat, Indonesia", "category": "Architecture", "year": "2025", "image": "project-06.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Grand Depok City, Cluster Alpinia, Kota Depok, Jawa Barat, Indonesia."}, {"name": "Proyek Rumah Tinggal Type 60", "location": "Sukatani, Kabupaten Bogor", "category": "Architecture", "year": "2025", "image": "project-07.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Sukatani, Kabupaten Bogor."}, {"name": "Proyek Rumah Tinggal Minimalis", "location": "Cipondoh, Tangerang", "category": "Architecture", "year": "2025", "image": "project-08.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Cipondoh, Tangerang."}, {"name": "Interior APCA Design", "location": "Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan", "category": "Interior", "year": "2025", "image": "project-09.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan."}, {"name": "Interior Kanakafe Desain", "location": "Kawasan RS. Hermina, Depok, Jawa Barat", "category": "Interior", "year": "2025", "image": "project-10.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Kawasan RS. Hermina, Depok, Jawa Barat."}, {"name": "Interior Resepsionis Kantor", "location": "Gedung UOB, Sudirman, Jakarta", "category": "Interior", "year": "2025", "image": "project-11.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Gedung UOB, Sudirman, Jakarta."}];
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>
