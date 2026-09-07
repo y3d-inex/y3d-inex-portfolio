@@ -1,140 +1,982 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Yudha 3D Design — Interior Exterior. Architecture, Interior and 3D Visualization portfolio by Yudhanto Hendra P., ST.">
-  <title>Yudha 3D Design — Interior Exterior | Yudhanto Hendra P., ST</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YUDHA 3D DESIGN — Interior Exterior</title>
+  <meta name="description" content="Yudha 3D Design — Architecture, Interior Design and 3D Visualization by Yudhanto Hendra P., ST.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#11110f;
+      --bg-soft:#171714;
+      --text:#f1eee7;
+      --muted:#a8a49b;
+      --line:rgba(255,255,255,.14);
+      --accent:#d9d1c2;
+      --max:1320px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:"DM Sans",Arial,sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    img{display:block;max-width:100%}
+
+    .header{
+      position:fixed;
+      z-index:1000;
+      top:0;
+      left:0;
+      width:100%;
+      padding:25px 4vw;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      mix-blend-mode:difference;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      letter-spacing:.04em;
+    }
+    .brand-logo{width:130px;height:auto;display:block;filter:brightness(0) invert(1)}
+    .brand span{font-size:9px;letter-spacing:.12em}
+
+    .nav{
+      display:flex;
+      gap:30px;
+      font-size:10px;
+      letter-spacing:.16em;
+      font-weight:600;
+    }
+    .nav a{opacity:.85;transition:.25s}
+    .nav a:hover{opacity:1}
+
+    .menu{
+      display:none;
+      border:0;
+      background:none;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      padding:0 6vw 8vh;
+      overflow:hidden;
+    }
+    .hero-image{
+      position:absolute;
+      inset:0;
+    }
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+    .hero-image:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.32) 48%,rgba(0,0,0,.18) 100%),
+        linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 55%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:850px;
+    }
+    .eyebrow,.kicker{
+      font-size:10px;
+      letter-spacing:.2em;
+      font-weight:700;
+      color:var(--accent);
+    }
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:22px;
+    }
+    .eyebrow:before{
+      content:"";
+      width:32px;
+      height:1px;
+      background:currentColor;
+    }
+    h1{
+      font-size:clamp(58px,9vw,150px);
+      line-height:.86;
+      letter-spacing:-.055em;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+    h1 em{
+      font-family:"Playfair Display",serif;
+      font-weight:400;
+      text-transform:none;
+    }
+    .hero-sub{
+      margin-top:28px;
+      max-width:500px;
+      color:#d0ccc4;
+      font-size:15px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      margin-top:32px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      min-height:44px;
+      padding:0 19px;
+      border:1px solid rgba(255,255,255,.3);
+      font-size:10px;
+      letter-spacing:.14em;
+      font-weight:700;
+      transition:.25s;
+    }
+    .btn:hover{background:#fff;color:#111}
+    .btn-light{background:#f1eee7;color:#111;border-color:#f1eee7}
+
+    .scroll{
+      position:absolute;
+      right:4vw;
+      bottom:7vh;
+      z-index:2;
+      writing-mode:vertical-rl;
+      font-size:9px;
+      letter-spacing:.2em;
+      color:#ddd8ce;
+    }
+
+    .section{
+      width:min(var(--max),90vw);
+      margin:auto;
+      padding:130px 0;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      margin-bottom:65px;
+      align-items:end;
+    }
+    h2{
+      margin-top:10px;
+      font-size:clamp(48px,7vw,92px);
+      line-height:.9;
+      letter-spacing:-.05em;
+      font-weight:500;
+    }
+    .section-head p{
+      max-width:510px;
+      color:var(--muted);
+      font-size:14px;
+      justify-self:end;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:30px;
+    }
+    .filter{
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--muted);
+      padding:10px 14px;
+      cursor:pointer;
+      font-size:9px;
+      letter-spacing:.14em;
+      transition:.2s;
+    }
+    .filter:hover,.filter.active{
+      background:#eee9df;
+      color:#111;
+      border-color:#eee9df;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:70px 26px;
+    }
+    .project{
+      cursor:pointer;
+      min-width:0;
+    }
+    .project-image{
+      aspect-ratio:16/10;
+      overflow:hidden;
+      background:#1a1916;
+      position:relative;
+    }
+    .project-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .4s;
+    }
+    .project:hover .project-image img{
+      transform:scale(1.035);
+      filter:brightness(1.05);
+    }
+    .project-info{
+      display:grid;
+      grid-template-columns:48px 1fr auto;
+      gap:14px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      margin-top:12px;
+      align-items:start;
+    }
+    .project-number,.project-type,.project-location{
+      color:var(--muted);
+      font-size:9px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .project-title{
+      font-size:20px;
+      line-height:1.15;
+      font-weight:500;
+    }
+    .project-location{margin-top:6px;letter-spacing:.04em;text-transform:none}
+    .project-arrow{font-size:20px;line-height:1}
+
+    .about{
+      background:var(--bg-soft);
+      width:100%;
+    }
+    .about-inner{
+      width:min(var(--max),90vw);
+      margin:auto;
+      padding:130px 0;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:90px;
+      align-items:center;
+    }
+    .portrait{
+      background:#d8d5ce;
+      aspect-ratio:4/5;
+      overflow:hidden;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .about-copy .lead{
+      margin:25px 0 20px;
+      font-family:"Playfair Display",serif;
+      font-size:25px;
+    }
+    .about-copy p:not(.lead){
+      color:var(--muted);
+      max-width:650px;
+      font-size:14px;
+      margin-bottom:15px;
+    }
+    .about-meta{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:45px;
+      padding-top:25px;
+      border-top:1px solid var(--line);
+    }
+    .about-meta span{
+      display:block;
+      color:var(--muted);
+      font-size:8px;
+      letter-spacing:.16em;
+      margin-bottom:9px;
+    }
+    .about-meta strong{
+      font-size:12px;
+      font-weight:500;
+      line-height:1.7;
+    }
+
+    .services-list{
+      border-top:1px solid var(--line);
+    }
+    .service{
+      display:grid;
+      grid-template-columns:70px 1fr 30px;
+      gap:25px;
+      align-items:center;
+      padding:32px 0;
+      border-bottom:1px solid var(--line);
+      transition:.25s;
+    }
+    .service:hover{padding-left:10px}
+    .service-number{color:var(--muted);font-size:10px;letter-spacing:.12em}
+    .service h3{font-size:25px;font-weight:500}
+    .service p{color:var(--muted);font-size:13px;margin-top:4px}
+    .service-arrow{font-size:20px}
+
+    .software{
+      margin-top:80px;
+    }
+    .software-groups{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:0;
+      margin-top:20px;
+      border-top:1px solid var(--line);
+    }
+    .software-group{
+      padding:28px 24px 10px 0;
+      margin-right:24px;
+      border-right:1px solid var(--line);
+    }
+    .software-group:last-child{border-right:0;margin-right:0}
+    .software-group h3{
+      font-size:17px;
+      font-weight:500;
+      letter-spacing:.02em;
+      margin-bottom:12px;
+    }
+    .software-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+      padding:15px 0;
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+    }
+    .software-item b{
+      color:#d6b24c;
+      font-size:15px;
+      letter-spacing:1px;
+      white-space:nowrap;
+    }
+
+    .contact{
+      background:#e9e5dc;
+      color:#171714;
+      width:100%;
+    }
+    .contact-inner{
+      width:min(var(--max),90vw);
+      margin:auto;
+      padding:120px 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+    }
+    .contact .kicker{color:#5e5a52}
+    .contact h2{font-size:clamp(50px,7vw,90px)}
+    .contact h2 em{
+      font-family:"Playfair Display",serif;
+      font-weight:400;
+    }
+    .contact-intro{
+      margin-top:25px;
+      max-width:450px;
+      color:#656159;
+      font-size:14px;
+    }
+    .contact-list{
+      border-top:1px solid rgba(0,0,0,.18);
+    }
+    .contact-item{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:22px 0;
+      border-bottom:1px solid rgba(0,0,0,.18);
+    }
+    .contact-item span{
+      font-size:9px;
+      letter-spacing:.16em;
+      color:#716d64;
+    }
+    .contact-item strong{
+      font-size:14px;
+      font-weight:500;
+      text-align:right;
+    }
+
+    footer{
+      width:100%;
+      padding:30px 5vw;
+      background:#11110f;
+      color:#aaa69e;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      font-size:9px;
+      letter-spacing:.08em;
+    }
+    footer strong{color:#eee9df}
+
+    .modal{
+      position:fixed;
+      z-index:2000;
+      inset:0;
+      background:rgba(10,10,9,.94);
+      display:none;
+      overflow:auto;
+      padding:7vh 5vw;
+    }
+    .modal.open{display:block}
+    .modal-close{
+      position:fixed;
+      top:24px;
+      right:28px;
+      z-index:3;
+      width:44px;
+      height:44px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:#fff;
+      font-size:26px;
+      cursor:pointer;
+    }
+    .modal-inner{
+      width:min(1200px,100%);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:40px;
+      align-items:end;
+      min-height:86vh;
+    }
+    .modal-image{
+      width:100%;
+      max-height:78vh;
+      object-fit:contain;
+      background:#151513;
+    }
+    .modal-info{
+      padding-bottom:2vh;
+    }
+    .modal-info h3{
+      font-size:clamp(36px,4vw,60px);
+      line-height:.95;
+      letter-spacing:-.04em;
+      margin:10px 0 18px;
+    }
+    .modal-info p{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:8px;
+    }
+    .modal-meta{
+      margin-top:25px;
+      padding-top:20px;
+      border-top:1px solid var(--line);
+      color:#d5d0c7;
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .hidden{display:none!important}
+
+    @media(max-width:800px){
+      .header{padding:18px 5vw}
+      .nav{
+        display:none;
+        position:absolute;
+        top:70px;
+        right:5vw;
+        flex-direction:column;
+        gap:18px;
+        padding:20px;
+        background:#11110f;
+        border:1px solid var(--line);
+        mix-blend-mode:normal;
+      }
+      .nav.open{display:flex}
+      .menu{display:block}
+      .hero{padding:0 6vw 9vh}
+      h1{font-size:clamp(52px,15vw,90px)}
+      .section{padding:90px 0}
+      .section-head,.about-inner,.contact-inner,.modal-inner{
+        grid-template-columns:1fr;
+      }
+      .section-head{gap:20px;margin-bottom:40px}
+      .section-head p{justify-self:start}
+      .grid{grid-template-columns:1fr;gap:50px}
+      .about-inner,.contact-inner{gap:45px;padding:90px 0}
+      .about-meta{grid-template-columns:1fr}
+      .software-groups{grid-template-columns:1fr}.software-group{border-right:0;border-bottom:1px solid var(--line);margin-right:0;padding-right:0}
+      .modal{padding:80px 5vw 40px}
+      .modal-inner{align-items:start;min-height:auto}
+      .modal-image{max-height:none}
+      footer{flex-direction:column}
+    }
+  </style>
 </head>
+
 <body>
-  <div class="cursor"></div>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Home">
-      <strong>YUDHANTO HENDRA P., ST</strong>
-      <span>YUDHA 3D DESIGN — INTERIOR EXTERIOR</span>
-    </a>
-    <button class="menu-toggle" aria-label="Open menu"><span></span><span></span></button>
-    <nav class="nav">
-      <a href="#home">HOME</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#about">ABOUT</a>
-      <a href="#services">SERVICES</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-  </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-media"><img src="hero.jpg" alt="Architectural visualization from Proyek MRT Blok M"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content reveal">
-        <div class="eyebrow"><i></i> ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
-        <h1>Yudha 3D Design<br><em>Interior Exterior</em></h1>
-        <p>Transforming architectural ideas into precise, immersive visual experiences.</p>
-        <div class="hero-actions">
-          <a class="btn btn-light" href="#projects">VIEW PROJECTS <span>→</span></a>
-          <a class="btn btn-line" href="#contact">GET IN TOUCH</a>
-        </div>
-      </div>
-      <div class="scroll-mark">SCROLL <span></span></div>
-    </section>
+<header class="header">
+  <a class="brand" href="#home">
+    <img class="brand-logo" src="assets/logo.png" alt="Yudha 3D Design Logo">
+    <span>YUDHA 3D DESIGN — INTERIOR EXTERIOR</span>
+  </a>
 
-    <section id="projects" class="section projects-section">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">SELECTED WORK</div>
-          <h2>Projects</h2>
-        </div>
-        <p>A selection of architectural design, interior design and 3D visualization work from the 2025 portfolio.</p>
-      </div>
-      <div class="filters reveal">
-        <button class="filter active" data-filter="all">ALL</button>
-        <button class="filter" data-filter="architecture">ARCHITECTURE</button>
-        <button class="filter" data-filter="interior">INTERIOR</button>
-        <button class="filter" data-filter="visualization">3D VISUALIZATION</button>
-      </div>
-      <div id="projectGrid" class="project-grid"></div>
-    </section>
+  <button class="menu" id="menuButton" aria-label="Open navigation">☰</button>
 
-    <section id="about" class="section about-section">
-      <div class="about-image reveal"><img src="portrait.jpg" alt="Yudhanto Hendra P., ST"></div>
-      <div class="about-copy reveal">
-        <div class="kicker">ABOUT</div>
-        <h2>Yudhanto Hendra P., ST</h2>
-        <p class="lead">3D Artist Architectural</p>
-        <p>Saya seorang 3d artist arsitektural dengan latar belakang pendidikan arsitektur di Universitas Pancasila, Jakarta, Indonesia.</p>
-        <p>Saya telah bekerja di industri 3d desain arsitektur selama lebih dari sepuluh tahun, dengan fokus di desain eksterior dan interior pada pengembangan ruang minimalis yang berfokus pada fungsi dan estetika.</p>
-        <p>Pengalaman saya mencakup berbagai proyek, dari perumahan hingga komersial. Latar belakang pendidikan saya memberikan pemahaman yang kuat tentang prinsip-prinsip desain dan gaya arsitektural yang mengikuti zaman.</p>
-        <div class="about-meta">
-          <div><span>EDUCATION</span><strong>Universitas Pancasila<br>Fakultas Teknik — Arsitektur<br>2004–2010</strong></div>
-          <div><span>EXPERIENCE</span><strong>Arsitek Staff<br>Anugerah Mitra Gemilang<br>2022–Now</strong></div>
-          <div><span>FOCUS</span><strong>Exterior & Interior<br>Architectural 3D Design<br>Visualization</strong></div>
-        </div>
-      </div>
-    </section>
+  <nav class="nav" id="nav">
+    <a href="#home">HOME</a>
+    <a href="#projects">PROJECTS</a>
+    <a href="#about">ABOUT</a>
+    <a href="#services">SERVICES</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
 
-    <section id="services" class="section services-section">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">CAPABILITIES</div>
-          <h2>Services</h2>
-        </div>
-        <p>Design and visualization capabilities developed through architectural practice and more than ten years in 3D architectural design.</p>
-      </div>
-      <div class="service-list">
-        <article class="service reveal"><span>01</span><div><h3>Architecture</h3><p>Architectural planning, design development and visual communication.</p></div></article>
-        <article class="service reveal"><span>02</span><div><h3>Interior Design</h3><p>Functional and aesthetic interior concepts for residential and commercial spaces.</p></div></article>
-        <article class="service reveal"><span>03</span><div><h3>3D Visualization</h3><p>Exterior and interior 3D visualization for communicating architectural ideas clearly.</p></div></article>
-      
-      </div>
-    </section>
+<main>
 
-    <section id="contact" class="section contact-section">
-      <div class="contact-copy reveal">
-        <div class="kicker">CONTACT</div>
-        <h2>Let’s build something<br><em>considered.</em></h2>
-        <p>For project enquiries, collaboration and visualization work, get in touch.</p>
-      </div>
-      <div class="contact-cards reveal">
-        <a href="mailto:YOUR_EMAIL@example.com" class="contact-card">
-          <span>EMAIL</span><strong>YOUR_EMAIL@example.com</strong><small>Replace with your email</small>
-        </a>
-        <a href="https://wa.me/YOURNUMBER" class="contact-card">
-          <span>WHATSAPP</span><strong>+62 — YOUR NUMBER</strong><small>Replace with your WhatsApp number</small>
-        </a>
-        <a href="https://instagram.com/y3d.inex" class="contact-card" target="_blank" rel="noopener">
-          <span>INSTAGRAM</span><strong>@y3d.inex</strong><small>Instagram</small>
-        </a>
-      </div>
-    </section>
-  </main>
+  <section class="hero" id="home">
+    <div class="hero-image">
+      <img src="assets/hero.jpg" alt="Architectural visualization">
+    </div>
 
-  <footer>
-    <div><strong>YUDHA 3D DESIGN</strong><span>INTERIOR EXTERIOR</span></div>
-    <p>© <span id="year"></span> Yudhanto Hendra P., ST</p>
-  </footer>
+    <div class="hero-content">
+      <div class="eyebrow">ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
 
-  <div id="modal" class="modal" aria-hidden="true">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-inner">
-      <img id="modalImage" src="" alt="">
-      <div class="modal-info">
-        <div class="kicker" id="modalCategory"></div>
-        <h2 id="modalTitle"></h2>
-        <p id="modalLocation"></p>
-        <p id="modalDescription"></p>
-        <div class="modal-year" id="modalYear"></div>
+      <h1>
+        Yudha 3D Design<br>
+        <em>Interior Exterior</em>
+      </h1>
+
+      <p class="hero-sub">
+        Transforming architectural ideas into precise, immersive visual experiences.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#projects">VIEW PROJECTS →</a>
+        <a class="btn" href="#contact">GET IN TOUCH</a>
       </div>
     </div>
-  </div>
 
-  <script>
-    window.PROJECTS = [{"name": "Proyek MRT Blok M", "location": "Blok M, Jakarta Selatan", "category": "Architecture", "year": "2025", "image": "project-01.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Blok M, Jakarta Selatan."}, {"name": "Proyek RSUD Tarakan", "location": "Tarakan, Kalimantan Utara", "category": "Architecture", "year": "2025", "image": "project-02.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Tarakan, Kalimantan Utara."}, {"name": "Proyek Asmara Coffee Cafe", "location": "Cibinong, Kabupaten Bogor", "category": "Architecture · Interior", "year": "2025", "image": "project-03.jpg", "filters": ["architecture", "interior"], "description": "Architecture · Interior work presented in the 2025 portfolio. Location: Cibinong, Kabupaten Bogor."}, {"name": "Interior MyeongDong Topokki", "location": "Gandaria City Mall, Jakarta Selatan", "category": "Interior", "year": "2025", "image": "project-04.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Gandaria City Mall, Jakarta Selatan."}, {"name": "Interior Ruangan Rumah Tinggal", "location": "Depok, Jawa Barat", "category": "Interior", "year": "2025", "image": "project-05.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Depok, Jawa Barat."}, {"name": "Proyek Masjid Al-Hijrah", "location": "Grand Depok City, Cluster Alpinia, Kota Depok, Jawa Barat, Indonesia", "category": "Architecture", "year": "2025", "image": "project-06.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Grand Depok City, Cluster Alpinia, Kota Depok, Jawa Barat, Indonesia."}, {"name": "Proyek Rumah Tinggal Type 60", "location": "Sukatani, Kabupaten Bogor", "category": "Architecture", "year": "2025", "image": "project-07.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Sukatani, Kabupaten Bogor."}, {"name": "Proyek Rumah Tinggal Minimalis", "location": "Cipondoh, Tangerang", "category": "Architecture", "year": "2025", "image": "project-08.jpg", "filters": ["architecture"], "description": "Architecture work presented in the 2025 portfolio. Location: Cipondoh, Tangerang."}, {"name": "Interior APCA Design", "location": "Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan", "category": "Interior", "year": "2025", "image": "project-09.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan."}, {"name": "Interior Kanakafe Desain", "location": "Kawasan RS. Hermina, Depok, Jawa Barat", "category": "Interior", "year": "2025", "image": "project-10.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Kawasan RS. Hermina, Depok, Jawa Barat."}, {"name": "Interior Resepsionis Kantor", "location": "Gedung UOB, Sudirman, Jakarta", "category": "Interior", "year": "2025", "image": "project-11.jpg", "filters": ["interior"], "description": "Interior work presented in the 2025 portfolio. Location: Gedung UOB, Sudirman, Jakarta."}];
-  </script>
-  <script src="script.js"></script>
+    <div class="scroll">SCROLL ↓</div>
+  </section>
+
+
+  <section class="section" id="projects">
+    <div class="section-head">
+      <div>
+        <div class="kicker">SELECTED WORK</div>
+        <h2>Projects</h2>
+      </div>
+
+      <p>
+        A selection of architecture, interior design and 3D visualization work
+        developed through more than ten years in architectural design.
+      </p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">ALL</button>
+      <button class="filter" data-filter="architecture">ARCHITECTURE</button>
+      <button class="filter" data-filter="interior">INTERIOR</button>
+      <button class="filter" data-filter="visualization">3D VISUALIZATION</button>
+    </div>
+
+    <div class="grid" id="projectGrid"></div>
+  </section>
+
+
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="portrait">
+        <img src="assets/portrait.jpg" alt="Yudhanto Hendra P., ST">
+      </div>
+
+      <div class="about-copy">
+        <div class="kicker">ABOUT</div>
+
+        <h2>Yudhanto<br>Hendra P., ST</h2>
+
+        <p class="lead">Architectural 3D Artist</p>
+
+        <p>
+          I am an architectural 3D artist with an educational background
+          in Architecture from Universitas Pancasila, Jakarta, Indonesia.
+        </p>
+
+        <p>
+          I have been working in the architectural 3D design industry for
+          more than ten years, focusing on exterior and interior design and
+          the development of minimalist spaces that emphasize both function
+          and aesthetics.
+        </p>
+
+        <p>
+          My experience covers a wide range of projects, from residential
+          to commercial developments. My educational background has provided
+          me with a strong understanding of design principles and contemporary
+          architectural styles.
+        </p>
+
+        <div class="about-meta">
+          <div>
+            <span>EDUCATION</span>
+            <strong>Universitas Pancasila<br>Architecture</strong>
+          </div>
+
+          <div>
+            <span>EXPERIENCE</span>
+            <strong>10+ Years<br>Architectural 3D Design</strong>
+          </div>
+
+          <div>
+            <span>FOCUS</span>
+            <strong>Exterior & Interior<br>3D Visualization</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="services">
+    <div class="section-head">
+      <div>
+        <div class="kicker">CAPABILITIES</div>
+        <h2>Services</h2>
+      </div>
+
+      <p>
+        Architecture, interior and visualization capabilities developed from
+        professional architectural practice and extensive 3D design experience.
+      </p>
+    </div>
+
+    <div class="services-list">
+      <article class="service">
+        <span class="service-number">01</span>
+        <div>
+          <h3>Architecture</h3>
+          <p>Architectural planning, design development and visual communication.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </article>
+
+      <article class="service">
+        <span class="service-number">02</span>
+        <div>
+          <h3>Interior Design</h3>
+          <p>Functional and aesthetic interior concepts for residential and commercial spaces.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </article>
+
+      <article class="service">
+        <span class="service-number">03</span>
+        <div>
+          <h3>3D Visualization</h3>
+          <p>Exterior and interior visualization for communicating architectural ideas clearly.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </article>
+    </div>
+
+    <div class="software">
+      <div class="kicker">SOFTWARE SKILLS</div>
+
+      <div class="software-groups">
+        <div class="software-group">
+          <h3>2D DRAFTING</h3>
+          <div class="software-item"><span>AutoCAD</span><b>★★★★★</b></div>
+          <div class="software-item"><span>Autodesk Revit</span><b>★★★★☆</b></div>
+          <div class="software-item"><span>LayOut</span><b>★★★★★</b></div>
+          <div class="software-item"><span>Adobe Photoshop</span><b>★★★☆☆</b></div>
+        </div>
+
+        <div class="software-group">
+          <h3>3D MODELING</h3>
+          <div class="software-item"><span>SketchUp</span><b>★★★★★</b></div>
+          <div class="software-item"><span>3ds Max</span><b>★★★★★</b></div>
+        </div>
+
+        <div class="software-group">
+          <h3>3D RENDERING</h3>
+          <div class="software-item"><span>V-Ray</span><b>★★★★☆</b></div>
+          <div class="software-item"><span>Enscape</span><b>★★★★★</b></div>
+          <div class="software-item"><span>Lumion</span><b>★★★★★</b></div>
+          <div class="software-item"><span>Corona Renderer</span><b>★★★★☆</b></div>
+          <div class="software-item"><span>D5 Render</span><b>★★★☆☆</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="kicker">CONTACT</div>
+        <h2>Let’s build<br><em>something considered.</em></h2>
+
+        <p class="contact-intro">
+          For project enquiries, collaboration and architectural visualization work,
+          get in touch.
+        </p>
+      </div>
+
+      <div class="contact-list">
+        <!-- GANTI DATA DI BAWAH INI DENGAN KONTAK ANDA -->
+        <a class="contact-item" href="mailto:y3d.inex@yahoo.com">
+          <span>EMAIL</span>
+          <strong>y3d.inex@yahoo.com</strong>
+        </a>
+
+        <a class="contact-item" href="https://wa.me/6289518184180" target="_blank" rel="noopener">
+          <span>WHATSAPP</span>
+          <strong>+62 895 1818 4180</strong>
+        </a>
+
+        <a class="contact-item" href="https://instagram.com/y3d.inex" target="_blank" rel="noopener">
+          <span>INSTAGRAM</span>
+          <strong>@y3d.inex</strong>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div><strong>YUDHA 3D DESIGN</strong> — INTERIOR EXTERIOR</div>
+  <div>© <span id="year"></span> Yudhanto Hendra P., ST</div>
+</footer>
+
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-close" id="modalClose" aria-label="Close project">×</button>
+
+  <div class="modal-inner">
+    <img class="modal-image" id="modalImage" src="" alt="">
+
+    <div class="modal-info">
+      <div class="kicker" id="modalType"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalLocation"></p>
+      <p id="modalDescription"></p>
+      <div class="modal-meta" id="modalYear"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const projects = [
+    {
+      name:"Proyek MRT Blok M",
+      location:"Blok M, Jakarta Selatan",
+      category:"Architecture",
+      filters:["architecture","visualization"],
+      image:"assets/project-01.jpg",
+      description:"Architecture and 3D visualization project."
+    },
+    {
+      name:"Proyek RSUD Tarakan",
+      location:"Tarakan, Kalimantan Utara",
+      category:"Architecture",
+      filters:["architecture","visualization"],
+      image:"assets/project-02.jpg",
+      description:"Architecture and 3D visualization project."
+    },
+    {
+      name:"Proyek Asmara Coffee Cafe",
+      location:"Cibinong, Kabupaten Bogor",
+      category:"Architecture · Interior",
+      filters:["architecture","interior","visualization"],
+      image:"assets/project-03.jpg",
+      description:"Architecture, interior and 3D visualization project."
+    },
+    {
+      name:"Interior MyeongDong Topokki",
+      location:"Gandaria City Mall, Jakarta Selatan",
+      category:"Interior",
+      filters:["interior","visualization"],
+      image:"assets/project-04.jpg",
+      description:"Interior design and 3D visualization project."
+    },
+    {
+      name:"Interior Ruangan Rumah Tinggal",
+      location:"Depok, Jawa Barat",
+      category:"Interior",
+      filters:["interior","visualization"],
+      image:"assets/project-05.jpg",
+      description:"Residential interior design and visualization."
+    },
+    {
+      name:"Proyek Masjid Al-Hijrah",
+      location:"Grand Depok City, Kota Depok, Jawa Barat",
+      category:"Architecture",
+      filters:["architecture","visualization"],
+      image:"assets/project-06.jpg",
+      description:"Architecture and 3D visualization project."
+    },
+    {
+      name:"Proyek Rumah Tinggal Type 60",
+      location:"Sukatani, Kabupaten Bogor",
+      category:"Architecture",
+      filters:["architecture","visualization"],
+      image:"assets/project-07.jpg",
+      description:"Residential architecture and 3D visualization."
+    },
+    {
+      name:"Proyek Rumah Tinggal Minimalis",
+      location:"Cipondoh, Tangerang",
+      category:"Architecture",
+      filters:["architecture","visualization"],
+      image:"assets/project-08.jpg",
+      description:"Minimalist residential architecture and visualization."
+    },
+    {
+      name:"Interior APCA Design",
+      location:"Kawasan Flavor Bliss, Alam Sutera, Tangerang Selatan",
+      category:"Interior",
+      filters:["interior","visualization"],
+      image:"assets/project-09.jpg",
+      description:"Interior design and 3D visualization project."
+    },
+    {
+      name:"Interior Kanakafe Desain",
+      location:"Kawasan RS. Hermina, Depok, Jawa Barat",
+      category:"Interior",
+      filters:["interior","visualization"],
+      image:"assets/project-10.jpg",
+      description:"Interior design and 3D visualization project."
+    },
+    {
+      name:"Interior Resepsionis Kantor",
+      location:"Gedung UOB, Sudirman, Jakarta",
+      category:"Interior",
+      filters:["interior","visualization"],
+      image:"assets/project-11.jpg",
+      description:"Office interior and 3D visualization project."
+    }
+  ];
+
+  const grid = document.getElementById("projectGrid");
+  const filters = document.querySelectorAll(".filter");
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modalImage");
+  const modalType = document.getElementById("modalType");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalLocation = document.getElementById("modalLocation");
+  const modalDescription = document.getElementById("modalDescription");
+  const modalYear = document.getElementById("modalYear");
+  const modalClose = document.getElementById("modalClose");
+
+  function renderProjects(filter="all"){
+    grid.innerHTML = "";
+
+    projects.forEach((project,index)=>{
+      if(filter !== "all" && !project.filters.includes(filter)) return;
+
+      const card = document.createElement("article");
+      card.className = "project";
+
+      card.innerHTML = `
+        <div class="project-image">
+          <img src="${project.image}" alt="${project.name}" loading="lazy">
+        </div>
+        <div class="project-info">
+          <div class="project-number">${String(index+1).padStart(2,"0")}</div>
+          <div>
+            <div class="project-title">${project.name}</div>
+            <div class="project-location">${project.location}</div>
+          </div>
+          <div class="project-arrow">↗</div>
+        </div>
+      `;
+
+      card.addEventListener("click",()=>{
+        modalImage.src = project.image;
+        modalImage.alt = project.name;
+        modalType.textContent = project.category;
+        modalTitle.textContent = project.name;
+        modalLocation.textContent = project.location;
+        modalDescription.textContent = project.description;
+        modalYear.textContent = "2025 PORTFOLIO";
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden","false");
+        document.body.style.overflow="hidden";
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  filters.forEach(button=>{
+    button.addEventListener("click",()=>{
+      filters.forEach(item=>item.classList.remove("active"));
+      button.classList.add("active");
+      renderProjects(button.dataset.filter);
+    });
+  });
+
+  function closeModal(){
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+
+  modalClose.addEventListener("click",closeModal);
+  modal.addEventListener("click",(e)=>{
+    if(e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown",(e)=>{
+    if(e.key === "Escape") closeModal();
+  });
+
+  const menuButton = document.getElementById("menuButton");
+  const nav = document.getElementById("nav");
+
+  menuButton.addEventListener("click",()=>{
+    nav.classList.toggle("open");
+  });
+
+  nav.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click",()=>nav.classList.remove("open"));
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  renderProjects();
+</script>
+
 </body>
 </html>
