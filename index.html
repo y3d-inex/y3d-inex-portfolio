@@ -87,11 +87,13 @@
       position:absolute;
       inset:0;
     }
-    .hero-image img{
+    .hero-image img,
+    .hero-image video{
       width:100%;
       height:100%;
       object-fit:cover;
       object-position:center;
+      display:block;
     }
     .hero-image:after{
       content:"";
@@ -610,9 +612,10 @@
 
   <section class="hero" id="home">
     <div class="hero-image">
-      <video class="hero-video" autoplay muted loop playsinline>
-    <source src="hero.mp4" type="video/mp4">
-</video>
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg">
+        <source src="assets/hero.mp4" type="video/mp4">
+        <source src="hero.mp4" type="video/mp4">
+      </video>
     </div>
 
     <div class="hero-content">
