@@ -57,6 +57,11 @@
     .brand-logo{width:145px;height:auto;max-height:52px;object-fit:contain;object-position:left center;display:block;filter:none}
     .brand span{font-size:9px;letter-spacing:.12em}
 
+    .brand-name{display:block;font-size:11px;line-height:1;letter-spacing:.10em;font-weight:600;white-space:nowrap}
+
+    .hero-logo-title{margin:0;line-height:1;width:min(620px,58vw)}
+    .hero-logo-title img{display:block;width:100%;height:auto;max-width:620px;object-fit:contain;object-position:left center}
+
     .nav{
       display:flex;
       gap:30px;
@@ -568,7 +573,8 @@
       .nav.open{display:flex}
       .menu{display:block}
       .hero{padding:0 6vw 9vh}
-      h1{font-size:clamp(52px,15vw,90px)}
+      .brand-name{font-size:9px;letter-spacing:.07em}
+      .hero-logo-title{width:min(520px,82vw)}
       .section{padding:90px 0}
       .section-head,.about-inner,.contact-inner,.modal-inner{
         grid-template-columns:1fr;
@@ -593,8 +599,7 @@
 
 <header class="header">
   <a class="brand" href="#home">
-    <img class="brand-logo" src="assets/logo.jpg" alt="Yudha 3D Design Logo">
-    <span>YUDHA 3D DESIGN — INTERIOR EXTERIOR</span>
+    <span class="brand-name">Yudhanto Hendra P, ST&nbsp;&nbsp;_&nbsp;&nbsp;Y3D-INEX</span>
   </a>
 
   <button class="menu" id="menuButton" aria-label="Open navigation">☰</button>
@@ -621,9 +626,8 @@
     <div class="hero-content">
       <div class="eyebrow">ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
 
-      <h1>
-        Yudha 3D Design<br>
-        <em>Interior Exterior</em>
+      <h1 class="hero-logo-title">
+        <img src="assets/logo.jpg" alt="Yudha 3D Design — Interior Exterior">
       </h1>
 
       <p class="hero-sub">
