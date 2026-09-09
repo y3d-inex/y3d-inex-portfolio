@@ -291,43 +291,37 @@
       gap:90px;
       align-items:center;
     }
-    .portrait-wrap{
-  position:relative;
-}
-
-.about-index{
-  font-size:10px;
-  letter-spacing:.16em;
-  font-weight:600;
-  margin-bottom:16px;
-  opacity:.72;
-}
-
-.portrait{
-  background:#d8d5ce;
-  aspect-ratio:9/16;
-  overflow:hidden;
-}
-
-.portrait img,
-.portrait video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:50% 50%;
-  display:block;
-}
-
-.portrait-caption{
-  display:flex;
-  justify-content:space-between;
-  gap:18px;
-  padding-top:11px;
-  font-size:8px;
-  line-height:1.4;
-  letter-spacing:.12em;
-  opacity:.48;
-}
+    .portrait-wrap{position:relative}
+    .about-index{
+      font-size:9px;
+      letter-spacing:.18em;
+      font-weight:600;
+      margin-bottom:16px;
+      opacity:.62;
+    }
+    .portrait{
+      background:#d8d5ce;
+      aspect-ratio:9/16;
+      overflow:hidden;
+    }
+    .portrait img,
+    .portrait video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:50% 50%;
+      display:block;
+    }
+    .portrait-caption{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding-top:11px;
+      font-size:7px;
+      line-height:1.4;
+      letter-spacing:.13em;
+      opacity:.38;
+    }
     .about-copy .lead{
       margin:25px 0 20px;
       font-family:"Playfair Display",serif;
@@ -359,6 +353,45 @@
       font-weight:500;
       line-height:1.7;
     }
+    .about-statement{
+      margin-top:52px;
+      padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.13);
+    }
+    .statement-top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:var(--muted);
+      font-size:7px;
+      line-height:1.4;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .about-statement p{
+      margin:20px 0 24px;
+      font-size:clamp(30px,3.6vw,54px);
+      line-height:.93;
+      letter-spacing:-.045em;
+      font-weight:600;
+    }
+    .about-statement p em{
+      font-family:"Playfair Display",serif;
+      font-weight:400;
+      letter-spacing:-.025em;
+    }
+    .statement-bottom{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px 28px;
+      padding-top:15px;
+      border-top:1px solid rgba(255,255,255,.07);
+      color:var(--muted);
+      font-size:7px;
+      line-height:1.4;
+      letter-spacing:.16em;
+    }
+    .statement-bottom span::before{content:"— ";}
 
     .services-list{
       border-top:1px solid var(--line);
@@ -611,6 +644,8 @@
       .grid{grid-template-columns:1fr;gap:50px}
       .about-inner,.contact-inner{gap:45px;padding:90px 0}
       .about-meta{grid-template-columns:1fr}
+      .about-statement{margin-top:40px}
+      .about-statement p{font-size:34px}
       .software-groups{grid-template-columns:1fr}.software-group{border-right:0;border-bottom:1px solid var(--line);margin-right:0;padding-right:0}
       .modal{padding:80px 5vw 40px}
       .modal-inner{align-items:start;min-height:auto}
@@ -737,11 +772,7 @@
           me with a strong understanding of design principles and contemporary
           architectural styles.
         </p>
-
-        <div class="about-statement">
-  <div class="statement-line"></div>
-
-  <p>
+<p>
     DESIGNING SPACES.<br>
     <em>VISUALIZING IDEAS.</em>
   </p>
@@ -764,6 +795,19 @@
             <span>FOCUS</span>
             <strong>Exterior & Interior<br>3D Visualization</strong>
           </div>
+
+        <div class="about-statement">
+          <div class="statement-top">
+            <span>Y3D-INEX / 01</span>
+            <span>DESIGN APPROACH</span>
+          </div>
+          <p>DESIGNING SPACES.<br><em>VISUALIZING IDEAS.</em></p>
+          <div class="statement-bottom">
+            <span>ARCHITECTURE</span>
+            <span>INTERIOR</span>
+            <span>3D VISUALIZATION</span>
+          </div>
+        </div>
         </div>
       </div>
     </div>
