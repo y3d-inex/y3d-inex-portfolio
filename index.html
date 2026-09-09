@@ -1333,6 +1333,17 @@
       }
     }
 
+
+    /* HERO VIDEO — MOBILE KEEPS COVER, DESKTOP SHOWS THE COMPLETE 9:16 FRAME */
+    @media (min-width:901px){
+      .hero-image{background:#11110f;}
+      .hero-image video{width:100%;height:100%;object-fit:contain;object-position:center center;background:#11110f;}
+      .hero-image::after{background:linear-gradient(90deg,rgba(0,0,0,.56) 0%,rgba(0,0,0,.16) 55%,rgba(0,0,0,.10) 100%),linear-gradient(0deg,rgba(0,0,0,.58) 0%,transparent 58%);}
+    }
+    @media (max-width:900px){
+      .hero-image video{object-fit:cover;object-position:center center;}
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
