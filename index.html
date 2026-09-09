@@ -967,43 +967,23 @@
     .hero-logo-animated{
       transform-origin:center center;
       opacity:0;
-      transform:translateY(18px) scale(.82);
-      filter:blur(5px);
+      transform:translateY(22px) scale(.86);
+      filter:blur(4px);
       animation:
-        heroLogoBlinkScale 3.4s cubic-bezier(.16,1,.3,1) .25s forwards,
-        heroLogoFloat 5.5s ease-in-out 4.0s infinite;
+        heroLogoReveal 2.2s cubic-bezier(.16,1,.3,1) .25s forwards,
+        heroLogoPulse 2.8s ease-in-out 2.8s infinite;
       will-change:transform,opacity,filter;
     }
 
-    @keyframes heroLogoBlinkScale{
+    @keyframes heroLogoReveal{
       0%{
         opacity:0;
-        transform:translateY(18px) scale(.82);
-        filter:blur(5px);
-      }
-      18%{
-        opacity:.18;
-        transform:translateY(14px) scale(.84);
+        transform:translateY(22px) scale(.86);
         filter:blur(4px);
-      }
-      27%{
-        opacity:.92;
-        transform:translateY(8px) scale(.88);
-        filter:blur(2px);
-      }
-      34%{
-        opacity:.22;
-        transform:translateY(7px) scale(.89);
-        filter:blur(2px);
-      }
-      42%{
-        opacity:1;
-        transform:translateY(4px) scale(.92);
-        filter:blur(1px);
       }
       70%{
         opacity:1;
-        transform:translateY(0) scale(.975);
+        transform:translateY(0) scale(1.025);
         filter:blur(0);
       }
       100%{
@@ -1013,9 +993,19 @@
       }
     }
 
-    @keyframes heroLogoFloat{
-      0%,100%{transform:translateY(0) scale(1)}
-      50%{transform:translateY(-5px) scale(1.008)}
+    @keyframes heroLogoPulse{
+      0%,100%{
+        transform:scale(1);
+        filter:brightness(1);
+      }
+      18%{
+        transform:scale(1.035);
+        filter:brightness(1.10);
+      }
+      36%{
+        transform:scale(1);
+        filter:brightness(1);
+      }
     }
 
     @media (prefers-reduced-motion:reduce){
@@ -1045,12 +1035,17 @@
       opacity:0;
       z-index:-1;
       pointer-events:none;
-      animation:heroLogoGlow 3.0s ease-out .95s forwards;
+      animation:heroLogoGlow 2.8s ease-in-out 2.6s infinite;
     }
     @keyframes heroLogoGlow{
-      0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
-      45%{opacity:.75;transform:translate(-50%,-50%) scale(1)}
-      100%{opacity:.18;transform:translate(-50%,-50%) scale(1.08)}
+      0%,100%{
+        opacity:.10;
+        transform:translate(-50%,-50%) scale(1);
+      }
+      50%{
+        opacity:.26;
+        transform:translate(-50%,-50%) scale(1.05);
+      }
     }
 
 </style>
