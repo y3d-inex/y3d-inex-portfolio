@@ -1344,6 +1344,39 @@
       .hero-image video{object-fit:cover;object-position:center center;}
     }
 
+
+    /* HERO — TWO VIDEO SOURCES */
+    .hero-image .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      z-index:0;
+      background:#11110f;
+    }
+
+    .hero-video-desktop{
+      display:block !important;
+      object-fit:contain;
+      object-position:center center;
+    }
+
+    .hero-video-mobile{
+      display:none !important;
+    }
+
+    @media (max-width:900px){
+      .hero-video-desktop{
+        display:none !important;
+      }
+      .hero-video-mobile{
+        display:block !important;
+        object-fit:cover;
+        object-position:center center;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1371,9 +1404,11 @@
 
   <section class="hero" id="home">
     <div class="hero-image">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg">
-        <source src="assets/hero-video.mp4" type="video/mp4">
-        <source src="hero-video.mp4" type="video/mp4">
+      <video class="hero-video hero-video-desktop" class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-label="Desktop hero video">
+        <source src="assets/hero-video-desktop.mp4" type="video/mp4">
+      </video>
+      <video class="hero-video hero-video-mobile" class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-label="Mobile hero video">
+        <source src="assets/hero-video-mobile.mp4" type="video/mp4">
       </video>
     </div>
 
