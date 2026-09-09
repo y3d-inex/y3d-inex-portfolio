@@ -291,19 +291,43 @@
       gap:90px;
       align-items:center;
     }
-    .portrait{
-      background:#d8d5ce;
-      aspect-ratio:9/16;
-      overflow:hidden;
-    }
-    .portrait img,
-    .portrait video{
-     width:100%;
-     height:100%;
-     object-fit:cover;
-     object-position:50% 50%;
-     display:block;
-    }
+    .portrait-wrap{
+  position:relative;
+}
+
+.about-index{
+  font-size:10px;
+  letter-spacing:.16em;
+  font-weight:600;
+  margin-bottom:16px;
+  opacity:.72;
+}
+
+.portrait{
+  background:#d8d5ce;
+  aspect-ratio:9/16;
+  overflow:hidden;
+}
+
+.portrait img,
+.portrait video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 50%;
+  display:block;
+}
+
+.portrait-caption{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding-top:11px;
+  font-size:8px;
+  line-height:1.4;
+  letter-spacing:.12em;
+  opacity:.48;
+}
     .about-copy .lead{
       margin:25px 0 20px;
       font-family:"Playfair Display",serif;
