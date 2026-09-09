@@ -1137,6 +1137,42 @@
       .education-history-label{margin-bottom:10px}
     }
 
+
+    /* EDUCATION LOGOS — GRAYSCALE BY DEFAULT, COLOR ON HOVER */
+    .education-logo{
+      width:58px;
+      height:58px;
+      flex:0 0 58px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      cursor:zoom-in;
+      filter:grayscale(1);
+      opacity:.62;
+      transition:filter .35s ease, opacity .35s ease, transform .35s ease;
+    }
+    .education-card:hover .education-logo{
+      filter:grayscale(0);
+      opacity:1;
+      transform:scale(1.06);
+    }
+    .education-card{cursor:pointer;}
+
+
+    /* EDUCATION INSTITUTION LINKS */
+    .education-info strong .education-link,
+    .education-info .education-link{
+      color:inherit;
+      text-decoration:none;
+      transition:color .25s ease, opacity .25s ease;
+      cursor:pointer;
+    }
+    .education-info .education-link:hover{
+      color:#777 !important;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
 </style>
 </head>
 
@@ -1261,7 +1297,7 @@
             <div class="education-card">
               <img class="education-logo" src="assets/education/smp-bintara.png" alt="Logo SMP Bintara">
               <div class="education-info">
-                <strong>SMP Bintara</strong>
+                <strong><a class="education-link" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">SMP Bintara</a></strong>
                 <span>Junior High School</span>
               </div>
             </div>
@@ -1272,7 +1308,7 @@
             <div class="education-card">
               <img class="education-logo" src="assets/education/sma-bintara.png" alt="Logo SMA Bintara">
               <div class="education-info">
-                <strong>SMA Bintara</strong>
+                <strong><a class="education-link" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">SMA Bintara</a></strong>
                 <span>Senior High School</span>
               </div>
             </div>
@@ -1283,7 +1319,7 @@
             <div class="education-card">
               <img class="education-logo" src="assets/education/universitas-pancasila.png" alt="Logo Universitas Pancasila">
               <div class="education-info">
-                <strong>Universitas Pancasila</strong>
+                <strong><a class="education-link" href="https://teknik.univpancasila.ac.id/arsitektur/" target="_blank" rel="noopener noreferrer">Universitas Pancasila</a></strong>
                 <span>Architecture</span>
               </div>
             </div>
@@ -1617,6 +1653,19 @@
 
   document.querySelectorAll(".software-logo").forEach(logo=>{
     logo.addEventListener("click",()=>{
+      if(!logo.complete || !logo.naturalWidth) return;
+      logoViewerImage.src = logo.src;
+      logoViewerImage.alt = logo.alt;
+      logoViewerName.textContent = logo.alt.replace(/\s+logo$/i,"");
+      logoViewer.classList.add("open");
+      logoViewer.setAttribute("aria-hidden","false");
+    });
+  });
+
+  // Education logos use the same enlarged logo viewer.
+  document.querySelectorAll(".education-logo").forEach(logo=>{
+    logo.addEventListener("click",(event)=>{
+      event.preventDefault();
       if(!logo.complete || !logo.naturalWidth) return;
       logoViewerImage.src = logo.src;
       logoViewerImage.alt = logo.alt;
