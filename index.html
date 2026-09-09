@@ -371,26 +371,56 @@
     .about-meta{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:28px;
+      gap:0;
       margin-top:34px;
-      padding-top:22px;
+      padding-top:24px;
       border-top:1px solid var(--line);
     }
     .about-meta > div{
       min-width:0;
+      padding:0 26px;
+      border-right:1px solid var(--line);
     }
-    .about-meta span{
-      display:block;
+    .about-meta > div:first-child{padding-left:0}
+    .about-meta > div:last-child{
+      padding-right:0;
+      border-right:0;
+    }
+    .education-history-label{
       color:var(--muted);
       font-size:8px;
       letter-spacing:.16em;
-      margin-bottom:8px;
+      margin-bottom:14px;
     }
-    .about-meta strong{
+    .education-card{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-height:74px;
+    }
+    .education-logo{
+      width:58px;
+      height:58px;
+      flex:0 0 58px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+    }
+    .education-info strong{
       display:block;
       font-size:12px;
       font-weight:500;
-      line-height:1.6;
+      line-height:1.35;
+      color:var(--text);
+    }
+    .education-info span{
+      display:block;
+      margin-top:5px;
+      color:var(--muted);
+      font-size:8px;
+      line-height:1.4;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
     .about-statement{
       margin-top:46px;
@@ -1092,6 +1122,21 @@
       border-top-color:rgba(0,0,0,.16);
     }
 
+
+    @media (max-width:900px){
+      .about-meta{
+        grid-template-columns:1fr;
+        gap:0;
+      }
+      .about-meta > div{
+        padding:18px 0;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
+      .about-meta > div:last-child{border-bottom:0}
+      .education-history-label{margin-bottom:10px}
+    }
+
 </style>
 </head>
 
@@ -1212,16 +1257,36 @@
 
         <div class="about-meta">
           <div>
-            <span>EDUCATION</span>
-            <strong>Universitas Pancasila<br>Architecture</strong>
+            <div class="education-history-label">EDUCATIONAL BACKGROUND</div>
+            <div class="education-card">
+              <img class="education-logo" src="assets/education/smp-bintara.png" alt="Logo SMP Bintara">
+              <div class="education-info">
+                <strong>SMP Bintara</strong>
+                <span>Junior High School</span>
+              </div>
+            </div>
           </div>
+
           <div>
-            <span>EXPERIENCE</span>
-            <strong>10+ Years<br>Architectural 3D Design</strong>
+            <div class="education-history-label">&nbsp;</div>
+            <div class="education-card">
+              <img class="education-logo" src="assets/education/sma-bintara.png" alt="Logo SMA Bintara">
+              <div class="education-info">
+                <strong>SMA Bintara</strong>
+                <span>Senior High School</span>
+              </div>
+            </div>
           </div>
+
           <div>
-            <span>FOCUS</span>
-            <strong>Exterior &amp; Interior<br>3D Visualization</strong>
+            <div class="education-history-label">&nbsp;</div>
+            <div class="education-card">
+              <img class="education-logo" src="assets/education/universitas-pancasila.png" alt="Logo Universitas Pancasila">
+              <div class="education-info">
+                <strong>Universitas Pancasila</strong>
+                <span>Architecture</span>
+              </div>
+            </div>
           </div>
         </div>
 
