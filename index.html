@@ -567,6 +567,7 @@
     #services{
       padding-bottom:0;
       position:relative;
+      background:var(--bg);
       background:linear-gradient(
         to bottom,
         var(--bg) 0,
@@ -574,7 +575,9 @@
         #e9e5dc var(--software-top, 0px),
         #e9e5dc 100%
       );
-    }
+    
+      background:#11110f !important;
+      color:#f2f0eb;}
 
     .software{
       width:100%;
@@ -917,7 +920,23 @@
       .gallery-prev,.gallery-next{width:38px;height:38px;font-size:26px}
       footer{flex-direction:column}
     }
-  </style>
+  
+    /* WHAT I CREATE — BLACK BACKGROUND */
+    #services,
+    #services > .container,
+    #services .services-inner,
+    #services .services-header,
+    #services .service-grid{
+      background:#11110f !important;
+    }
+
+    #services .kicker,
+    #services h2,
+    #services p{
+      color:inherit;
+    }
+
+</style>
 </head>
 
 <body>
