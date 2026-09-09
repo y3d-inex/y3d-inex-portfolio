@@ -971,18 +971,24 @@
       filter:blur(4px);
       animation:heroLogoReveal 2.2s cubic-bezier(.16,1,.3,1) .25s forwards;
       will-change:transform,opacity,filter;
-      transition:transform .65s cubic-bezier(.16,1,.3,1),filter .65s ease;
     }
 
-    .hero-logo-animated.logo-ready{
-      opacity:1;
-      filter:blur(0);
-      transform:translateY(0) scale(1);
+    .hero-logo-wrap{
+      position:relative;
+      isolation:isolate;
+      transform:scale(1);
+      transition:transform .7s cubic-bezier(.16,1,.3,1);
+      transform-origin:center left;
     }
 
-    .hero-logo-wrap:hover .hero-logo-animated.logo-ready{
-      transform:translateY(0) scale(1.065);
-      filter:brightness(1.06);
+    /* Hover is available only after the entrance animation is complete. */
+    .hero-logo-wrap.logo-ready:hover{
+      transform:scale(1.065);
+    }
+
+    .hero-logo-wrap.logo-ready:hover::after{
+      opacity:.28;
+      transform:translate(-50%,-50%) scale(1);
     }
 
     @keyframes heroLogoReveal{
@@ -1032,10 +1038,7 @@
       pointer-events:none;
       transition:opacity .7s ease,transform .7s ease;
     }
-    .hero-logo-wrap:hover::after{
-      opacity:.28;
-      transform:translate(-50%,-50%) scale(1);
-    }
+
 
 </style>
 </head>
@@ -1497,10 +1500,21 @@
 
   // Hero logo: scale-up once on entrance, then scale gently on mouse hover
   const heroLogo = document.querySelector(".hero-logo-animated");
-  if(heroLogo){
-    heroLogo.addEventListener("animationend", ()=>{
-      heroLogo.classList.add("logo-ready");
-    }, {once:true});
+  const heroLogoWrap = document.querySelector(".hero-logo-wrap");
+  if(heroLogo && heroLogoWrap){
+    const finishHeroLogo = ()=>{
+      heroLogoWrap.classList.add("logo-ready");
+      heroLogo.style.animation = "none";
+      heroLogo.style.opacity = "1";
+      heroLogo.style.transform = "none";
+      heroLogo.style.filter = "none";
+    };
+
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      finishHeroLogo();
+    }else{
+      heroLogo.addEventListener("animationend", finishHeroLogo, {once:true});
+    }
   }
 
   document.querySelectorAll(".software-logo").forEach(logo=>{
