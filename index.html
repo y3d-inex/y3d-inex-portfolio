@@ -969,7 +969,7 @@
       opacity:0;
       transform:translateY(22px) scale(.86);
       filter:blur(4px);
-      animation:heroLogoReveal 2.2s cubic-bezier(.16,1,.3,1) .25s forwards;
+      animation:heroLogoEntrance 2.4s cubic-bezier(.16,1,.3,1) .2s 1 normal both;
       will-change:transform,opacity,filter;
     }
 
@@ -977,26 +977,19 @@
       position:relative;
       isolation:isolate;
       transform:scale(1);
-      transition:transform .7s cubic-bezier(.16,1,.3,1);
       transform-origin:center left;
+      transition:transform .65s cubic-bezier(.16,1,.3,1);
     }
-
-    /* Hover is available only after the entrance animation is complete. */
     .hero-logo-wrap.logo-ready:hover{
       transform:scale(1.065);
     }
+
+    /* Hover is available only after the entrance animation is complete. */
 
     .hero-logo-wrap.logo-ready:hover::after{
       opacity:.28;
       transform:translate(-50%,-50%) scale(1);
     }
-
-    @keyframes heroLogoReveal{
-      0%{
-        opacity:0;
-        transform:translateY(22px) scale(.86);
-        filter:blur(4px);
-      }
       68%{
         opacity:1;
         transform:translateY(0) scale(1.035);
@@ -1038,8 +1031,17 @@
       pointer-events:none;
       transition:opacity .7s ease,transform .7s ease;
     }
+    .hero-logo-wrap.logo-ready:hover::after{
+      opacity:.28;
+      transform:translate(-50%,-50%) scale(1);
+    }
 
 
+    @keyframes heroLogoEntrance{
+      0%{opacity:0;transform:translateY(22px) scale(.86);filter:blur(4px)}
+      72%{opacity:1;transform:translateY(0) scale(1.035);filter:blur(0)}
+      100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+    }
 </style>
 </head>
 
@@ -1504,11 +1506,17 @@
   if(heroLogo && heroLogoWrap){
     const finishHeroLogo = ()=>{
       heroLogoWrap.classList.add("logo-ready");
-      heroLogo.style.animation = "none";
-      heroLogo.style.opacity = "1";
-      heroLogo.style.transform = "none";
-      heroLogo.style.filter = "none";
+      heroLogo.style.setProperty("animation", "none", "important");
+      heroLogo.style.setProperty("opacity", "1", "important");
+      heroLogo.style.setProperty("transform", "translateY(0) scale(1)", "important");
+      heroLogo.style.setProperty("filter", "none", "important");
     };
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      finishHeroLogo();
+    }else{
+      heroLogo.addEventListener("animationend", finishHeroLogo, {once:true});
+    }
+  };
 
     if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
       finishHeroLogo();
