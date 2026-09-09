@@ -64,13 +64,31 @@
 
     .nav{
       display:flex;
-      gap:30px;
-      font-size:10px;
-      letter-spacing:.16em;
-      font-weight:600;
+      align-items:center;
+      gap:32px;
+      padding:10px 16px;
+      font-size:11.5px;
+      line-height:1;
+      letter-spacing:.15em;
+      font-weight:700;
+      background:rgba(12,12,11,.38);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:3px;
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      box-shadow:0 5px 22px rgba(0,0,0,.14);
     }
-    .nav a{opacity:.85;transition:.25s}
-    .nav a:hover{opacity:1}
+    .nav a{
+      opacity:1;
+      color:#fff;
+      text-shadow:0 1px 4px rgba(0,0,0,.55);
+      transition:opacity .25s,transform .25s;
+      white-space:nowrap;
+    }
+    .nav a:hover{
+      opacity:.72;
+      transform:translateY(-1px);
+    }
 
     .menu{
       display:none;
@@ -882,11 +900,19 @@
         top:70px;
         right:5vw;
         flex-direction:column;
+        align-items:flex-start;
         gap:18px;
         padding:20px;
+        min-width:170px;
         background:#11110f;
         border:1px solid var(--line);
+        border-radius:3px;
         mix-blend-mode:normal;
+      }
+      .nav a{
+        font-size:11px;
+        color:#fff;
+        text-shadow:none;
       }
       .nav.open{display:flex}
       .menu{display:block}
@@ -941,23 +967,43 @@
     .hero-logo-animated{
       transform-origin:center center;
       opacity:0;
-      transform:translateY(28px) scale(.92);
-      filter:blur(7px);
+      transform:translateY(18px) scale(.82);
+      filter:blur(5px);
       animation:
-        heroLogoReveal 1.35s cubic-bezier(.16,1,.3,1) .35s forwards,
-        heroLogoFloat 5.5s ease-in-out 1.8s infinite;
+        heroLogoBlinkScale 3.4s cubic-bezier(.16,1,.3,1) .25s forwards,
+        heroLogoFloat 5.5s ease-in-out 4.0s infinite;
       will-change:transform,opacity,filter;
     }
 
-    @keyframes heroLogoReveal{
+    @keyframes heroLogoBlinkScale{
       0%{
         opacity:0;
-        transform:translateY(28px) scale(.92);
-        filter:blur(7px);
+        transform:translateY(18px) scale(.82);
+        filter:blur(5px);
       }
-      65%{
+      18%{
+        opacity:.18;
+        transform:translateY(14px) scale(.84);
+        filter:blur(4px);
+      }
+      27%{
+        opacity:.92;
+        transform:translateY(8px) scale(.88);
+        filter:blur(2px);
+      }
+      34%{
+        opacity:.22;
+        transform:translateY(7px) scale(.89);
+        filter:blur(2px);
+      }
+      42%{
         opacity:1;
-        transform:translateY(-3px) scale(1.015);
+        transform:translateY(4px) scale(.92);
+        filter:blur(1px);
+      }
+      70%{
+        opacity:1;
+        transform:translateY(0) scale(.975);
         filter:blur(0);
       }
       100%{
@@ -999,7 +1045,7 @@
       opacity:0;
       z-index:-1;
       pointer-events:none;
-      animation:heroLogoGlow 2.2s ease-out 1.05s forwards;
+      animation:heroLogoGlow 3.0s ease-out .95s forwards;
     }
     @keyframes heroLogoGlow{
       0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
