@@ -566,6 +566,14 @@
 
     #services{
       padding-bottom:0;
+      position:relative;
+      background:linear-gradient(
+        to bottom,
+        var(--bg) 0,
+        var(--bg) var(--software-top, 0px),
+        #e9e5dc var(--software-top, 0px),
+        #e9e5dc 100%
+      );
     }
 
     .software{
@@ -576,6 +584,19 @@
       background:#e9e5dc;
       color:#171714;
       padding:34px 0 38px;
+      position:relative;
+      z-index:1;
+    }
+    .software::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:100vw;
+      transform:translateX(-50%);
+      background:#e9e5dc;
     }
     .software .kicker{
       color:#5e5a52;
@@ -618,11 +639,41 @@
     }
     .software-logo:hover{transform:scale(1.08);opacity:.82;}
     .software-name span{min-width:0;}
-    .software-item b{
+    .software-item b.software-rating{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:3px;
       color:#d6b24c;
-      font-size:15px;
-      letter-spacing:1px;
+      font-size:22px;
+      line-height:1;
+      letter-spacing:0;
       white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .software-rating .star{
+      display:inline-block;
+      transform-origin:center;
+    }
+
+    .software-rating .star.filled{
+      animation:starPulse 1.8s ease-in-out infinite;
+      animation-delay:var(--star-delay);
+    }
+
+    .software-rating .star.empty{
+      opacity:.30;
+    }
+
+    @keyframes starPulse{
+      0%,100%{transform:scale(1);text-shadow:none}
+      12%{transform:scale(1.25);text-shadow:0 0 10px rgba(217,177,76,.38)}
+      24%{transform:scale(1);text-shadow:none}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .software-rating .star.filled{animation:none}
     }
 
     .logo-viewer{
@@ -1101,23 +1152,23 @@
       <div class="software-groups">
         <div class="software-group">
           <h3>2D DRAFTING</h3>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/autocad.png" alt="AutoCAD logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">AC</span><span>AutoCAD</span></span><b>★★★★★</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/revit.png" alt="Autodesk Revit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">RV</span><span>Autodesk Revit</span></span><b>★★★★☆</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/layout.png" alt="LayOut SketchUp logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">LO</span><span>LayOut SketchUp</span></span><b>★★★★★</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/photoshop.png" alt="Adobe Photoshop logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">PS</span><span>Adobe Photoshop</span></span><b>★★★☆☆</b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/autocad.png" alt="AutoCAD logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">AC</span><span>AutoCAD</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/revit.png" alt="Autodesk Revit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">RV</span><span>Autodesk Revit</span></span><b class="software-rating" aria-label="4 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star empty" style="--star-delay:0.32s">☆</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/layout.png" alt="LayOut SketchUp logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">LO</span><span>LayOut SketchUp</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/photoshop.png" alt="Adobe Photoshop logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">PS</span><span>Adobe Photoshop</span></span><b class="software-rating" aria-label="3 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star empty" style="--star-delay:0.24s">☆</span><span class="star empty" style="--star-delay:0.32s">☆</span></b></div>
         </div>
         <div class="software-group">
           <h3>3D MODELING</h3>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/sketchup.png" alt="SketchUp logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">SU</span><span>SketchUp</span></span><b>★★★★★</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/3dsmax.png" alt="3ds Max logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">3D</span><span>3ds Max</span></span><b>★★★★★</b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/sketchup.png" alt="SketchUp logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">SU</span><span>SketchUp</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/3dsmax.png" alt="3ds Max logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">3D</span><span>3ds Max</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
         </div>
         <div class="software-group">
           <h3>3D RENDERING</h3>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/vray.png" alt="V-Ray logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">VR</span><span>V-Ray</span></span><b>★★★★☆</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/enscape.png" alt="Enscape logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">EN</span><span>Enscape</span></span><b>★★★★★</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/lumion.png" alt="Lumion logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">LU</span><span>Lumion</span></span><b>★★★★★</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/corona.png" alt="Corona Renderer logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">CR</span><span>Corona Renderer</span></span><b>★★★★☆</b></div>
-          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/d5-render.png" alt="D5 Render logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">D5</span><span>D5 Render</span></span><b>★★★☆☆</b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/vray.png" alt="V-Ray logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">VR</span><span>V-Ray</span></span><b class="software-rating" aria-label="4 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star empty" style="--star-delay:0.32s">☆</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/enscape.png" alt="Enscape logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">EN</span><span>Enscape</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/lumion.png" alt="Lumion logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">LU</span><span>Lumion</span></span><b class="software-rating" aria-label="5 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star filled" style="--star-delay:0.32s">★</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/corona.png" alt="Corona Renderer logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">CR</span><span>Corona Renderer</span></span><b class="software-rating" aria-label="4 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star filled" style="--star-delay:0.24s">★</span><span class="star empty" style="--star-delay:0.32s">☆</span></b></div>
+          <div class="software-item"><span class="software-name"><img class="software-logo" src="assets/software/d5-render.png" alt="D5 Render logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="software-logo-fallback" aria-hidden="true" style="display:none">D5</span><span>D5 Render</span></span><b class="software-rating" aria-label="3 out of 5 stars"><span class="star filled" style="--star-delay:0.00s">★</span><span class="star filled" style="--star-delay:0.08s">★</span><span class="star filled" style="--star-delay:0.16s">★</span><span class="star empty" style="--star-delay:0.24s">☆</span><span class="star empty" style="--star-delay:0.32s">☆</span></b></div>
         </div>
       </div>
     </div>
