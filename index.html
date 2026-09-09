@@ -415,23 +415,154 @@
     }
     .statement-bottom span::before{content:"— ";}
 
-    .services-list{
-      border-top:1px solid var(--line);
+    /* =========================
+       PREMIUM SERVICES SECTION
+    ========================== */
+    .services-intro{
+      max-width:520px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.75;
     }
-    .service{
+
+    .services-grid{
       display:grid;
-      grid-template-columns:70px 1fr 30px;
-      gap:25px;
-      align-items:center;
-      padding:32px 0;
-      border-bottom:1px solid var(--line);
-      transition:.25s;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
     }
-    .service:hover{padding-left:10px}
-    .service-number{color:var(--muted);font-size:10px;letter-spacing:.12em}
-    .service h3{font-size:25px;font-weight:500}
-    .service p{color:var(--muted);font-size:13px;margin-top:4px}
-    .service-arrow{font-size:20px}
+
+    .service-card{
+      position:relative;
+      min-height:560px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#181815;
+      isolation:isolate;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:26px;
+      transition:transform .35s ease,border-color .35s ease;
+    }
+
+    .service-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(180deg,rgba(0,0,0,.08) 18%,rgba(0,0,0,.82) 78%,rgba(0,0,0,.96) 100%);
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(255,255,255,.32);
+    }
+
+    .service-card:hover .service-image img{
+      transform:scale(1.07);
+    }
+
+    .service-image{
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      overflow:hidden;
+    }
+
+    .service-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform 1.1s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .service-top{
+      position:absolute;
+      top:22px;
+      left:24px;
+      right:24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:9px;
+      letter-spacing:.16em;
+      color:#ece7dd;
+    }
+
+    .service-number{opacity:.85}
+
+    .service-label{
+      padding:7px 10px;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(0,0,0,.18);
+      font-size:8px;
+      letter-spacing:.14em;
+    }
+
+    .service-content{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .service-content h3{
+      font-size:clamp(34px,3vw,52px);
+      line-height:.98;
+      letter-spacing:-.04em;
+      font-weight:500;
+      max-width:360px;
+    }
+
+    .service-subtitle{
+      font-family:"Playfair Display",serif;
+      font-size:21px;
+      line-height:1.15;
+      color:#f0ece4;
+    }
+
+    .service-description{
+      color:#d1cdc4;
+      font-size:13px;
+      line-height:1.7;
+      max-width:420px;
+    }
+
+    .service-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      padding-top:6px;
+    }
+
+    .service-tags span{
+      border:1px solid rgba(255,255,255,.22);
+      padding:7px 9px;
+      font-size:8px;
+      letter-spacing:.12em;
+      color:#e5e0d7;
+      background:rgba(0,0,0,.16);
+    }
+
+    .service-link{
+      margin-top:4px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:9px;
+      letter-spacing:.16em;
+      font-weight:700;
+      color:#f3efe7;
+    }
+
+    .service-link .arrow{
+      font-size:18px;
+      line-height:1;
+      transition:transform .25s ease;
+    }
+
+    .service-card:hover .service-link .arrow{
+      transform:translateX(6px);
+    }
 
     .software{
       margin-top:80px;
@@ -672,6 +803,10 @@
       .about-meta{grid-template-columns:1fr;gap:18px;}
       .about-statement{margin-top:38px;}
       .about-statement p{font-size:34px}
+      .services-grid{grid-template-columns:1fr;gap:18px}
+      .service-card{min-height:500px;padding:22px}
+      .service-top{top:18px;left:18px;right:18px}
+      .service-content h3{font-size:42px}
       .software-groups{grid-template-columns:1fr}.software-group{border-right:0;border-bottom:1px solid var(--line);margin-right:0;padding-right:0}
       .modal{padding:80px 5vw 40px}
       .modal-inner{align-items:start;min-height:auto}
@@ -835,47 +970,83 @@
     <div class="section-head">
       <div>
         <div class="kicker">CAPABILITIES</div>
-        <h2>Services</h2>
+        <h2>What I Create</h2>
       </div>
 
-      <p>
-        Architecture, interior and visualization capabilities developed from
-        professional architectural practice and extensive 3D design experience.
+      <p class="services-intro">
+        Architecture, interior design, and photorealistic visualization crafted to transform ideas into spaces that can be understood, experienced, and built.
       </p>
     </div>
 
-    <div class="services-list">
-      <article class="service">
-        <span class="service-number">01</span>
-        <div>
+    <div class="services-grid">
+
+      <article class="service-card">
+        <div class="service-image">
+          <img src="assets/projects/project-06-01.png" alt="Architecture project">
+        </div>
+        <div class="service-top">
+          <span class="service-number">01</span>
+          <span class="service-label">ARCHITECTURE</span>
+        </div>
+        <div class="service-content">
+          <div class="service-subtitle">Ideas Into Architecture.</div>
           <h3>Architecture</h3>
-          <p>Architectural planning, design development and visual communication.</p>
+          <p class="service-description">
+            From the first concept to a refined architectural vision—balancing function, proportion, material, and identity into thoughtful spaces with clear design direction.
+          </p>
+          <div class="service-tags">
+            <span>PLANNING</span><span>FACADE</span><span>DESIGN DEVELOPMENT</span>
+          </div>
+          <a href="#projects" class="service-link">EXPLORE ARCHITECTURE <span class="arrow">→</span></a>
         </div>
-        <span class="service-arrow">→</span>
       </article>
 
-      <article class="service">
-        <span class="service-number">02</span>
-        <div>
+      <article class="service-card">
+        <div class="service-image">
+          <img src="assets/projects/project-04-01.jpg" alt="Interior design project">
+        </div>
+        <div class="service-top">
+          <span class="service-number">02</span>
+          <span class="service-label">INTERIOR DESIGN</span>
+        </div>
+        <div class="service-content">
+          <div class="service-subtitle">Spaces With Character.</div>
           <h3>Interior Design</h3>
-          <p>Functional and aesthetic interior concepts for residential and commercial spaces.</p>
+          <p class="service-description">
+            Designing interiors that feel as good as they look through carefully considered layouts, materials, lighting, furniture, and atmosphere for residential and commercial spaces.
+          </p>
+          <div class="service-tags">
+            <span>SPACE PLANNING</span><span>MATERIAL</span><span>LIGHTING</span>
+          </div>
+          <a href="#projects" class="service-link">EXPLORE INTERIORS <span class="arrow">→</span></a>
         </div>
-        <span class="service-arrow">→</span>
       </article>
 
-      <article class="service">
-        <span class="service-number">03</span>
-        <div>
-          <h3>3D Visualization</h3>
-          <p>Exterior and interior visualization for communicating architectural ideas clearly.</p>
+      <article class="service-card">
+        <div class="service-image">
+          <img src="assets/projects/project-03-01.jpg" alt="3D visualization project">
         </div>
-        <span class="service-arrow">→</span>
+        <div class="service-top">
+          <span class="service-number">03</span>
+          <span class="service-label">3D VISUALIZATION</span>
+        </div>
+        <div class="service-content">
+          <div class="service-subtitle">Visualize Before You Build.</div>
+          <h3>3D Visualization</h3>
+          <p class="service-description">
+            Transforming drawings and ideas into photorealistic visuals that communicate scale, material, lighting, and atmosphere—helping clients experience the design before construction begins.
+          </p>
+          <div class="service-tags">
+            <span>EXTERIOR</span><span>INTERIOR</span><span>PHOTOREALISTIC</span>
+          </div>
+          <a href="#projects" class="service-link">VIEW VISUALIZATION <span class="arrow">→</span></a>
+        </div>
       </article>
+
     </div>
 
     <div class="software">
       <div class="kicker">SOFTWARE SKILLS</div>
-
       <div class="software-groups">
         <div class="software-group">
           <h3>2D DRAFTING</h3>
@@ -884,13 +1055,11 @@
           <div class="software-item"><span>LayOut</span><b>★★★★★</b></div>
           <div class="software-item"><span>Adobe Photoshop</span><b>★★★☆☆</b></div>
         </div>
-
         <div class="software-group">
           <h3>3D MODELING</h3>
           <div class="software-item"><span>SketchUp</span><b>★★★★★</b></div>
           <div class="software-item"><span>3ds Max</span><b>★★★★★</b></div>
         </div>
-
         <div class="software-group">
           <h3>3D RENDERING</h3>
           <div class="software-item"><span>V-Ray</span><b>★★★★☆</b></div>
