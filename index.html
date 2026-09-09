@@ -1269,6 +1269,70 @@
       opacity:.72;
     }
 
+
+    /* CONTACT ROWS — STRONGER TYPOGRAPHY & ICONS */
+    .contact-item{
+      min-height:72px !important;
+      padding:18px 0 !important;
+    }
+
+    .contact-item .contact-label{
+      gap:13px !important;
+      font-size:11px !important;
+      font-weight:600 !important;
+      letter-spacing:.18em !important;
+      color:#171714 !important;
+    }
+
+    .contact-item .contact-label > span{
+      font-size:11px !important;
+      font-weight:600 !important;
+      letter-spacing:.18em !important;
+    }
+
+    .contact-item .contact-icon{
+      width:23px !important;
+      height:23px !important;
+      flex:0 0 23px !important;
+      stroke-width:1.8;
+      opacity:1 !important;
+    }
+
+    .contact-item strong{
+      font-size:14px !important;
+      font-weight:600 !important;
+      letter-spacing:.01em !important;
+      color:#11110f !important;
+    }
+
+    .contact-item:hover .contact-icon{
+      transform:scale(1.14);
+      opacity:1 !important;
+    }
+
+    .contact-item:hover .contact-label{
+      color:#11110f !important;
+    }
+
+    @media (max-width:700px){
+      .contact-item{
+        min-height:64px !important;
+        padding:15px 0 !important;
+      }
+      .contact-item .contact-label,
+      .contact-item .contact-label > span{
+        font-size:10px !important;
+      }
+      .contact-item .contact-icon{
+        width:21px !important;
+        height:21px !important;
+        flex-basis:21px !important;
+      }
+      .contact-item strong{
+        font-size:13px !important;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
