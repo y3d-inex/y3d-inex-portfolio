@@ -564,20 +564,33 @@
       transform:translateX(6px);
     }
 
+    #services{
+      padding-bottom:0;
+    }
+
     .software{
+      width:100vw;
       margin-top:80px;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      background:#e9e5dc;
+      color:#171714;
+      padding:34px max(34px,5vw) 38px;
+    }
+    .software .kicker{
+      color:#5e5a52;
     }
     .software-groups{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:0;
       margin-top:20px;
-      border-top:1px solid var(--line);
+      border-top:1px solid rgba(0,0,0,.16);
     }
     .software-group{
       padding:28px 24px 10px 0;
       margin-right:24px;
-      border-right:1px solid var(--line);
+      border-right:1px solid rgba(0,0,0,.16);
     }
     .software-group:last-child{border-right:0;margin-right:0}
     .software-group h3{
@@ -592,8 +605,9 @@
       align-items:center;
       gap:15px;
       padding:15px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid rgba(0,0,0,.14);
       font-size:13px;
+      color:#171714;
     }
 
     .software-name{display:flex;align-items:center;gap:11px;min-width:0;}
