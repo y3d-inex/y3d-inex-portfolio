@@ -569,13 +569,13 @@
     }
 
     .software{
-      width:100vw;
+      width:100%;
       margin-top:80px;
-      margin-left:calc(50% - 50vw);
-      margin-right:calc(50% - 50vw);
+      margin-left:0;
+      margin-right:0;
       background:#e9e5dc;
       color:#171714;
-      padding:34px max(34px,5vw) 38px;
+      padding:34px 0 38px;
     }
     .software .kicker{
       color:#5e5a52;
@@ -611,7 +611,12 @@
     }
 
     .software-name{display:flex;align-items:center;gap:11px;min-width:0;}
-    .software-logo{width:24px;height:24px;flex:0 0 24px;object-fit:contain;object-position:center;display:block;}
+    .software-logo{
+      width:42px;height:42px;flex:0 0 42px;
+      object-fit:contain;object-position:center;display:block;
+      cursor:zoom-in;transition:transform .2s ease,opacity .2s ease;
+    }
+    .software-logo:hover{transform:scale(1.08);opacity:.82;}
     .software-name span{min-width:0;}
     .software-item b{
       color:#d6b24c;
@@ -619,6 +624,34 @@
       letter-spacing:1px;
       white-space:nowrap;
     }
+
+    .logo-viewer{
+      position:fixed;inset:0;z-index:2500;
+      display:none;align-items:center;justify-content:center;
+      padding:30px;background:rgba(10,10,9,.88);
+      backdrop-filter:blur(7px);
+    }
+    .logo-viewer.open{display:flex}
+    .logo-viewer-panel{
+      position:relative;width:min(560px,88vw);min-height:420px;
+      padding:60px 50px 45px;background:#e9e5dc;color:#171714;
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;gap:25px;
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+    }
+    .logo-viewer-image{
+      width:min(330px,65vw);height:min(330px,65vw);
+      object-fit:contain;display:block;
+    }
+    .logo-viewer-name{
+      font-size:20px;font-weight:600;text-align:center;
+    }
+    .logo-viewer-close{
+      position:absolute;top:16px;right:18px;width:40px;height:40px;
+      border:1px solid rgba(0,0,0,.18);background:transparent;
+      color:#171714;font-size:24px;cursor:pointer;
+    }
+    .logo-viewer-close:hover{background:#171714;color:#e9e5dc}
 
     .contact{
       background:#e9e5dc;
@@ -1131,6 +1164,14 @@
 </footer>
 
 
+<div class="logo-viewer" id="logoViewer" aria-hidden="true">
+  <div class="logo-viewer-panel">
+    <button class="logo-viewer-close" id="logoViewerClose" aria-label="Close logo preview">×</button>
+    <img class="logo-viewer-image" id="logoViewerImage" src="" alt="">
+    <div class="logo-viewer-name" id="logoViewerName"></div>
+  </div>
+</div>
+
 <div class="modal" id="modal" aria-hidden="true">
   <button class="modal-close" id="modalClose" aria-label="Close project">×</button>
 
@@ -1277,6 +1318,34 @@
   let activeGallery = [];
   let activeGalleryIndex = 0;
 
+  // Click a software logo to view it larger
+  const logoViewer = document.getElementById("logoViewer");
+  const logoViewerImage = document.getElementById("logoViewerImage");
+  const logoViewerName = document.getElementById("logoViewerName");
+  const logoViewerClose = document.getElementById("logoViewerClose");
+
+  document.querySelectorAll(".software-logo").forEach(logo=>{
+    logo.addEventListener("click",()=>{
+      if(!logo.complete || !logo.naturalWidth) return;
+      logoViewerImage.src = logo.src;
+      logoViewerImage.alt = logo.alt;
+      logoViewerName.textContent = logo.alt.replace(/\s+logo$/i,"");
+      logoViewer.classList.add("open");
+      logoViewer.setAttribute("aria-hidden","false");
+    });
+  });
+
+  function closeLogoViewer(){
+    logoViewer.classList.remove("open");
+    logoViewer.setAttribute("aria-hidden","true");
+    logoViewerImage.src = "";
+  }
+
+  logoViewerClose.addEventListener("click",closeLogoViewer);
+  logoViewer.addEventListener("click",(e)=>{
+    if(e.target === logoViewer) closeLogoViewer();
+  });
+
   function renderProjects(filter="all"){
     grid.innerHTML = "";
 
@@ -1375,7 +1444,10 @@
   });
 
   document.addEventListener("keydown",(e)=>{
-    if(e.key === "Escape") closeModal();
+    if(e.key === "Escape"){
+      closeLogoViewer();
+      closeModal();
+    }
     if(modal.classList.contains("open") && e.key === "ArrowRight") nextGallery();
     if(modal.classList.contains("open") && e.key === "ArrowLeft") prevGallery();
   });
