@@ -585,9 +585,40 @@
     #services{
       padding-bottom:0;
       position:relative;
-      background:var(--bg) !important;
-    }
+      background:var(--bg);
+      background:linear-gradient(
+        to bottom,
+        var(--bg) 0,
+        var(--bg) var(--software-top, 0px),
+        #e9e5dc var(--software-top, 0px),
+        #e9e5dc 100%
+      );
     
+      background:#11110f !important;
+      color:#f2f0eb;}
+
+    .software{
+      width:100%;
+      margin-top:80px;
+      margin-left:0;
+      margin-right:0;
+      background:#e9e5dc;
+      color:#171714;
+      padding:34px 0 38px;
+      position:relative;
+      z-index:1;
+    }
+    .software::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:100vw;
+      transform:translateX(-50%);
+      background:#e9e5dc;
+    }
     .software .kicker{
       color:#5e5a52;
     }
@@ -623,16 +654,10 @@
 
     .software-name{display:flex;align-items:center;gap:11px;min-width:0;}
     .software-logo{
-      width:42px;
-      height:42px;
-      flex:0 0 42px;
-      object-fit:contain;
-      object-position:center;
-      display:block;
-      cursor:zoom-in;
-      transition:transform .2s ease,opacity .2s ease;
+      width:42px;height:42px;flex:0 0 42px;
+      object-fit:contain;object-position:center;display:block;
+      cursor:zoom-in;transition:transform .2s ease,opacity .2s ease;
     }
-    .software-logo:hover{transform:scale(1.08);opacity:.82;}
     .software-logo:hover{transform:scale(1.08);opacity:.82;}
     .software-name span{min-width:0;}
     .software-item b.software-rating{
@@ -939,36 +964,36 @@
 
 
     /* HERO LOGO — PREMIUM REVEAL ANIMATION */
+    .hero-logo-animated{
+      transform-origin:center center;
+      opacity:0;
+      transform:translateY(22px) scale(.86);
+      filter:blur(4px);
+      animation:heroLogoReveal 2.2s cubic-bezier(.16,1,.3,1) .25s forwards;
+      will-change:transform,opacity,filter;
+      transition:transform .65s cubic-bezier(.16,1,.3,1),filter .65s ease;
+    }
 
-    @keyframes heroLogoBlinkScale{
+    .hero-logo-animated.logo-ready{
+      opacity:1;
+      filter:blur(0);
+      transform:translateY(0) scale(1);
+    }
+
+    .hero-logo-wrap:hover .hero-logo-animated.logo-ready{
+      transform:translateY(0) scale(1.065);
+      filter:brightness(1.06);
+    }
+
+    @keyframes heroLogoReveal{
       0%{
         opacity:0;
-        transform:translateY(18px) scale(.82);
-        filter:blur(5px);
-      }
-      18%{
-        opacity:.18;
-        transform:translateY(14px) scale(.84);
+        transform:translateY(22px) scale(.86);
         filter:blur(4px);
       }
-      27%{
-        opacity:.92;
-        transform:translateY(8px) scale(.88);
-        filter:blur(2px);
-      }
-      34%{
-        opacity:.22;
-        transform:translateY(7px) scale(.89);
-        filter:blur(2px);
-      }
-      42%{
+      68%{
         opacity:1;
-        transform:translateY(4px) scale(.92);
-        filter:blur(1px);
-      }
-      70%{
-        opacity:1;
-        transform:translateY(0) scale(.975);
+        transform:translateY(0) scale(1.035);
         filter:blur(0);
       }
       100%{
@@ -988,30 +1013,9 @@
     }
 
 
-    #services .service-grid,
-    #services .services-grid,
-    #services .services-inner{
-      background:var(--bg) !important;
-    }
-
-
     .hero-logo-wrap{
       position:relative;
       isolation:isolate;
-      transform:scale(1);
-      transform-origin:center center;
-      transition:transform .65s cubic-bezier(.16,1,.3,1);
-    }
-    .hero-logo-animated{
-      transform-origin:center center;
-      opacity:0;
-      transform:translateY(22px) scale(.86);
-      filter:blur(4px);
-      animation:heroLogoEntrance 2.4s cubic-bezier(.16,1,.3,1) .2s 1 normal both;
-      will-change:transform,opacity,filter;
-    }
-    .hero-logo-wrap.logo-ready:hover{
-      transform:scale(1.065);
     }
     .hero-logo-wrap::after{
       content:"";
@@ -1028,22 +1032,9 @@
       pointer-events:none;
       transition:opacity .7s ease,transform .7s ease;
     }
-    .hero-logo-wrap.logo-ready:hover::after{
+    .hero-logo-wrap:hover::after{
       opacity:.28;
       transform:translate(-50%,-50%) scale(1);
-    }
-    @keyframes heroLogoEntrance{
-      0%{opacity:0;transform:translateY(22px) scale(.86);filter:blur(4px)}
-      72%{opacity:1;transform:translateY(0) scale(1.035);filter:blur(0)}
-      100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-    }
-    @media (prefers-reduced-motion:reduce){
-      .hero-logo-animated{
-        animation:none !important;
-        opacity:1;
-        transform:none;
-        filter:none;
-      }
     }
 
 </style>
@@ -1503,6 +1494,14 @@
   const logoViewerImage = document.getElementById("logoViewerImage");
   const logoViewerName = document.getElementById("logoViewerName");
   const logoViewerClose = document.getElementById("logoViewerClose");
+
+  // Hero logo: scale-up once on entrance, then scale gently on mouse hover
+  const heroLogo = document.querySelector(".hero-logo-animated");
+  if(heroLogo){
+    heroLogo.addEventListener("animationend", ()=>{
+      heroLogo.classList.add("logo-ready");
+    }, {once:true});
+  }
 
   document.querySelectorAll(".software-logo").forEach(logo=>{
     logo.addEventListener("click",()=>{
