@@ -1579,6 +1579,43 @@
       user-select:text !important;
     }
 
+
+    /* CONTACT VIDEO BACKGROUND — BLACK VIDEO / WHITE TYPOGRAPHY */
+    #contact{
+      position:relative;
+      overflow:hidden;
+      background:#11110f !important;
+      color:#f4f2eb !important;
+      isolation:isolate;
+    }
+    #contact .contact-video-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      z-index:-2;
+      background:#11110f;
+    }
+    #contact::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.18);
+      z-index:-1;
+      pointer-events:none;
+    }
+    #contact .contact-label,
+    #contact .contact-label > span,
+    #contact .contact-item,
+    #contact .contact-item strong,
+    #contact h2,
+    #contact p,
+    #contact a{ color:#f4f2eb !important; }
+    #contact .contact-item{ border-color:rgba(244,242,235,.32) !important; }
+    #contact .contact-icon{ color:#f4f2eb !important; }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1954,12 +1991,12 @@
 <script>
   const projects = [
     {
-      name:"Academy of Pastry & Culinary Arts Indonesia",
-      location:"Bali",
+      name:"Fit Out Kantor Baru Aeon Delight Indonesia",
+      location:"Menara Anugerah Lantai 25, Kuningan, Jakarta Selatan",
       category:"Interior",
       filters:["interior", "visualization"],
       image:"assets/projects/project-01-01.png",
-      gallery:["assets/projects/project-01-02.png", "assets/projects/project-01-03.png", "assets/projects/project-01-04.png", "assets/projects/project-01-05.png", "assets/projects/project-01-06.png", "assets/projects/project-01-07.png"],
+      gallery:["assets/projects/project-01-02.png", "assets/projects/project-01-03.png", "assets/projects/project-01-04.png", "assets/projects/project-01-05.png"],
       description:"Interior and 3D visualization project."
     },
     {
@@ -2017,12 +2054,12 @@
       description:"Residential architecture and 3D visualization."
     },
     {
-      name:"Proyek Rumah Kavling Jalan Joe",
-      location:"Jagakarsa, Jakarta Selatan",
+      name:"Proyek Rumah Tinggal Minimalis",
+      location:"Cipondoh, Tangerang",
       category:"Architecture",
       filters:["architecture", "visualization"],
-      image:"assets/projects/project-08-01.png",
-      gallery:["assets/projects/project-08-02.png", "assets/projects/project-08-03.png", "assets/projects/project-08-04.png", "assets/projects/project-08-05.png", "assets/projects/project-08-06.png", "assets/projects/project-08-07.png"],
+      image:"assets/projects/project-08-01.jpg",
+      gallery:["assets/projects/project-08-02.jpg", "assets/projects/project-08-03.jpg", "assets/projects/project-08-04.jpg"],
       description:"Minimalist residential architecture and visualization."
     },
     {
@@ -2165,7 +2202,7 @@
         modalTitle.textContent = project.name;
         modalLocation.textContent = project.location;
         modalDescription.textContent = project.description;
-        modalYear.textContent = "2026 PORTFOLIO · " + activeGallery.length + " IMAGES";
+        modalYear.textContent = "2025 PORTFOLIO · " + activeGallery.length + " IMAGES";
         renderGallery();
         modal.classList.add("open");
         modal.setAttribute("aria-hidden","false");
