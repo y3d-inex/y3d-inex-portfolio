@@ -1468,6 +1468,94 @@
       transform:translateY(2px);
     }
 
+
+    /* SERVICES / WHAT I CREATE — GRAYSCALE DEFAULT, COLOR + ANIMATION ON HOVER */
+    #services .service-card{
+      overflow:hidden;
+    }
+
+    #services .service-image{
+      overflow:hidden;
+      position:relative;
+      background:#d8d8d5;
+    }
+
+    #services .service-image img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(1);
+      opacity:.62;
+      transform:scale(1);
+      transform-origin:center center;
+      transition:
+        filter .6s ease,
+        opacity .6s ease,
+        transform .75s cubic-bezier(.16,1,.3,1);
+      will-change:transform,filter,opacity;
+    }
+
+    #services .service-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.08);
+      pointer-events:none;
+      transition:background .5s ease;
+    }
+
+    #services .service-card:hover .service-image img{
+      filter:grayscale(0);
+      opacity:1;
+      transform:scale(1.08);
+    }
+
+    #services .service-card:hover .service-image::after{
+      background:rgba(255,255,255,.02);
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      #services .service-image img{
+        transition:filter .2s ease,opacity .2s ease;
+      }
+      #services .service-card:hover .service-image img{
+        transform:none;
+      }
+    }
+
+
+    /* ABOUT — STRONGER, MORE READABLE BODY COPY */
+    #about .about-copy > p:not(.lead){
+      font-size:14px !important;
+      line-height:1.8 !important;
+      max-width:720px;
+      color:#e9e7df !important;
+      margin-bottom:20px !important;
+      letter-spacing:.005em;
+    }
+
+    #about .about-copy > p:not(.lead) strong{
+      font-weight:650;
+      color:#f4f2eb !important;
+    }
+
+    #about .about-copy .lead{
+      font-size:19px !important;
+      line-height:1.4 !important;
+      margin-bottom:24px !important;
+    }
+
+    @media (max-width:900px){
+      #about .about-copy > p:not(.lead){
+        font-size:14px !important;
+        line-height:1.75 !important;
+      }
+      #about .about-copy .lead{
+        font-size:18px !important;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1578,22 +1666,23 @@
         <p class="lead">Architectural 3D Artist</p>
 
         <p>
-          I am an architectural 3D artist with an educational background
-          in Architecture from Universitas Pancasila, Jakarta, Indonesia.
+          I transform architectural ideas into clear, immersive visual experiences —
+          combining design thinking, 3D modeling, and photorealistic visualization
+          to make every space easier to understand, present, and experience.
         </p>
 
         <p>
-          I have been working in the architectural 3D design industry for
-          more than ten years, focusing on exterior and interior design and
-          the development of minimalist spaces that emphasize both function
-          and aesthetics.
+          With more than ten years in architectural 3D design, I work across
+          <strong>architecture, interior design, and visualization</strong> —
+          developing visuals that balance strong composition, material detail,
+          lighting, atmosphere, and the character of each space.
         </p>
 
         <p>
-          My experience covers a wide range of projects, from residential
-          to commercial developments. My educational background has provided
-          me with a strong understanding of design principles and contemporary
-          architectural styles.
+          My goal is simple: <strong>turn ideas into visuals that communicate.</strong>
+          Whether it is a residential project, commercial space, or architectural
+          concept, I create visuals that help clients see the design clearly
+          and make confident decisions before it is built.
         </p>
 
         <div class="about-meta">
