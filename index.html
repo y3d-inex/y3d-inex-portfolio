@@ -1595,7 +1595,7 @@
       height:100%;
       object-fit:cover;
       object-position:center center;
-      z-index:-2;
+      z-index:0;
       background:#11110f;
     }
     #contact::before{
@@ -1603,7 +1603,7 @@
       position:absolute;
       inset:0;
       background:rgba(0,0,0,.18);
-      z-index:-1;
+      z-index:1;
       pointer-events:none;
     }
     #contact .contact-label,
@@ -1615,6 +1615,16 @@
     #contact a{ color:#f4f2eb !important; }
     #contact .contact-item{ border-color:rgba(244,242,235,.32) !important; }
     #contact .contact-icon{ color:#f4f2eb !important; }
+
+
+    #contact > *:not(.contact-video-bg){
+      position:relative;
+      z-index:2;
+    }
+
+    #contact .contact-video-bg{
+      pointer-events:none;
+    }
 
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
