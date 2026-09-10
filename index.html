@@ -1556,6 +1556,29 @@
       }
     }
 
+
+    /* CONTENT PROTECTION — DISABLE TEXT SELECTION / DRAGGING */
+    body.no-copy,
+    body.no-copy *{
+      -webkit-user-select:none !important;
+      -moz-user-select:none !important;
+      -ms-user-select:none !important;
+      user-select:none !important;
+    }
+
+    body.no-copy img,
+    body.no-copy video{
+      -webkit-user-drag:none !important;
+      user-drag:none !important;
+    }
+
+    /* Keep form controls usable if any are added later. */
+    body.no-copy input,
+    body.no-copy textarea{
+      -webkit-user-select:text !important;
+      user-select:text !important;
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -2237,6 +2260,38 @@
   }
 
   renderProjects();
+
+
+  /* CONTENT PROTECTION — deter casual copying */
+  document.addEventListener("DOMContentLoaded",()=>{
+    document.body.classList.add("no-copy");
+
+    // Disable right-click context menu.
+    document.addEventListener("contextmenu",(event)=>{
+      event.preventDefault();
+    });
+
+    // Disable common copy/select/print/save shortcuts.
+    document.addEventListener("keydown",(event)=>{
+      const key = event.key.toLowerCase();
+      const blocked =
+        (event.ctrlKey || event.metaKey) &&
+        ["c","x","a","u","s","p"].includes(key);
+
+      if(blocked){
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }, true);
+
+    // Disable copy/cut/selectstart/drag actions.
+    ["copy","cut","selectstart","dragstart"].forEach(type=>{
+      document.addEventListener(type,(event)=>{
+        event.preventDefault();
+      }, true);
+    });
+  });
+
 </script>
 
 </body>
