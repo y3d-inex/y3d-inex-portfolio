@@ -1377,6 +1377,97 @@
       }
     }
 
+
+    /* PROJECT GALLERY — GRAYSCALE DEFAULT / COLOR + ZOOM ON HOVER */
+    #projects .project-image{
+      overflow:hidden;
+      position:relative;
+      background:#d8d8d5;
+    }
+
+    #projects .project-image img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(1);
+      opacity:.68;
+      transform:scale(1);
+      transform-origin:center center;
+      transition:
+        filter .55s ease,
+        opacity .55s ease,
+        transform .65s cubic-bezier(.16,1,.3,1);
+      will-change:transform,filter,opacity;
+    }
+
+    #projects .project:hover .project-image img{
+      filter:grayscale(0);
+      opacity:1;
+      transform:scale(1.10);
+    }
+
+    #projects .project-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0);
+      pointer-events:none;
+      transition:background .45s ease;
+    }
+
+    #projects .project:hover .project-image::after{
+      background:rgba(255,255,255,.025);
+    }
+
+    /* MORE PROJECTS BUTTON */
+    .projects-more-wrap{
+      display:flex;
+      justify-content:center;
+      margin:54px 0 10px;
+    }
+
+    .projects-more{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.28);
+      background:transparent;
+      color:#f2f0e9;
+      min-width:190px;
+      padding:15px 22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      font-family:inherit;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em;
+      cursor:pointer;
+      transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+    }
+
+    .projects-more .more-arrow{
+      font-size:16px;
+      line-height:1;
+      letter-spacing:0;
+      transition:transform .3s ease;
+    }
+
+    .projects-more:hover{
+      background:#f2f0e9;
+      color:#171714;
+      border-color:#f2f0e9;
+      transform:translateY(-2px);
+    }
+
+    .projects-more:hover .more-arrow{
+      transform:translateY(2px);
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1454,6 +1545,12 @@
     </div>
 
     <div class="grid" id="projectGrid"></div>
+
+    <div class="projects-more-wrap">
+      <button class="projects-more" id="projectsMore" type="button">
+        <span>MORE PROJECTS</span><span class="more-arrow">↓</span>
+      </button>
+    </div>
   </section>
 
 
@@ -1846,6 +1943,7 @@
   ];
 
   const grid = document.getElementById("projectGrid");
+  const moreButton = document.getElementById("projectsMore");
   const filters = document.querySelectorAll(".filter");
   const modal = document.getElementById("modal");
   const modalImage = document.getElementById("modalImage");
@@ -1903,12 +2001,18 @@
     if(e.target === logoViewer) closeLogoViewer();
   });
 
+  let projectsExpanded = false;
+
   function renderProjects(filter="all"){
     grid.innerHTML = "";
 
-    projects.forEach((project,index)=>{
-      if(filter !== "all" && !project.filters.includes(filter)) return;
+    const filteredProjects = projects
+      .map((project,index)=>({project,index}))
+      .filter(({project}) => filter === "all" || project.filters.includes(filter));
 
+    const visibleProjects = projectsExpanded ? filteredProjects : filteredProjects.slice(0,4);
+
+    visibleProjects.forEach(({project,index})=>{
       const card = document.createElement("article");
       card.className = "project";
 
@@ -1927,7 +2031,7 @@
       `;
 
       card.addEventListener("click",()=>{
-        activeGallery = project.gallery || [project.image];
+        activeGallery = [project.image, ...(project.gallery || [])];
         activeGalleryIndex = 0;
         modalType.textContent = project.category;
         modalTitle.textContent = project.name;
@@ -1942,12 +2046,22 @@
 
       grid.appendChild(card);
     });
+
+    if(moreButton){
+      const hasMore = filteredProjects.length > 4;
+      moreButton.style.display = hasMore ? "inline-flex" : "none";
+      moreButton.querySelector("span:first-child").textContent =
+        projectsExpanded ? "SHOW LESS" : "MORE PROJECTS";
+      moreButton.querySelector(".more-arrow").textContent =
+        projectsExpanded ? "↑" : "↓";
+    }
   }
 
   filters.forEach(button=>{
     button.addEventListener("click",()=>{
       filters.forEach(item=>item.classList.remove("active"));
       button.classList.add("active");
+      projectsExpanded = false;
       renderProjects(button.dataset.filter);
     });
   });
@@ -2021,6 +2135,17 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  if(moreButton){
+    moreButton.addEventListener("click",()=>{
+      projectsExpanded = !projectsExpanded;
+      const activeFilter = document.querySelector(".filter.active")?.dataset.filter || "all";
+      renderProjects(activeFilter);
+      if(projectsExpanded){
+        moreButton.scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    });
+  }
 
   renderProjects();
 </script>
