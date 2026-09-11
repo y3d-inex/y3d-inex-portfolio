@@ -1749,14 +1749,12 @@
     }
 
 
-    /* HERO LOGO — KEEP ORIGINAL ENTRANCE + HOVER RUNNING-LIGHT WAVE */
+        /* HERO LOGO — ORIGINAL ENTRANCE + SHAPE-CONFORMING RUNNING LIGHT */
     .hero-logo-wrap{
       position:relative;
       display:inline-block;
-      overflow:hidden;
-      isolation:isolate;
-      cursor:pointer;
       line-height:0;
+      cursor:pointer;
     }
 
     .hero-logo-wrap > img{
@@ -1765,54 +1763,61 @@
       display:block;
     }
 
+    /* The sweep is clipped by the exact alpha silhouette of Logo.png.
+       It therefore follows the actual logo artwork/transparent boundaries,
+       rather than appearing as a rectangular light bar over the logo. */
     .hero-logo-sweep{
       position:absolute;
       z-index:2;
-      top:-25%;
-      left:-35%;
-      width:18%;
-      height:150%;
-      transform:skewX(-18deg) translateX(-220%);
-      background:linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255,255,255,0) 15%,
-        rgba(255,255,255,.20) 40%,
-        rgba(255,255,255,.95) 50%,
-        rgba(255,255,255,.20) 60%,
-        rgba(255,255,255,0) 85%,
-        transparent 100%
-      );
-      filter:blur(2px);
-      opacity:0;
+      inset:0;
       pointer-events:none;
+      opacity:0;
+      background:
+        linear-gradient(
+          105deg,
+          transparent 0%,
+          transparent 38%,
+          rgba(255,255,255,.08) 43%,
+          rgba(255,255,255,.95) 50%,
+          rgba(255,255,255,.10) 57%,
+          transparent 63%,
+          transparent 100%
+        );
+      -webkit-mask-image:url("assets/Logo.png");
+      mask-image:url("assets/Logo.png");
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-size:100% 100%;
+      mask-size:100% 100%;
+      filter:blur(.8px);
       mix-blend-mode:screen;
+      will-change:background-position,opacity;
+      background-size:300% 100%;
+      background-position:220% center;
     }
 
-    /* Automatic running-light wave: starts after the entrance animation
-       and repeats gently without requiring mouse interaction. */
+    /* Automatic wave: it waits for the original entrance animation to finish,
+       then continuously sweeps across the actual logo shape. */
     .hero-logo-sweep{
-      animation:heroLogoRunningLight 1.35s cubic-bezier(.4,0,.2,1) 3.8s infinite;
+      animation:heroLogoShapeWave 1.45s cubic-bezier(.4,0,.2,1) 3.8s infinite;
     }
 
-    .hero-logo-wrap:hover .hero-logo-sweep{
-      animation:heroLogoRunningLight 1.15s cubic-bezier(.4,0,.2,1) 1;
-    }
-
-    @keyframes heroLogoRunningLight{
+    @keyframes heroLogoShapeWave{
       0%{
         opacity:0;
-        transform:skewX(-18deg) translateX(-220%);
+        background-position:220% center;
       }
-      12%{
+      10%{
         opacity:1;
       }
-      78%{
+      82%{
         opacity:1;
       }
       100%{
         opacity:0;
-        transform:skewX(-18deg) translateX(760%);
+        background-position:-120% center;
       }
     }
 
