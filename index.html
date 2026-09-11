@@ -1748,6 +1748,82 @@
       opacity:.58;
     }
 
+
+    /* HERO LOGO — KEEP ORIGINAL ENTRANCE + HOVER RUNNING-LIGHT WAVE */
+    .hero-logo-wrap{
+      position:relative;
+      display:inline-block;
+      overflow:hidden;
+      isolation:isolate;
+      cursor:pointer;
+      line-height:0;
+    }
+
+    .hero-logo-wrap > img{
+      position:relative;
+      z-index:1;
+      display:block;
+    }
+
+    .hero-logo-sweep{
+      position:absolute;
+      z-index:2;
+      top:-25%;
+      left:-35%;
+      width:18%;
+      height:150%;
+      transform:skewX(-18deg) translateX(-220%);
+      background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,0) 15%,
+        rgba(255,255,255,.20) 40%,
+        rgba(255,255,255,.95) 50%,
+        rgba(255,255,255,.20) 60%,
+        rgba(255,255,255,0) 85%,
+        transparent 100%
+      );
+      filter:blur(2px);
+      opacity:0;
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+
+    /* Automatic running-light wave: starts after the entrance animation
+       and repeats gently without requiring mouse interaction. */
+    .hero-logo-sweep{
+      animation:heroLogoRunningLight 1.35s cubic-bezier(.4,0,.2,1) 3.8s infinite;
+    }
+
+    .hero-logo-wrap:hover .hero-logo-sweep{
+      animation:heroLogoRunningLight 1.15s cubic-bezier(.4,0,.2,1) 1;
+    }
+
+    @keyframes heroLogoRunningLight{
+      0%{
+        opacity:0;
+        transform:skewX(-18deg) translateX(-220%);
+      }
+      12%{
+        opacity:1;
+      }
+      78%{
+        opacity:1;
+      }
+      100%{
+        opacity:0;
+        transform:skewX(-18deg) translateX(760%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .hero-logo-sweep,
+      .hero-logo-wrap:hover .hero-logo-sweep{
+        animation:none;
+        opacity:0;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1787,7 +1863,7 @@
       <div class="eyebrow">ARCHITECTURE · INTERIOR · 3D VISUALIZATION</div>
 
       <h1 class="hero-logo-wrap hero-logo-title">
-        <img class="hero-logo-animated" src="assets/Logo.png" alt="Yudha 3D Design — Interior Exterior">
+        <span class="hero-logo-wrap"><img class="hero-logo-animated" src="assets/Logo.png" alt="Yudha 3D Design — Interior Exterior"><span class="hero-logo-sweep" aria-hidden="true"></span></span>
       </h1>
 
       <p class="hero-sub">
