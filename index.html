@@ -1722,6 +1722,32 @@
       }
     }
 
+
+    /* FOOTER COPYRIGHT — CLICK TO ABOUT */
+    footer .footer-about-link{
+      color:inherit;
+      text-decoration:none;
+      cursor:pointer;
+      transition:opacity .25s ease;
+    }
+
+    footer .footer-about-link:hover{
+      opacity:.58;
+    }
+
+
+    /* FOOTER BRAND — CLICK TO HOMEPAGE */
+    footer .footer-home-link{
+      color:inherit;
+      text-decoration:none;
+      cursor:pointer;
+      transition:opacity .25s ease;
+    }
+
+    footer .footer-home-link:hover{
+      opacity:.58;
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -2061,8 +2087,8 @@
 </main>
 
 <footer>
-  <div><strong>YUDHA 3D DESIGN</strong> — INTERIOR EXTERIOR</div>
-  <div>© <span id="year"></span> Yudhanto Hendra P., ST</div>
+  <div><a class="footer-home-link" href="#home" aria-label="Go to homepage"><strong>YUDHA 3D DESIGN</strong> — INTERIOR EXTERIOR</a></div>
+  <div><a class="footer-about-link" href="#about" aria-label="Go to About">© <span id="year"></span> Yudhanto Hendra P., ST</a></div>
 </footer>
 
 
@@ -2455,6 +2481,22 @@
         event.preventDefault();
       }, true);
     });
+  });
+
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    const footerHome = document.querySelector(".footer-home-link");
+    if(footerHome){
+      footerHome.addEventListener("click",(event)=>{
+        event.preventDefault();
+        const home = document.querySelector("#home") || document.querySelector("header") || document.querySelector(".hero");
+        home?.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+        history.replaceState(null,"","#home");
+      });
+    }
   });
 
 </script>
