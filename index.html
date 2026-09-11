@@ -1838,8 +1838,8 @@
     .hero-word-art{
       position:relative;
       display:block;
-      width:min(760px,62vw);
-      max-width:760px;
+      width:min(100%,850px);
+      max-width:none;
       margin-top:28px;
       padding:18px 20px 22px 0;
       color:#f3f0e8;
@@ -1965,88 +1965,10 @@
       }
     }
 
-    .word-art-dimension{
-      position:absolute;
-      font-family:"DM Sans",Arial,sans-serif;
-      font-size:7px;
-      line-height:1;
-      letter-spacing:.18em;
-      color:rgba(240,237,229,.58);
-      white-space:nowrap;
-      text-transform:uppercase;
-    }
-
-    .dimension-top{
-      top:-7px;
-      left:18px;
-      transform:translateY(-100%);
-    }
-
-    .dimension-bottom{
-      right:19px;
-      bottom:-7px;
-      transform:translateY(100%);
-    }
-
-    .word-art-dimension::before{
-      content:"";
-      position:absolute;
-      top:50%;
-      width:30px;
-      height:1px;
-      background:rgba(255,255,255,.35);
-    }
-
-    .dimension-top::before{
-      right:calc(100% + 9px);
-    }
-
-    .dimension-bottom::before{
-      left:calc(100% + 9px);
-    }
-
-    .word-art-cross{
-      position:absolute;
-      width:13px;
-      height:13px;
-      opacity:.5;
-      pointer-events:none;
-    }
-
-    .word-art-cross::before,
-    .word-art-cross::after{
-      content:"";
-      position:absolute;
-      background:rgba(255,255,255,.58);
-    }
-
-    .word-art-cross::before{
-      left:0;
-      top:6px;
-      width:13px;
-      height:1px;
-    }
-
-    .word-art-cross::after{
-      left:6px;
-      top:0;
-      width:1px;
-      height:13px;
-    }
-
-    .cross-a{
-      left:-19px;
-      top:29%;
-    }
-
-    .cross-b{
-      right:4%;
-      bottom:8%;
-    }
-
     @media (max-width:900px){
       .hero-word-art{
-        width:min(760px,88vw);
+        width:100%;
+        max-width:none;
         padding:15px 10px 18px 0;
       }
 
@@ -2124,10 +2046,6 @@
         <span class="word-art-line">Transforming</span>
         <span class="word-art-line word-art-accent">architectural ideas</span>
         <span class="word-art-line">into precise, immersive visual experiences.</span>
-        <span class="word-art-dimension dimension-top">01 — CONCEPT / FORM / SPACE</span>
-        <span class="word-art-dimension dimension-bottom">Y3D-INEX / VISUAL STUDY / 001</span>
-        <span class="word-art-cross cross-a" aria-hidden="true"></span>
-        <span class="word-art-cross cross-b" aria-hidden="true"></span>
       </div>
 
       <div class="hero-actions">
