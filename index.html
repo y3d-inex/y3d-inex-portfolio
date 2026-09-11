@@ -1829,6 +1829,255 @@
       }
     }
 
+
+
+    /* =========================================================
+       TRANSFORMING — ARCHITECTURAL WORD ART
+       Text only: no image used for the tagline.
+       ========================================================= */
+    .hero-word-art{
+      position:relative;
+      display:block;
+      width:min(760px,62vw);
+      max-width:760px;
+      margin-top:28px;
+      padding:18px 20px 22px 0;
+      color:#f3f0e8;
+      isolation:isolate;
+    }
+
+    .hero-word-art::before{
+      content:"";
+      position:absolute;
+      left:-12px;
+      right:0;
+      top:0;
+      bottom:0;
+      z-index:-1;
+      border-top:1px solid rgba(255,255,255,.28);
+      border-bottom:1px solid rgba(255,255,255,.16);
+      background:
+        linear-gradient(90deg,rgba(255,255,255,.055),transparent 32%,transparent 70%,rgba(255,255,255,.025)),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 46px,
+          rgba(255,255,255,.055) 47px,
+          transparent 48px
+        );
+      clip-path:polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 13px),
+        72% calc(100% - 13px),
+        72% 100%,
+        0 100%
+      );
+      pointer-events:none;
+    }
+
+    .hero-word-art::after{
+      content:"";
+      position:absolute;
+      left:-12px;
+      top:0;
+      width:2px;
+      height:100%;
+      background:linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255,255,255,.8) 16%,
+        rgba(255,255,255,.12) 48%,
+        transparent 100%
+      );
+      opacity:.65;
+      pointer-events:none;
+    }
+
+    .word-art-line{
+      position:relative;
+      display:block;
+      width:max-content;
+      max-width:100%;
+      font-family:"DM Sans",Arial,sans-serif;
+      font-size:clamp(17px,2.05vw,31px);
+      line-height:1.02;
+      letter-spacing:.105em;
+      font-weight:600;
+      text-transform:uppercase;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(244,241,233,.78);
+      background:
+        linear-gradient(
+          110deg,
+          #f3f0e8 0%,
+          #f3f0e8 38%,
+          rgba(255,255,255,.16) 43%,
+          #ffffff 49%,
+          rgba(255,255,255,.18) 55%,
+          #f3f0e8 61%,
+          #f3f0e8 100%
+        );
+      background-size:300% 100%;
+      background-position:220% center;
+      -webkit-background-clip:text;
+      background-clip:text;
+      text-shadow:0 0 0 rgba(255,255,255,0);
+      animation:wordArtRunningLight 3.8s cubic-bezier(.4,0,.2,1) infinite;
+      will-change:background-position;
+    }
+
+    .word-art-line + .word-art-line{
+      margin-top:5px;
+    }
+
+    .word-art-accent{
+      font-family:"Playfair Display",serif;
+      font-style:italic;
+      font-weight:400;
+      letter-spacing:.025em;
+      font-size:clamp(21px,2.65vw,39px);
+      -webkit-text-stroke:.65px rgba(244,241,233,.68);
+      animation-delay:1.15s;
+    }
+
+    .word-art-line:nth-child(3){
+      font-size:clamp(10px,1.08vw,16px);
+      letter-spacing:.19em;
+      font-weight:500;
+      -webkit-text-stroke:.55px rgba(244,241,233,.5);
+      opacity:.86;
+      animation-delay:2.15s;
+    }
+
+    @keyframes wordArtRunningLight{
+      0%,18%{
+        background-position:220% center;
+      }
+      48%{
+        background-position:90% center;
+      }
+      72%{
+        background-position:-20% center;
+      }
+      86%,100%{
+        background-position:-120% center;
+      }
+    }
+
+    .word-art-dimension{
+      position:absolute;
+      font-family:"DM Sans",Arial,sans-serif;
+      font-size:7px;
+      line-height:1;
+      letter-spacing:.18em;
+      color:rgba(240,237,229,.58);
+      white-space:nowrap;
+      text-transform:uppercase;
+    }
+
+    .dimension-top{
+      top:-7px;
+      left:18px;
+      transform:translateY(-100%);
+    }
+
+    .dimension-bottom{
+      right:19px;
+      bottom:-7px;
+      transform:translateY(100%);
+    }
+
+    .word-art-dimension::before{
+      content:"";
+      position:absolute;
+      top:50%;
+      width:30px;
+      height:1px;
+      background:rgba(255,255,255,.35);
+    }
+
+    .dimension-top::before{
+      right:calc(100% + 9px);
+    }
+
+    .dimension-bottom::before{
+      left:calc(100% + 9px);
+    }
+
+    .word-art-cross{
+      position:absolute;
+      width:13px;
+      height:13px;
+      opacity:.5;
+      pointer-events:none;
+    }
+
+    .word-art-cross::before,
+    .word-art-cross::after{
+      content:"";
+      position:absolute;
+      background:rgba(255,255,255,.58);
+    }
+
+    .word-art-cross::before{
+      left:0;
+      top:6px;
+      width:13px;
+      height:1px;
+    }
+
+    .word-art-cross::after{
+      left:6px;
+      top:0;
+      width:1px;
+      height:13px;
+    }
+
+    .cross-a{
+      left:-19px;
+      top:29%;
+    }
+
+    .cross-b{
+      right:4%;
+      bottom:8%;
+    }
+
+    @media (max-width:900px){
+      .hero-word-art{
+        width:min(760px,88vw);
+        padding:15px 10px 18px 0;
+      }
+
+      .word-art-line{
+        font-size:clamp(15px,4vw,25px);
+        letter-spacing:.08em;
+      }
+
+      .word-art-accent{
+        font-size:clamp(19px,5.3vw,31px);
+      }
+
+      .word-art-line:nth-child(3){
+        font-size:clamp(9px,2.2vw,13px);
+        letter-spacing:.13em;
+        line-height:1.35;
+      }
+
+      .dimension-top,
+      .dimension-bottom{
+        font-size:6px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .word-art-line{
+        animation:none;
+        background-position:50% center;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -1871,9 +2120,15 @@
         <span class="hero-logo-wrap"><img class="hero-logo-animated" src="assets/Logo.png" alt="Yudha 3D Design — Interior Exterior"><span class="hero-logo-sweep" aria-hidden="true"></span></span>
       </h1>
 
-      <p class="hero-sub">
-        Transforming architectural ideas into precise, immersive visual experiences.
-      </p>
+      <div class="hero-sub hero-word-art" aria-label="Transforming architectural ideas into precise, immersive visual experiences.">
+        <span class="word-art-line">Transforming</span>
+        <span class="word-art-line word-art-accent">architectural ideas</span>
+        <span class="word-art-line">into precise, immersive visual experiences.</span>
+        <span class="word-art-dimension dimension-top">01 — CONCEPT / FORM / SPACE</span>
+        <span class="word-art-dimension dimension-bottom">Y3D-INEX / VISUAL STUDY / 001</span>
+        <span class="word-art-cross cross-a" aria-hidden="true"></span>
+        <span class="word-art-cross cross-b" aria-hidden="true"></span>
+      </div>
 
       <div class="hero-actions">
         <a class="btn btn-light" href="#projects">VIEW PROJECTS →</a>
