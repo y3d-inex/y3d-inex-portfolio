@@ -2000,6 +2000,47 @@
       }
     }
 
+
+    /* Software Skills — logo above the software name */
+    .software-info{
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:flex-start !important;
+      justify-content:center !important;
+      gap:8px !important;
+      min-width:0;
+    }
+    .software-logo{
+      width:58px !important;
+      height:42px !important;
+      object-fit:contain !important;
+      object-position:left center !important;
+      flex:0 0 auto !important;
+      display:block !important;
+    }
+    .software-name{
+      display:block !important;
+      font-size:15px !important;
+      line-height:1.15 !important;
+      white-space:nowrap;
+    }
+    .software-stars{
+      flex:0 0 auto;
+      white-space:nowrap;
+    }
+    @media (max-width:900px){
+      .software-item{
+        min-height:104px;
+      }
+      .software-logo{
+        width:64px !important;
+        height:46px !important;
+      }
+      .software-name{
+        font-size:14px !important;
+      }
+    }
+
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
