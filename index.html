@@ -2830,9 +2830,6 @@
       projectsExpanded = !projectsExpanded;
       const activeFilter = document.querySelector(".filter.active")?.dataset.filter || "all";
       renderProjects(activeFilter);
-      if(projectsExpanded){
-        moreButton.scrollIntoView({behavior:"smooth",block:"center"});
-      }
     });
   }
 
