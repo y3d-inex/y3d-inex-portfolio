@@ -894,77 +894,6 @@
       text-transform:uppercase;
     }
 
-    /* PROJECT PDF VIEWER */
-    .project-pdf-button{
-      display:none;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      margin-top:22px;
-      min-height:44px;
-      padding:0 18px;
-      border:1px solid rgba(255,255,255,.28);
-      background:#f1eee7;
-      color:#11110f;
-      font-size:9px;
-      font-weight:700;
-      letter-spacing:.15em;
-      cursor:pointer;
-      transition:background .25s ease,color .25s ease,transform .25s ease;
-    }
-    .project-pdf-button.visible{display:inline-flex}
-    .project-pdf-button:hover{background:#fff;color:#111;transform:translateY(-2px)}
-
-    .pdf-viewer{
-      position:fixed;
-      inset:0;
-      z-index:3000;
-      display:none;
-      flex-direction:column;
-      background:#11110f;
-    }
-    .pdf-viewer.open{display:flex}
-    .pdf-viewer-head{
-      height:68px;
-      flex:0 0 68px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding:0 28px;
-      border-bottom:1px solid rgba(255,255,255,.14);
-      color:#f1eee7;
-      background:#11110f;
-    }
-    .pdf-viewer-title{
-      min-width:0;
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .pdf-viewer-close{
-      flex:0 0 auto;
-      width:42px;
-      height:42px;
-      border:1px solid rgba(255,255,255,.22);
-      background:transparent;
-      color:#fff;
-      font-size:25px;
-      line-height:1;
-      cursor:pointer;
-    }
-    .pdf-viewer-close:hover{background:#f1eee7;color:#11110f}
-    .pdf-viewer-frame{
-      width:100%;
-      height:calc(100vh - 68px);
-      border:0;
-      background:#fff;
-    }
-
     .hidden{display:none!important}
 
     @media(max-width:800px){
@@ -1019,9 +948,6 @@
       .modal-image{height:auto;min-height:240px;max-height:none}
       .gallery-thumbs{grid-template-columns:repeat(4,1fr)}
       .gallery-prev,.gallery-next{width:38px;height:38px;font-size:26px}
-      .project-pdf-button{width:100%}
-      .pdf-viewer-head{height:58px;flex-basis:58px;padding:0 16px}
-      .pdf-viewer-frame{height:calc(100vh - 58px)}
       footer{flex-direction:column}
     }
   
@@ -2115,6 +2041,24 @@
       }
     }
 
+
+/* SECURE-STYLE PROJECT PDF VIEWER */
+.secure-pdf-viewer{position:fixed;inset:0;background:rgba(8,8,8,.97);z-index:9999;display:none;flex-direction:column;color:#fff}
+.secure-pdf-viewer.open{display:flex}
+.secure-pdf-header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid rgba(255,255,255,.12);flex:0 0 auto}
+.secure-pdf-title{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:20px}
+.secure-pdf-actions{display:flex;align-items:center;gap:8px}
+.secure-pdf-btn{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;height:36px;min-width:36px;padding:0 12px;font:inherit;font-size:11px;letter-spacing:.08em;cursor:pointer;transition:.2s}
+.secure-pdf-btn:hover{background:#fff;color:#111}
+.secure-pdf-close{font-size:22px;line-height:1}
+.secure-pdf-stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:20px}
+.secure-pdf-canvas-wrap{position:relative;max-width:100%;max-height:100%;overflow:auto;box-shadow:0 18px 60px rgba(0,0,0,.45);background:#fff;touch-action:none;user-select:none;-webkit-user-select:none}
+#securePdfCanvas{display:block;max-width:none;user-select:none;-webkit-user-select:none;pointer-events:none}
+.secure-pdf-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:rgba(255,255,255,.16);font-size:clamp(24px,5vw,72px);font-weight:700;letter-spacing:.2em;transform:rotate(-28deg);text-transform:uppercase;mix-blend-mode:screen;white-space:nowrap}
+.secure-pdf-footer{height:58px;display:flex;align-items:center;justify-content:center;gap:14px;border-top:1px solid rgba(255,255,255,.12);flex:0 0 auto}
+.secure-pdf-page{font-size:11px;letter-spacing:.14em;min-width:90px;text-align:center;opacity:.8}
+.secure-pdf-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+@media(max-width:700px){.secure-pdf-header{height:58px;padding:0 12px}.secure-pdf-title{font-size:9px}.secure-pdf-btn{height:34px;min-width:34px;padding:0 8px}.secure-pdf-stage{padding:10px}.secure-pdf-footer{height:52px}.secure-pdf-watermark{font-size:30px}}
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -2489,21 +2433,37 @@
       <p class="modal-location" id="modalLocation"></p>
       <p id="modalDescription"></p>
       <div class="modal-meta" id="modalYear"></div>
-      <button class="project-pdf-button" id="projectPdfButton" type="button">VIEW PDF ↗</button>
+      <button class="project-pdf-button" id="projectPdfButton" type="button" style="display:none;margin-top:18px;padding:11px 16px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:10px;letter-spacing:.12em;cursor:pointer">VIEW PDF ↗</button>
       <div class="gallery-hint">← → TO BROWSE · ESC TO CLOSE</div>
     </div>
   </div>
 </div>
 
-<!-- PDF VIEWER: opens the project PDF inside the website -->
-<div class="pdf-viewer" id="pdfViewer" aria-hidden="true">
-  <div class="pdf-viewer-head">
-    <div class="pdf-viewer-title" id="pdfViewerTitle">PROJECT PDF</div>
-    <button class="pdf-viewer-close" id="pdfViewerClose" type="button" aria-label="Close PDF">×</button>
-  </div>
-  <iframe class="pdf-viewer-frame" id="pdfViewerFrame" title="Project PDF Viewer"></iframe>
-</div>
 
+
+<div class="secure-pdf-viewer" id="securePdfViewer" aria-hidden="true">
+  <div class="secure-pdf-header">
+    <div class="secure-pdf-title" id="securePdfTitle">PROJECT DOCUMENT</div>
+    <div class="secure-pdf-actions">
+      <button class="secure-pdf-btn" id="securePdfZoomOut" aria-label="Zoom out">−</button>
+      <button class="secure-pdf-btn" id="securePdfZoomIn" aria-label="Zoom in">+</button>
+      <button class="secure-pdf-btn" id="securePdfFullscreen" aria-label="Fullscreen">⛶</button>
+      <button class="secure-pdf-btn secure-pdf-close" id="securePdfClose" aria-label="Close">×</button>
+    </div>
+  </div>
+  <div class="secure-pdf-stage" id="securePdfStage">
+    <div class="secure-pdf-loading" id="securePdfLoading">LOADING DOCUMENT…</div>
+    <div class="secure-pdf-canvas-wrap" id="securePdfCanvasWrap">
+      <canvas id="securePdfCanvas"></canvas>
+      <div class="secure-pdf-watermark">Y3D-INEX</div>
+    </div>
+  </div>
+  <div class="secure-pdf-footer">
+    <button class="secure-pdf-btn" id="securePdfPrev" aria-label="Previous page">←</button>
+    <div class="secure-pdf-page" id="securePdfPage">01 / 01</div>
+    <button class="secure-pdf-btn" id="securePdfNext" aria-label="Next page">→</button>
+  </div>
+</div>
 
 <script>
   const projects = [
@@ -2641,11 +2601,20 @@
   const galleryPrev = document.getElementById("galleryPrev");
   const galleryNext = document.getElementById("galleryNext");
   const projectPdfButton = document.getElementById("projectPdfButton");
-  const pdfViewer = document.getElementById("pdfViewer");
-  const pdfViewerFrame = document.getElementById("pdfViewerFrame");
-  const pdfViewerTitle = document.getElementById("pdfViewerTitle");
-  const pdfViewerClose = document.getElementById("pdfViewerClose");
-  let activeProjectPdf = "";
+  const securePdfViewer = document.getElementById("securePdfViewer");
+  const securePdfTitle = document.getElementById("securePdfTitle");
+  const securePdfCanvas = document.getElementById("securePdfCanvas");
+  const securePdfCanvasWrap = document.getElementById("securePdfCanvasWrap");
+  const securePdfStage = document.getElementById("securePdfStage");
+  const securePdfLoading = document.getElementById("securePdfLoading");
+  const securePdfPage = document.getElementById("securePdfPage");
+  const securePdfPrev = document.getElementById("securePdfPrev");
+  const securePdfNext = document.getElementById("securePdfNext");
+  const securePdfZoomIn = document.getElementById("securePdfZoomIn");
+  const securePdfZoomOut = document.getElementById("securePdfZoomOut");
+  const securePdfFullscreen = document.getElementById("securePdfFullscreen");
+  const securePdfClose = document.getElementById("securePdfClose");
+  let securePdfDoc=null, securePdfCurrent=1, securePdfScale=1;
   let activeGallery = [];
   let activeGalleryIndex = 0;
 
@@ -2727,10 +2696,8 @@
         modalLocation.textContent = project.location;
         modalDescription.textContent = project.description;
         modalYear.textContent = "2026 PORTFOLIO · " + activeGallery.length + " IMAGES";
-        activeProjectPdf = project.pdf || "";
-        if(projectPdfButton){
-          projectPdfButton.classList.toggle("visible", !!activeProjectPdf);
-        }
+        projectPdfButton.style.display = project.pdf ? "inline-flex" : "none";
+        projectPdfButton.onclick = (event)=>{ event.stopPropagation(); if(project.pdf) openSecurePdf(project.pdf, project.name); };
         renderGallery();
         modal.classList.add("open");
         modal.setAttribute("aria-hidden","false");
@@ -2781,6 +2748,34 @@
     });
   }
 
+  async function openSecurePdf(src,title){
+    securePdfTitle.textContent=title||"PROJECT DOCUMENT"; securePdfViewer.classList.add("open"); securePdfViewer.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
+    securePdfLoading.style.display="flex"; securePdfLoading.textContent="LOADING DOCUMENT…"; securePdfCurrent=1; securePdfScale=1;
+    try{
+      const pdfjs=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs");
+      pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
+      securePdfDoc=await pdfjs.getDocument({url:src}).promise; await renderSecurePdfPage();
+    }catch(err){console.error(err);securePdfLoading.textContent="DOCUMENT COULD NOT BE LOADED";}
+  }
+  async function renderSecurePdfPage(){
+    if(!securePdfDoc)return; securePdfLoading.style.display="flex";
+    const page=await securePdfDoc.getPage(securePdfCurrent), base=page.getViewport({scale:1});
+    const fit=Math.min((securePdfStage.clientWidth-40)/base.width,(securePdfStage.clientHeight-40)/base.height);
+    const viewport=page.getViewport({scale:Math.max(.35,Math.min(3,fit*securePdfScale))}); const ratio=Math.min(devicePixelRatio||1,2);
+    securePdfCanvas.width=Math.floor(viewport.width*ratio); securePdfCanvas.height=Math.floor(viewport.height*ratio); securePdfCanvas.style.width=viewport.width+"px"; securePdfCanvas.style.height=viewport.height+"px";
+    const ctx=securePdfCanvas.getContext("2d",{alpha:false}); ctx.setTransform(ratio,0,0,ratio,0,0); await page.render({canvasContext:ctx,viewport}).promise;
+    securePdfPage.textContent=String(securePdfCurrent).padStart(2,"0")+" / "+String(securePdfDoc.numPages).padStart(2,"0"); securePdfLoading.style.display="none";
+  }
+  function closeSecurePdf(){securePdfViewer.classList.remove("open");securePdfViewer.setAttribute("aria-hidden","true");securePdfDoc=null;securePdfCanvas.width=1;securePdfCanvas.height=1;document.body.style.overflow="";}
+  securePdfClose.addEventListener("click",closeSecurePdf);
+  securePdfPrev.addEventListener("click",async()=>{if(securePdfDoc&&securePdfCurrent>1){securePdfCurrent--;await renderSecurePdfPage();}});
+  securePdfNext.addEventListener("click",async()=>{if(securePdfDoc&&securePdfCurrent<securePdfDoc.numPages){securePdfCurrent++;await renderSecurePdfPage();}});
+  securePdfZoomIn.addEventListener("click",async()=>{if(securePdfDoc){securePdfScale=Math.min(3,securePdfScale+.2);await renderSecurePdfPage();}});
+  securePdfZoomOut.addEventListener("click",async()=>{if(securePdfDoc){securePdfScale=Math.max(.5,securePdfScale-.2);await renderSecurePdfPage();}});
+  securePdfFullscreen.addEventListener("click",()=>{if(!document.fullscreenElement)securePdfViewer.requestFullscreen?.();else document.exitFullscreen?.();});
+  securePdfViewer.addEventListener("contextmenu",e=>e.preventDefault()); securePdfCanvasWrap.addEventListener("dragstart",e=>e.preventDefault());
+  window.addEventListener("resize",()=>{if(securePdfViewer.classList.contains("open")&&securePdfDoc)renderSecurePdfPage();});
+
   function nextGallery(){
     if(!activeGallery.length) return;
     activeGalleryIndex = (activeGalleryIndex + 1) % activeGallery.length;
@@ -2796,28 +2791,6 @@
   galleryNext.addEventListener("click",nextGallery);
   galleryPrev.addEventListener("click",prevGallery);
 
-  function openProjectPdf(){
-    if(!activeProjectPdf) return;
-    pdfViewerFrame.src = activeProjectPdf;
-    pdfViewerTitle.textContent = modalTitle.textContent + " · PDF";
-    pdfViewer.classList.add("open");
-    pdfViewer.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-  }
-
-  function closeProjectPdf(){
-    pdfViewer.classList.remove("open");
-    pdfViewer.setAttribute("aria-hidden","true");
-    pdfViewerFrame.src = "";
-    document.body.style.overflow="hidden";
-  }
-
-  projectPdfButton.addEventListener("click",openProjectPdf);
-  pdfViewerClose.addEventListener("click",closeProjectPdf);
-  pdfViewer.addEventListener("click",(e)=>{
-    if(e.target === pdfViewer) closeProjectPdf();
-  });
-
   function closeModal(){
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden","true");
@@ -2832,11 +2805,7 @@
   document.addEventListener("keydown",(e)=>{
     if(e.key === "Escape"){
       closeLogoViewer();
-      if(pdfViewer.classList.contains("open")){
-        closeProjectPdf();
-      }else{
-        closeModal();
-      }
+      closeModal();
     }
     if(modal.classList.contains("open") && e.key === "ArrowRight") nextGallery();
     if(modal.classList.contains("open") && e.key === "ArrowLeft") prevGallery();
@@ -2914,6 +2883,8 @@
       });
     }
   });
+
+  document.addEventListener("keydown",e=>{if(!securePdfViewer.classList.contains("open"))return;if(e.key==="Escape")closeSecurePdf();if(e.key==="ArrowLeft")securePdfPrev.click();if(e.key==="ArrowRight")securePdfNext.click();if((e.ctrlKey||e.metaKey)&&["s","p","c","u"].includes(e.key.toLowerCase()))e.preventDefault();},true);
 
 </script>
 
