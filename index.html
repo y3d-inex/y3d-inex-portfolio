@@ -2059,6 +2059,798 @@
 .secure-pdf-page{font-size:11px;letter-spacing:.14em;min-width:90px;text-align:center;opacity:.8}
 .secure-pdf-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
 @media(max-width:700px){.secure-pdf-header{height:58px;padding:0 12px}.secure-pdf-title{font-size:9px}.secure-pdf-btn{height:34px;min-width:34px;padding:0 8px}.secure-pdf-stage{padding:10px}.secure-pdf-footer{height:52px}.secure-pdf-watermark{font-size:30px}}
+
+/* =========================================================
+   ABOUT V2 — PERSONAL BRAND / VIDEO-LED EDITORIAL
+   ========================================================= */
+.about{
+  background:#11110f !important;
+  color:var(--text);
+  overflow:hidden;
+}
+
+.about-v2{
+  width:min(1380px,90vw);
+  margin:0 auto;
+  padding:0 0 0;
+}
+
+/* HERO */
+.about-v2-hero{
+  min-height:92vh;
+  display:grid;
+  grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);
+  gap:clamp(45px,7vw,105px);
+  align-items:center;
+  padding:100px 0 120px;
+}
+
+.about-v2-media{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  justify-self:start;
+}
+
+.about-v2-label{
+  margin-bottom:15px;
+  font-size:9px;
+  line-height:1.3;
+  letter-spacing:.19em;
+  color:#9c988f;
+  text-transform:uppercase;
+}
+
+.about-v2-video{
+  position:relative;
+  aspect-ratio:9/16;
+  max-height:760px;
+  overflow:hidden;
+  background:#171714;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-video video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center center;
+}
+
+.about-v2-video-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.03) 40%,rgba(0,0,0,.35) 100%);
+  pointer-events:none;
+}
+
+.about-v2-video-meta{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:16px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:#eeeae1;
+  font-size:7px;
+  letter-spacing:.17em;
+}
+
+.about-v2-intro{
+  max-width:720px;
+}
+
+.about-v2-intro h2{
+  margin:17px 0 13px;
+  font-size:clamp(52px,6.3vw,100px) !important;
+  line-height:.87 !important;
+  letter-spacing:-.055em !important;
+  font-weight:500 !important;
+  white-space:normal !important;
+}
+
+.about-v2-role{
+  color:#c5c0b6;
+  font-size:15px;
+  letter-spacing:.02em;
+  margin-bottom:42px;
+}
+
+.about-v2-intro > p:not(.about-v2-lead){
+  max-width:650px;
+  color:#aaa69e;
+  font-size:14px;
+  line-height:1.85;
+  margin-bottom:20px;
+}
+
+.about-v2-intro > p strong{
+  color:#eeebe4;
+  font-weight:600;
+}
+
+.about-v2-lead{
+  margin:0 0 35px;
+  color:#f1eee7;
+  font-size:clamp(32px,4vw,58px);
+  line-height:.98;
+  letter-spacing:-.045em;
+  font-weight:600;
+}
+
+.about-v2-lead em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+.about-v2-scroll{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  margin-top:25px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.16);
+  color:#ddd8cf;
+  font-size:8px;
+  letter-spacing:.18em;
+}
+
+.about-v2-scroll b{
+  font-size:18px;
+  font-weight:400;
+  transition:transform .3s ease;
+}
+
+.about-v2-scroll:hover b{transform:translateY(5px)}
+
+/* STORY */
+.about-v2-story{
+  display:grid;
+  grid-template-columns:.78fr 1.22fr;
+  gap:80px;
+  padding:125px 0;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-story-head h3{
+  margin-top:18px;
+  font-size:clamp(42px,5.4vw,78px);
+  line-height:.91;
+  letter-spacing:-.05em;
+  font-weight:500;
+}
+
+.about-v2-story-head h3 em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+.about-v2-story-copy{
+  max-width:680px;
+  padding-top:7px;
+}
+
+.about-v2-story-copy p{
+  color:#aaa69e;
+  font-size:14px;
+  line-height:1.85;
+  margin-bottom:30px;
+}
+
+.about-v2-story-copy .about-v2-big{
+  color:#f0ede6;
+  font-size:clamp(27px,3vw,44px);
+  line-height:1.02;
+  letter-spacing:-.035em;
+  margin-bottom:15px;
+}
+
+.about-v2-story-copy .about-v2-big em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+/* PRINCIPLES */
+.about-v2-principles{
+  display:grid;
+  grid-template-columns:1.25fr repeat(3,1fr);
+  gap:0;
+  border-top:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-principle-intro,
+.about-v2-principle{
+  min-height:330px;
+  padding:32px 28px 35px 0;
+}
+
+.about-v2-principle{
+  padding-left:28px;
+  border-left:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-principle-intro h3{
+  margin-top:22px;
+  font-size:clamp(30px,3.2vw,48px);
+  line-height:.96;
+  letter-spacing:-.04em;
+  font-weight:500;
+}
+
+.about-v2-principle > span{
+  display:block;
+  color:#77736c;
+  font-size:8px;
+  letter-spacing:.18em;
+  margin-bottom:90px;
+}
+
+.about-v2-principle h4{
+  font-size:17px;
+  letter-spacing:.08em;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+.about-v2-principle p{
+  color:#99958d;
+  font-size:12px;
+  line-height:1.7;
+  max-width:210px;
+}
+
+/* BRAND */
+.about-v2-brand{
+  padding:130px 0 135px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-brand-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  color:#7d7971;
+  font-size:8px;
+  letter-spacing:.18em;
+}
+
+.about-v2-brand-main{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:80px;
+  align-items:end;
+  margin-top:35px;
+}
+
+.about-v2-brand-main h3{
+  font-size:clamp(54px,7vw,108px);
+  line-height:.84;
+  letter-spacing:-.06em;
+  font-weight:500;
+}
+
+.about-v2-brand-main h3 em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+.about-v2-brand-main p{
+  color:#aaa69e;
+  max-width:430px;
+  font-size:16px;
+  line-height:1.7;
+}
+
+.about-v2-brand-main p strong{
+  color:#f0ede6;
+  font-weight:600;
+}
+
+.about-v2-flow{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-top:85px;
+  overflow:hidden;
+}
+
+.about-v2-flow div{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-width:max-content;
+}
+
+.about-v2-flow b{
+  color:#77736c;
+  font-size:8px;
+  letter-spacing:.14em;
+  font-weight:500;
+}
+
+.about-v2-flow span{
+  color:#ece8e0;
+  font-size:10px;
+  letter-spacing:.15em;
+  font-weight:600;
+}
+
+.about-v2-flow i{
+  color:#55514a;
+  font-size:18px;
+  font-style:normal;
+}
+
+.about-v2-brand-note{
+  max-width:600px;
+  margin:55px 0 0 auto;
+  color:#8f8b83;
+  font-size:12px;
+  line-height:1.75;
+}
+
+
+/* CREATIVE MIND — VISUAL PROCESS DIAGRAM */
+.about-v2-flow-diagram{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr 34px 1fr;
+  align-items:start;
+  gap:0;
+  margin-top:82px;
+  padding:0 0 8px;
+}
+.about-v2-flow-diagram .flow-line{
+  position:absolute;
+  left:7%; right:7%; top:66px;
+  height:1px;
+  background:rgba(255,255,255,.14);
+  z-index:0;
+}
+.flow-node{position:relative;z-index:1;min-width:0;}
+.flow-image{
+  width:100%; aspect-ratio:1.18/1; overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  background:#171714;
+  position:relative;
+}
+.flow-image img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(100%) brightness(.68);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s ease;}
+.flow-node:hover .flow-image img{transform:scale(1.06);filter:grayscale(15%) brightness(.88);}
+.flow-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.42));pointer-events:none;}
+.flow-number{margin-top:15px;color:#77736c;font-size:8px;letter-spacing:.16em;}
+.flow-label{margin-top:7px;color:#ece8e0;font-size:10px;letter-spacing:.12em;font-weight:600;white-space:nowrap;}
+.flow-caption{margin-top:8px;color:#77736c;font-size:10px;line-height:1.45;max-width:135px;}
+.flow-arrow{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:133px;color:#5c5952;font-size:17px;}
+.flow-ai-image{display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(91,220,224,.11),transparent 42%),#171714;}
+.flow-ai-image span{font-size:42px;letter-spacing:-.08em;color:#eeeae2;font-weight:500;line-height:1;}
+.flow-ai-image small{margin-top:9px;font-size:7px;letter-spacing:.22em;color:#6d6962;}
+@media(max-width:1050px){
+  .about-v2-flow-diagram{grid-template-columns:1fr 26px 1fr 26px 1fr;row-gap:48px;}
+  .about-v2-flow-diagram .flow-line{display:none;}
+  .about-v2-flow-diagram .flow-node:nth-of-type(7),
+  .about-v2-flow-diagram .flow-arrow:nth-of-type(8),
+  .about-v2-flow-diagram .flow-node:nth-of-type(9){margin-top:0;}
+  .flow-arrow{height:110px;}
+}
+@media(max-width:700px){
+  .about-v2-flow-diagram{display:grid;grid-template-columns:1fr;gap:0;margin-top:50px;}
+  .flow-arrow{height:42px;transform:rotate(90deg);}
+  .flow-image{aspect-ratio:1.65/1;}
+  .flow-label{font-size:11px;}
+  .flow-caption{max-width:240px;}
+}
+
+/* PERSONAL */
+.about-v2-personal{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:100px;
+  padding:125px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.about-v2-personal-copy h3{
+  margin-top:20px;
+  font-size:clamp(42px,5.2vw,76px);
+  line-height:.91;
+  letter-spacing:-.05em;
+  font-weight:500;
+}
+
+.about-v2-personal-copy h3 em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+.about-v2-personal-copy p{
+  max-width:600px;
+  margin-top:35px;
+  color:#9e9a92;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.about-v2-education{
+  align-self:end;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+
+.about-v2-edu-row{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  gap:15px;
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.about-v2-edu-row > span{
+  color:#6d6962;
+  font-size:8px;
+  letter-spacing:.15em;
+}
+
+.about-v2-edu-row strong{
+  display:block;
+  color:#ece9e2;
+  font-size:13px;
+  font-weight:500;
+}
+
+.about-v2-edu-row small{
+  display:block;
+  margin-top:5px;
+  color:#77736c;
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+
+/* EDUCATION — LOGOS + EXTERNAL LINKS */
+.about-v2-education{
+  align-self:end;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.about-v2-edu-row{
+  display:grid;
+  grid-template-columns:38px 46px minmax(0,1fr) 24px;
+  align-items:center;
+  gap:15px;
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:inherit;
+  text-decoration:none;
+  transition:background .3s ease, padding .3s ease;
+}
+.about-v2-edu-row:hover{
+  padding-left:8px;
+  padding-right:8px;
+  background:rgba(255,255,255,.025);
+}
+.about-v2-edu-row > span:first-child{
+  color:#6d6962;
+  font-size:8px;
+  letter-spacing:.15em;
+}
+.about-v2-edu-logo{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  filter:grayscale(1);
+  opacity:.68;
+  transition:filter .3s ease, opacity .3s ease, transform .3s ease;
+}
+.about-v2-edu-row:hover .about-v2-edu-logo{
+  filter:grayscale(0);
+  opacity:1;
+  transform:scale(1.08);
+}
+.about-v2-edu-info strong{
+  display:block;
+  color:#ece9e2;
+  font-size:13px;
+  font-weight:500;
+}
+.about-v2-edu-info small{
+  display:block;
+  margin-top:5px;
+  color:#77736c;
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.about-v2-edu-arrow{
+  color:#77736c !important;
+  font-size:14px !important;
+  letter-spacing:0 !important;
+  opacity:.55;
+  transition:transform .3s ease, opacity .3s ease;
+}
+.about-v2-edu-row:hover .about-v2-edu-arrow{
+  opacity:1;
+  transform:translate(2px,-2px);
+}
+@media(max-width:700px){
+  .about-v2-edu-row{
+    grid-template-columns:30px 42px minmax(0,1fr) 20px;
+    gap:12px;
+  }
+  .about-v2-edu-logo{width:38px;height:38px;}
+}
+
+/* FINAL */
+.about-v2-final{
+  min-height:72vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:130px 0 150px;
+}
+
+.about-v2-final h3{
+  margin-top:25px;
+  font-size:clamp(72px,11vw,170px);
+  line-height:.78;
+  letter-spacing:-.07em;
+  font-weight:500;
+}
+
+.about-v2-final h3 em{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+}
+
+.about-v2-final p{
+  margin-top:42px;
+  color:#7f7b73;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.about-v2-final a{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  margin-top:30px;
+  padding:14px 18px;
+  border:1px solid rgba(255,255,255,.25);
+  font-size:9px;
+  letter-spacing:.16em;
+  transition:.25s ease;
+}
+
+.about-v2-final a span{
+  font-size:16px;
+  transition:transform .25s ease;
+}
+
+.about-v2-final a:hover{
+  background:#f1eee7;
+  color:#11110f;
+  border-color:#f1eee7;
+}
+
+.about-v2-final a:hover span{transform:translate(3px,-3px)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .about-v2-hero{
+    grid-template-columns:minmax(250px,.75fr) 1fr;
+    gap:45px;
+  }
+  .about-v2-principles{
+    grid-template-columns:1fr 1fr;
+  }
+  .about-v2-principle-intro{
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .about-v2-principle:nth-child(3){
+    border-left:1px solid rgba(255,255,255,.12);
+  }
+  .about-v2-principle:nth-child(4){
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+}
+
+@media(max-width:800px){
+  .about-v2{width:90vw}
+  .about-v2-hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:85px 0 90px;
+    gap:45px;
+  }
+  .about-v2-media{
+    max-width:430px;
+  }
+  .about-v2-intro h2{
+    font-size:clamp(48px,14vw,82px) !important;
+  }
+  .about-v2-lead{
+    font-size:clamp(31px,9vw,50px);
+  }
+  .about-v2-story{
+    grid-template-columns:1fr;
+    gap:45px;
+    padding:90px 0;
+  }
+  .about-v2-principles{
+    grid-template-columns:1fr;
+  }
+  .about-v2-principle-intro,
+  .about-v2-principle{
+    min-height:auto;
+    padding:28px 0;
+    border-left:0 !important;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .about-v2-principle-intro{border-top:0}
+  .about-v2-principle > span{margin-bottom:45px}
+  .about-v2-brand{
+    padding:90px 0;
+  }
+  .about-v2-brand-main{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+  .about-v2-flow{
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:55px;
+  }
+  .about-v2-flow i{display:none}
+  .about-v2-brand-note{margin:40px 0 0}
+  .about-v2-personal{
+    grid-template-columns:1fr;
+    gap:60px;
+    padding:90px 0;
+  }
+  .about-v2-final{
+    min-height:65vh;
+    padding:100px 0 120px;
+  }
+  .about-v2-final h3{
+    font-size:clamp(64px,18vw,125px);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .about-v2-scroll b,
+  .about-v2-final a span{transition:none}
+}
+
+
+/* ABOUT STORY — COLLAPSED UNTIL DISCOVER MY STORY IS CLICKED */
+.about-v2:not(.story-open) .about-v2-story,
+.about-v2:not(.story-open) .about-v2-principles,
+.about-v2:not(.story-open) .about-v2-brand,
+.about-v2:not(.story-open) .about-v2-personal,
+.about-v2:not(.story-open) .about-v2-final{
+  display:none !important;
+}
+
+.about-v2:not(.story-open) .about-v2-hero{
+  min-height:calc(100vh - 20px);
+  padding-bottom:10vh;
+}
+
+.about-v2.story-open .about-v2-story,
+.about-v2.story-open .about-v2-principles,
+.about-v2.story-open .about-v2-brand,
+.about-v2.story-open .about-v2-personal,
+.about-v2.story-open .about-v2-final{
+  animation:aboutStoryReveal .7s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes aboutStoryReveal{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.about-v2-scroll{
+  cursor:pointer;
+}
+
+.about-v2-scroll.is-open b{
+  transform:rotate(180deg);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .about-v2.story-open .about-v2-story,
+  .about-v2.story-open .about-v2-principles,
+  .about-v2.story-open .about-v2-brand,
+  .about-v2.story-open .about-v2-personal,
+  .about-v2.story-open .about-v2-final{
+    animation:none;
+  }
+}
+
+
+
+    /* MY APPROACH — VISUAL STORY CARDS */
+    .about-v2-principle-image{
+      position:relative;
+      min-height:420px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      background:#171714;
+      border-left:1px solid var(--line);
+      isolation:isolate;
+    }
+    .about-v2-principle-media{
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      overflow:hidden;
+      background:#1a1916;
+    }
+    .about-v2-principle-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(1);
+      opacity:.48;
+      transform:scale(1);
+      transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease,opacity .5s ease;
+    }
+    .about-v2-principle-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(180deg,rgba(0,0,0,.10) 10%,rgba(0,0,0,.22) 42%,rgba(0,0,0,.88) 100%);
+      pointer-events:none;
+    }
+    .about-v2-principle-image > span{
+      position:absolute;
+      top:24px;
+      left:28px;
+      font-size:8px;
+      letter-spacing:.16em;
+      color:#eee9df;
+      opacity:.72;
+    }
+    .about-v2-principle-content{
+      padding:0 28px 28px;
+      max-width:390px;
+    }
+    .about-v2-principle-image h4{
+      margin:0 0 15px;
+      color:#f4f2eb;
+      font-size:20px;
+      line-height:1;
+      letter-spacing:.04em;
+      font-weight:600;
+    }
+    .about-v2-principle-image p{
+      margin:0;
+      color:#d2cec5;
+      font-size:12px;
+      line-height:1.7;
+    }
+    .about-v2-principle-image:hover .about-v2-principle-media img{
+      transform:scale(1.07);
+      filter:grayscale(0);
+      opacity:.72;
+    }
+    @media(max-width:900px){
+      .about-v2-principle-image{
+        min-height:380px;
+        border-left:0;
+        border-top:1px solid var(--line);
+      }
+      .about-v2-principle-content{padding:0 22px 24px;}
+      .about-v2-principle-image > span{left:22px;top:20px;}
+    }
 </style>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="apple-touch-icon" href="assets/Logo.png">
@@ -2147,100 +2939,243 @@
   </section>
 
 
-  <section class="about" id="about">
-    <div class="about-inner">
+  
+<section class="about" id="about">
+  <div class="about-v2">
 
-      <div class="portrait-wrap">
-        <div class="about-index">ABOUT / PROFILE</div>
-
-        <div class="portrait">
+    <!-- HERO / VIDEO PORTRAIT -->
+    <div class="about-v2-hero">
+      <div class="about-v2-media">
+        <div class="about-v2-label">ABOUT / THE PERSON BEHIND THE VISUALS</div>
+        <div class="about-v2-video">
           <video autoplay muted loop playsinline preload="metadata" poster="assets/portrait.jpg">
             <source src="assets/about-video.mp4" type="video/mp4">
           </video>
-        </div>
-
-        <div class="portrait-caption">
-          <span>Y3D-INEX</span>
-          <span>ARCHITECTURE · INTERIOR · 3D VISUALIZATION</span>
+          <div class="about-v2-video-overlay"></div>
+          <div class="about-v2-video-meta">
+            <span>Y3D-INEX</span>
+            <span>ARCHITECT · 3D ARTIST</span>
+          </div>
         </div>
       </div>
 
-      <div class="about-copy">
+      <div class="about-v2-intro">
         <div class="kicker">ABOUT</div>
-        <h2>Yudhanto Hendra P., ST</h2>
-        <p class="lead">Architectural 3D Artist</p>
+        <h2>Yudhanto<br>Hendra P., ST</h2>
+        <div class="about-v2-role">Architectural 3D Artist</div>
+
+        <p class="about-v2-lead">
+          I don't just make renders.<br>
+          <em>I make ideas visible.</em>
+        </p>
 
         <p>
           I transform architectural ideas into clear, immersive visual experiences —
-          combining design thinking, 3D modeling, and photorealistic visualization
-          to make every space easier to understand, present, and experience.
+          combining architecture, design thinking, 3D modeling, and photorealistic visualization.
         </p>
 
         <p>
           With more than ten years in architectural 3D design, I work across
-          <strong>architecture, interior design, and visualization</strong> —
-          developing visuals that balance strong composition, material detail,
-          lighting, atmosphere, and the character of each space.
+          <strong>architecture, interior design, exterior design, and visualization</strong> —
+          creating images that help people understand a space before it is built.
         </p>
 
+        <a class="about-v2-scroll" href="#about-story" aria-expanded="false">
+          <span>DISCOVER MY STORY</span><b>↓</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="about-v2-story" id="about-story">
+      <div class="about-v2-story-head">
+        <div class="kicker">01 / THE STORY</div>
+        <h3>Where Architecture<br><em>Meets Visual Storytelling.</em></h3>
+      </div>
+
+      <div class="about-v2-story-copy">
+        <p class="about-v2-big">
+          Architecture taught me how to understand space.
+        </p>
         <p>
-          My goal is simple: <strong>turn ideas into visuals that communicate.</strong>
-          Whether it is a residential project, commercial space, or architectural
-          concept, I create visuals that help clients see the design clearly
-          and make confident decisions before it is built.
+          My background in architecture shaped the way I see proportion, function,
+          material, light, and the relationship between people and space.
         </p>
+        <p class="about-v2-big">
+          3D visualization taught me<br><em>how to communicate it.</em>
+        </p>
+        <p>
+          Over the years, visualization became more than a technical skill.
+          It became my way of translating drawings, concepts, and ideas into
+          something people can see, feel, and understand.
+        </p>
+      </div>
+    </div>
 
-        <div class="about-meta">
-          <div>
-            <div class="education-history-label">EDUCATIONAL BACKGROUND</div>
-            <div class="education-card">
-              <img class="education-logo" src="assets/education/smp-bintara.png" alt="Logo SMP Bintara">
-              <div class="education-info">
-                <strong><a class="education-link" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">SMP Bintara</a></strong>
-                <span>Junior High School</span>
-              </div>
-            </div>
-          </div>
+    <!-- THREE PRINCIPLES -->
+    <div class="about-v2-principles">
+      <div class="about-v2-principle-intro">
+        <div class="kicker">02 / MY APPROACH</div>
+        <h3>I don't just make<br>beautiful images.</h3>
+      </div>
 
-          <div>
-            <div class="education-history-label">&nbsp;</div>
-            <div class="education-card">
-              <img class="education-logo" src="assets/education/sma-bintara.png" alt="Logo SMA Bintara">
-              <div class="education-info">
-                <strong><a class="education-link" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">SMA Bintara</a></strong>
-                <span>Senior High School</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="education-history-label">&nbsp;</div>
-            <div class="education-card">
-              <img class="education-logo" src="assets/education/universitas-pancasila.png" alt="Logo Universitas Pancasila">
-              <div class="education-info">
-                <strong><a class="education-link" href="https://teknik.univpancasila.ac.id/arsitektur/" target="_blank" rel="noopener noreferrer">Universitas Pancasila</a></strong>
-                <span>Architecture</span>
-              </div>
-            </div>
-          </div>
+      <div class="about-v2-principle about-v2-principle-image">
+        <div class="about-v2-principle-media">
+          <img src="assets/projects/project-06-01.png" alt="Architectural visualization — See It" loading="lazy">
         </div>
-
-        <div class="about-statement">
-          <div class="statement-top">
-            <span>Y3D-INEX / 01</span>
-            <span>DESIGN APPROACH</span>
-          </div>
-          <p>DESIGNING SPACES.<br><em>VISUALIZING IDEAS.</em></p>
-          <div class="statement-bottom">
-            <span>ARCHITECTURE</span>
-            <span>INTERIOR</span>
-            <span>3D VISUALIZATION</span>
-          </div>
+        <span>01</span>
+        <div class="about-v2-principle-content">
+          <h4>SEE IT</h4>
+          <p>Turning drawings, sketches, and concepts into visuals people can immediately understand.</p>
         </div>
       </div>
 
+      <div class="about-v2-principle about-v2-principle-image">
+        <div class="about-v2-principle-media">
+          <img src="assets/projects/project-01-01.png" alt="Interior visualization — Feel It" loading="lazy">
+        </div>
+        <span>02</span>
+        <div class="about-v2-principle-content">
+          <h4>FEEL IT</h4>
+          <p>Using light, material, composition, and atmosphere to communicate how a space should feel.</p>
+        </div>
+      </div>
+
+      <div class="about-v2-principle about-v2-principle-image">
+        <div class="about-v2-principle-media">
+          <img src="assets/projects/project-03-01.jpg" alt="3D visualization — Understand It" loading="lazy">
+        </div>
+        <span>03</span>
+        <div class="about-v2-principle-content">
+          <h4>UNDERSTAND IT</h4>
+          <p>Creating visuals that help clients see the design clearly and make confident decisions.</p>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <!-- Y3D-INEX -->
+    <div class="about-v2-brand">
+      <div class="about-v2-brand-top">
+        <div class="kicker">03 / THE CREATIVE MIND</div>
+        <span>Y3D-INEX / 01</span>
+      </div>
+
+      <div class="about-v2-brand-main">
+        <h3>The Mind<br>Behind <em>Y3D-INEX.</em></h3>
+        <p>
+          Y3D-INEX grew from a simple idea:
+          <strong>architecture should be easier to see before it is built.</strong>
+        </p>
+      </div>
+
+      <div class="about-v2-flow-diagram" aria-label="Y3D-INEX creative process diagram">
+        <div class="flow-line" aria-hidden="true"></div>
+
+        <div class="flow-node">
+          <div class="flow-image"><img src="assets/projects/project-06-01.png" alt="Architecture"></div>
+          <div class="flow-number">01</div>
+          <div class="flow-label">ARCHITECTURE</div>
+          <div class="flow-caption">Understand space.</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <div class="flow-node">
+          <div class="flow-image"><img src="assets/projects/project-01-01.png" alt="Design"></div>
+          <div class="flow-number">02</div>
+          <div class="flow-label">DESIGN</div>
+          <div class="flow-caption">Shape the idea.</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <div class="flow-node">
+          <div class="flow-image"><img src="assets/projects/project-03-01.jpg" alt="3D modeling and visualization"></div>
+          <div class="flow-number">03</div>
+          <div class="flow-label">3D MODELING</div>
+          <div class="flow-caption">Build it digitally.</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <div class="flow-node">
+          <div class="flow-image"><img src="assets/projects/project-03-01.jpg" alt="Photorealistic visualization"></div>
+          <div class="flow-number">04</div>
+          <div class="flow-label">VISUALIZATION</div>
+          <div class="flow-caption">Make it feel real.</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true">→</div>
+
+        <div class="flow-node flow-node-ai">
+          <div class="flow-image flow-ai-image">
+            <span>AI</span>
+            <small>EXPLORE</small>
+          </div>
+          <div class="flow-number">05</div>
+          <div class="flow-label">AI</div>
+          <div class="flow-caption">Explore what’s next.</div>
+        </div>
+      </div>
+
+      <p class="about-v2-brand-note">
+        I combine architectural knowledge, visual craftsmanship, and emerging technology
+        to explore new ways of communicating design.
+      </p>
+    </div>
+
+    <!-- PERSONAL CLOSING -->
+    <div class="about-v2-personal">
+      <div class="about-v2-personal-copy">
+        <div class="kicker">04 / BEYOND THE PORTFOLIO</div>
+        <h3>Architecture is what I studied.<br>
+          <em>Visualization is what I built.</em></h3>
+        <p>
+          Behind every project is a process of observing, thinking, testing, and refining.
+          I'm naturally curious about how spaces work, how visuals influence perception,
+          and how technology can make the design process better.
+        </p>
+      </div>
+
+      <div class="about-v2-education">
+        <div class="kicker">EDUCATION</div>
+
+        <a class="about-v2-edu-row" href="https://teknik.univpancasila.ac.id/arsitektur/" target="_blank" rel="noopener noreferrer">
+          <span>01</span>
+          <img src="assets/education/universitas-pancasila.png" alt="Logo Universitas Pancasila" class="about-v2-edu-logo">
+          <div class="about-v2-edu-info"><strong>Universitas Pancasila</strong><small>Architecture</small></div>
+          <span class="about-v2-edu-arrow">↗</span>
+        </a>
+
+        <a class="about-v2-edu-row" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">
+          <span>02</span>
+          <img src="assets/education/sma-bintara.png" alt="Logo SMA Bintara" class="about-v2-edu-logo">
+          <div class="about-v2-edu-info"><strong>SMA Bintara</strong><small>Senior High School</small></div>
+          <span class="about-v2-edu-arrow">↗</span>
+        </a>
+
+        <a class="about-v2-edu-row" href="https://bintara.sch.id/" target="_blank" rel="noopener noreferrer">
+          <span>03</span>
+          <img src="assets/education/smp-bintara.png" alt="Logo SMP Bintara" class="about-v2-edu-logo">
+          <div class="about-v2-edu-info"><strong>SMP Bintara</strong><small>Junior High School</small></div>
+          <span class="about-v2-edu-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FINAL STATEMENT -->
+    <div class="about-v2-final">
+      <div class="kicker">Y3D-INEX / 05</div>
+      <h3>From Ideas<br><em>to Visuals.</em></h3>
+      <p>
+        Design · Visualize · Experience
+      </p>
+      <a href="#projects">EXPLORE MY WORK <span>↗</span></a>
+    </div>
+
+  </div>
+</section>
+
 
 
   <section class="section" id="services">
@@ -2883,6 +3818,37 @@
   });
 
   document.addEventListener("keydown",e=>{if(!securePdfViewer.classList.contains("open"))return;if(e.key==="Escape")closeSecurePdf();if(e.key==="ArrowLeft")securePdfPrev.click();if(e.key==="ArrowRight")securePdfNext.click();if((e.ctrlKey||e.metaKey)&&["s","p","c","u"].includes(e.key.toLowerCase()))e.preventDefault();},true);
+
+
+  /* ABOUT STORY — REVEAL ON DISCOVER MY STORY */
+  document.addEventListener("DOMContentLoaded",()=>{
+    const about = document.querySelector(".about-v2");
+    const storyTrigger = document.querySelector(".about-v2-scroll");
+    const story = document.getElementById("about-story");
+
+    if(!about || !storyTrigger || !story) return;
+
+    storyTrigger.addEventListener("click",(event)=>{
+      event.preventDefault();
+
+      const opening = !about.classList.contains("story-open");
+      about.classList.toggle("story-open", opening);
+      storyTrigger.classList.toggle("is-open", opening);
+      storyTrigger.setAttribute("aria-expanded", String(opening));
+
+      if(opening){
+        requestAnimationFrame(()=>{
+          setTimeout(()=>{
+            story.scrollIntoView({behavior:"smooth",block:"start"});
+            history.replaceState(null,"","#about-story");
+          },80);
+        });
+      }else{
+        about.scrollIntoView({behavior:"smooth",block:"start"});
+        history.replaceState(null,"","#about");
+      }
+    });
+  });
 
 </script>
 
