@@ -2903,6 +2903,73 @@
     white-space: normal;
   }
 }
+
+
+/* FINAL STATEMENT — DUAL VIDEO BACKGROUND
+   Desktop: 16:9 video
+   Mobile: 9:16 video */
+.about-v2-final{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:#11110f;
+}
+.about-v2-final-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:-3;
+  pointer-events:none;
+  background:#11110f;
+}
+.about-v2-final-video-desktop{
+  object-fit:cover;
+  object-position:center center;
+}
+.about-v2-final-video-mobile{
+  display:none;
+}
+.about-v2-final-overlay{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.48) 42%,rgba(0,0,0,.18) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.08) 65%,rgba(0,0,0,.30) 100%);
+}
+.about-v2-final-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+}
+.about-v2-final .kicker,
+.about-v2-final h3,
+.about-v2-final p,
+.about-v2-final a,
+.about-v2-final .about-v2-close-story{
+  position:relative;
+  z-index:2;
+}
+.about-v2-final p{
+  color:#d0ccc4;
+}
+@media(max-width:800px){
+  .about-v2-final-video-desktop{display:none;}
+  .about-v2-final-video-mobile{
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+  }
+  .about-v2-final-overlay{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 30%,rgba(0,0,0,.68) 100%),
+      linear-gradient(90deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.16) 100%);
+  }
+}
+
 </style>
 </head>
 
@@ -3212,16 +3279,31 @@
 
     <!-- FINAL STATEMENT -->
     <div class="about-v2-final">
-      <div class="kicker">Y3D-INEX / 05</div>
-      <h3>From Ideas<br><em>to Visuals.</em></h3>
-      <p>
-        Design · Visualize · Experience
-      </p>
-      <a href="#projects">EXPLORE MY WORK <span>↗</span></a>
+      <video class="about-v2-final-video about-v2-final-video-desktop"
+        autoplay muted loop playsinline preload="metadata"
+        aria-hidden="true">
+        <source src="assets/videos/from-ideas-to-visuals-desktop.mp4" type="video/mp4">
+      </video>
+      <video class="about-v2-final-video about-v2-final-video-mobile"
+        autoplay muted loop playsinline preload="metadata"
+        aria-hidden="true">
+        <source src="assets/videos/from-ideas-to-visuals-mobile.mp4" type="video/mp4">
+      </video>
 
-      <button class="about-v2-close-story" type="button" aria-label="Close my story">
-        <span>LESS / DISCOVER MY STORY</span><b>↑</b>
-      </button>
+      <div class="about-v2-final-overlay" aria-hidden="true"></div>
+
+      <div class="about-v2-final-content">
+        <div class="kicker">Y3D-INEX / 05</div>
+        <h3>From Ideas<br><em>to Visuals.</em></h3>
+        <p>
+          Design · Visualize · Experience
+        </p>
+        <a href="#projects">EXPLORE MY WORK <span>↗</span></a>
+
+        <button class="about-v2-close-story" type="button" aria-label="Close my story">
+          <span>LESS / DISCOVER MY STORY</span><b>↑</b>
+        </button>
+      </div>
     </div>
 
   </div>
