@@ -3115,6 +3115,160 @@
   }
 }
 
+
+/* NAVIGATION — READABLE BOX + RUNNING LIGHT ON TEXT ONLY */
+.header{mix-blend-mode:normal !important;}
+
+.nav{
+  position:relative !important;
+  overflow:hidden !important;
+  background:rgba(10,10,9,.72) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  border-radius:4px !important;
+  backdrop-filter:blur(10px) !important;
+  -webkit-backdrop-filter:blur(10px) !important;
+  box-shadow:0 8px 28px rgba(0,0,0,.22) !important;
+}
+
+.nav a{
+  position:relative !important;
+  display:inline-block !important;
+  overflow:hidden !important;
+  color:#f5f2eb !important;
+  text-shadow:0 1px 5px rgba(0,0,0,.7) !important;
+  background:linear-gradient(110deg,
+    #f5f2eb 0%, #f5f2eb 38%,
+    rgba(255,255,255,.38) 45%, #fff 50%,
+    rgba(255,255,255,.38) 55%, #f5f2eb 62%, #f5f2eb 100%) !important;
+  background-size:240% 100% !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  animation:navTextRunningLight 3.8s linear infinite !important;
+}
+
+.nav a:hover{opacity:1 !important;transform:translateY(-1px);}
+
+@keyframes navTextRunningLight{
+  0%{background-position:140% 0;}
+  100%{background-position:-140% 0;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nav a{
+    animation:none !important;
+    background:#f5f2eb !important;
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+    -webkit-text-fill-color:transparent !important;
+  }
+}
+
+@media(max-width:800px){
+  .nav{
+    background:#11110f !important;
+    border:1px solid rgba(255,255,255,.22) !important;
+    box-shadow:0 12px 30px rgba(0,0,0,.35) !important;
+  }
+}
+
+
+/* NAV TEXT RUNNING LIGHT — VISIBLE SHIMMER */
+.nav a{
+  color:#f5f2eb !important;
+  background-image:linear-gradient(
+    105deg,
+    #f5f2eb 0%,
+    #f5f2eb 38%,
+    rgba(255,255,255,.15) 43%,
+    #ffffff 48%,
+    #ffffff 52%,
+    rgba(255,255,255,.15) 57%,
+    #f5f2eb 62%,
+    #f5f2eb 100%
+  ) !important;
+  background-size:320% 100% !important;
+  background-position:140% 0 !important;
+  background-repeat:no-repeat !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  animation:navRunningLightFixed 2.6s linear infinite !important;
+  will-change:background-position;
+}
+
+@keyframes navRunningLightFixed{
+  0%{background-position:140% 0;}
+  100%{background-position:-140% 0;}
+}
+
+.nav a:hover{
+  animation-duration:1.6s !important;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nav a{
+    animation:none !important;
+    background-image:none !important;
+    background:#f5f2eb !important;
+    -webkit-text-fill-color:#f5f2eb !important;
+  }
+}
+
+
+/* NAVIGATION — SOLID READABLE TEXT + RUNNING LIGHT OVERLAY */
+.nav a{
+  position:relative !important;
+  display:inline-block !important;
+  color:#ffffff !important;
+  -webkit-text-fill-color:#ffffff !important;
+  background:none !important;
+  text-shadow:0 1px 5px rgba(0,0,0,.72) !important;
+  overflow:visible !important;
+}
+
+.nav a::after{
+  content:attr(data-nav-label);
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  color:transparent;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255,255,255,.25) 44%,
+    #ffffff 50%,
+    rgba(255,255,255,.25) 56%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size:260% 100%;
+  background-position:140% 0;
+  background-repeat:no-repeat;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:navRunningLightOverlay 2.8s linear infinite;
+  will-change:background-position;
+}
+
+@keyframes navRunningLightOverlay{
+  0%{background-position:140% 0;}
+  100%{background-position:-140% 0;}
+}
+
+.nav a:hover::after{
+  animation-duration:1.7s;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nav a::after{
+    animation:none !important;
+    display:none !important;
+  }
+}
+
 </style>
 </head>
 
@@ -4143,6 +4297,15 @@
     if(closeStory) closeStory.addEventListener("click",closeStoryNow);
   });
 
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll(".nav a").forEach(function(link){
+    link.setAttribute("data-nav-label", link.textContent.trim());
+  });
+});
 </script>
 
 </body>
