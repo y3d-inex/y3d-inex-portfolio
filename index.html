@@ -1724,7 +1724,7 @@
 
 
 
-    /* CONTACT — EDITORIAL SPLIT / 9:16 VIDEO ON RIGHT */
+    /* CONTACT — EDITORIAL SPLIT / SINGLE 9:16 PORTRAIT VIDEO */
     #contact{
       position:relative !important;
       overflow:hidden !important;
@@ -1734,17 +1734,18 @@
       min-height:760px;
     }
 
-    #contact .contact-video-bg{
+    #contact .contact-video-portrait{
       position:absolute !important;
       z-index:1 !important;
       pointer-events:none !important;
       background:#000 !important;
       opacity:1 !important;
+      box-shadow:0 24px 70px rgba(0,0,0,.38);
     }
 
-    /* Desktop: preserve the complete portrait video frame on the right */
+    /* Desktop: use ONLY contact-video-mobile.mp4 as the portrait video on the right */
     @media (min-width:901px){
-      #contact .contact-video-desktop{
+      #contact .contact-video-portrait{
         display:block !important;
         width:auto !important;
         height:min(82vh,780px) !important;
@@ -1757,10 +1758,6 @@
         left:auto !important;
         bottom:auto !important;
         transform:translateY(-50%) !important;
-      }
-
-      #contact .contact-video-mobile{
-        display:none !important;
       }
 
       #contact .contact-inner{
@@ -1811,27 +1808,19 @@
         margin-top:0 !important;
       }
 
-      #contact .contact-video-bg{
-        box-shadow:0 24px 70px rgba(0,0,0,.38);
-      }
-
       #contact::before{
         display:none !important;
       }
     }
 
-    /* Mobile: keep the portrait video 9:16 and stack it cleanly */
+    /* Mobile: use the same contact-video-mobile.mp4, kept in 9:16 */
     @media (max-width:900px){
       #contact{
         min-height:auto !important;
         padding:0 !important;
       }
 
-      #contact .contact-video-desktop{
-        display:none !important;
-      }
-
-      #contact .contact-video-mobile{
+      #contact .contact-video-portrait{
         display:block !important;
         position:relative !important;
         inset:auto !important;
@@ -3575,16 +3564,13 @@
 
 
   <section class="contact" id="contact">
-      <video class="contact-video-bg contact-video-desktop" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-        <source src="assets/contact-video-desktop.mp4" type="video/mp4">
-      </video>
-      <video class="contact-video-bg contact-video-mobile" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <video class="contact-video-bg contact-video-portrait" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="assets/contact-video-mobile.mp4" type="video/mp4">
       </video>
     <div class="contact-inner">
       <div>
         <div class="kicker">CONTACT</div>
-        <h2>Let’s build<br><em>something considered.</em></h2>
+        <h2>Let’s build something considered.</h2>
 
         <p class="contact-intro">
           For project enquiries, collaboration and architectural visualization work,
