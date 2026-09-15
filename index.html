@@ -1723,6 +1723,162 @@
     }
 
 
+
+    /* CONTACT — EDITORIAL SPLIT / 9:16 VIDEO ON RIGHT */
+    #contact{
+      position:relative !important;
+      overflow:hidden !important;
+      background:#000 !important;
+      color:#f4f2eb !important;
+      isolation:isolate !important;
+      min-height:760px;
+    }
+
+    #contact .contact-video-bg{
+      position:absolute !important;
+      z-index:1 !important;
+      pointer-events:none !important;
+      background:#000 !important;
+      opacity:1 !important;
+    }
+
+    /* Desktop: preserve the complete portrait video frame on the right */
+    @media (min-width:901px){
+      #contact .contact-video-desktop{
+        display:block !important;
+        width:auto !important;
+        height:min(82vh,780px) !important;
+        max-height:780px !important;
+        aspect-ratio:9/16 !important;
+        object-fit:cover !important;
+        object-position:center center !important;
+        top:50% !important;
+        right:5vw !important;
+        left:auto !important;
+        bottom:auto !important;
+        transform:translateY(-50%) !important;
+      }
+
+      #contact .contact-video-mobile{
+        display:none !important;
+      }
+
+      #contact .contact-inner{
+        position:relative !important;
+        z-index:3 !important;
+        width:min(var(--max),90vw) !important;
+        margin:auto !important;
+        min-height:760px !important;
+        padding:110px 0 !important;
+        display:grid !important;
+        grid-template-columns:minmax(0,1fr) minmax(250px,.42fr) !important;
+        grid-template-rows:auto auto !important;
+        column-gap:70px !important;
+        row-gap:42px !important;
+        align-content:center !important;
+        align-items:start !important;
+      }
+
+      #contact .contact-inner > div:first-child{
+        grid-column:1 !important;
+        grid-row:1 !important;
+        max-width:100% !important;
+        min-width:0 !important;
+      }
+
+      #contact .contact-inner > div:first-child h2{
+        white-space:nowrap !important;
+        font-size:clamp(38px,3.25vw,62px) !important;
+        line-height:.98 !important;
+        letter-spacing:-.055em !important;
+        margin:14px 0 0 !important;
+      }
+
+      #contact .contact-inner > div:first-child h2 em{
+        white-space:nowrap !important;
+      }
+
+      #contact .contact-intro{
+        margin-top:24px !important;
+        max-width:620px !important;
+      }
+
+      #contact .contact-list{
+        grid-column:1 !important;
+        grid-row:2 !important;
+        align-self:start !important;
+        width:100% !important;
+        margin-top:0 !important;
+      }
+
+      #contact .contact-video-bg{
+        box-shadow:0 24px 70px rgba(0,0,0,.38);
+      }
+
+      #contact::before{
+        display:none !important;
+      }
+    }
+
+    /* Mobile: keep the portrait video 9:16 and stack it cleanly */
+    @media (max-width:900px){
+      #contact{
+        min-height:auto !important;
+        padding:0 !important;
+      }
+
+      #contact .contact-video-desktop{
+        display:none !important;
+      }
+
+      #contact .contact-video-mobile{
+        display:block !important;
+        position:relative !important;
+        inset:auto !important;
+        width:min(82vw,430px) !important;
+        height:auto !important;
+        aspect-ratio:9/16 !important;
+        object-fit:cover !important;
+        object-position:center center !important;
+        margin:0 auto !important;
+        transform:none !important;
+        background:#000 !important;
+      }
+
+      #contact .contact-inner{
+        position:relative !important;
+        z-index:3 !important;
+        width:min(var(--max),90vw) !important;
+        min-height:0 !important;
+        padding:75px 0 90px !important;
+        display:flex !important;
+        flex-direction:column !important;
+        gap:34px !important;
+      }
+
+      #contact .contact-inner > div:first-child h2{
+        white-space:nowrap !important;
+        font-size:clamp(22px,6.1vw,30px) !important;
+        line-height:1 !important;
+        letter-spacing:-.055em !important;
+      }
+
+      #contact .contact-inner > div:first-child h2 em{
+        white-space:nowrap !important;
+      }
+
+      #contact .contact-inner > div:first-child,
+      #contact .contact-list{
+        width:100% !important;
+        max-width:none !important;
+        margin:0 !important;
+      }
+
+      #contact::before{
+        display:none !important;
+      }
+    }
+
     /* FOOTER COPYRIGHT — CLICK TO ABOUT */
     footer .footer-about-link{
       color:inherit;
