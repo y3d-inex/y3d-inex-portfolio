@@ -4298,6 +4298,7 @@
 
     const THREE=await import("https://esm.sh/three@0.160.0");
     const {GLTFLoader}=await import("https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js");
+    const {DRACOLoader}=await import("https://esm.sh/three@0.160.0/examples/jsm/loaders/DRACOLoader.js");
     const {PointerLockControls}=await import("https://esm.sh/three@0.160.0/examples/jsm/controls/PointerLockControls.js");
 
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
@@ -4319,6 +4320,9 @@
     const clock=new THREE.Clock(), keys={};
     let model=null, raf=0, loaded=false;
     const loader=new GLTFLoader();
+    const dracoLoader=new DRACOLoader();
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
+    loader.setDRACOLoader(dracoLoader);
     const baseCandidates=[
       // Vercel path (deployed assets)
       new URL(src, document.baseURI).href,
