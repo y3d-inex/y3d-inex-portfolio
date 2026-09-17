@@ -3371,7 +3371,7 @@
 <script type="importmap">
 {
   "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three": "https://esm.sh/three@0.160.0",
     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
   }
 }
@@ -4296,9 +4296,9 @@
     start.style.display="flex"; status.textContent="LOADING INTERIOR MODEL…";
     if(interiorWalkCleanup) interiorWalkCleanup();
 
-    const THREE=await import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js");
-    const {GLTFLoader}=await import("https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js");
-    const {PointerLockControls}=await import("https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/PointerLockControls.js");
+    const THREE=await import("https://esm.sh/three@0.160.0");
+    const {GLTFLoader}=await import("https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js");
+    const {PointerLockControls}=await import("https://esm.sh/three@0.160.0/examples/jsm/controls/PointerLockControls.js");
 
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -4319,7 +4319,7 @@
     const clock=new THREE.Clock(), keys={};
     let model=null, raf=0, loaded=false;
     const loader=new GLTFLoader();
-    loader.load(src,(gltf)=>{
+    loader.load(new URL(src, document.baseURI).href,(gltf)=>{
       model=gltf.scene; scene.add(model);
       const box=new THREE.Box3().setFromObject(model);
       const center=box.getCenter(new THREE.Vector3());
@@ -4338,7 +4338,7 @@
     },(event)=>{
       if(event.total) status.textContent="LOADING "+Math.round(event.loaded/event.total*100)+"%";
     },(err)=>{
-      console.error(err); status.textContent="MODEL COULD NOT BE LOADED";
+      console.error("Interior GLB loading error:",err); status.textContent="MODEL COULD NOT BE LOADED · CHECK GITHUB FILE PATH";
     });
 
     const onKey=(e)=>{keys[e.code]=e.type==="keydown";};
