@@ -4323,6 +4323,11 @@
     const mobileMove={forward:false,back:false,left:false,right:false};
     let lookTouch=null;
     let model=null, raf=0, loaded=false;
+    const humanEyeHeight=1.70;
+    let currentFloorY=null;
+    const floorRaycaster=new THREE.Raycaster();
+    const floorRayOrigin=new THREE.Vector3();
+    const floorRayDirection=new THREE.Vector3(0,-1,0);
     const loader=new GLTFLoader();
     const dracoLoader=new DRACOLoader();
     dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
@@ -4350,8 +4355,8 @@
         const center=box.getCenter(new THREE.Vector3());
         const size=box.getSize(new THREE.Vector3());
         const floorY=box.min.y;
-        const humanEyeHeight=1.70;
         const eyeY=floorY+humanEyeHeight;
+        currentFloorY=floorY;
         camera.position.set(center.x,eyeY,center.z);
         camera.rotation.set(0,0,0);
         camera.lookAt(center.x,eyeY,center.z-1);
@@ -4395,11 +4400,36 @@
         const side=(keys.KeyD||keys.ArrowRight||mobileMove.right?1:0)-(keys.KeyA||keys.ArrowLeft||mobileMove.left?1:0);
         if(forward) controls.moveForward(forward*speed*dt);
         if(side) controls.moveRight(side*speed*dt);
-        camera.position.y=Math.max(camera.position.y, floorYSafe()+1.70);
+        updateFloorFollowing();
       }
       renderer.render(scene,camera);
     };
     function floorYSafe(){return model?new THREE.Box3().setFromObject(model).min.y:-100000;}
+
+    // Keeps the camera at human eye level while following ramps, steps and raised floors.
+    // Only upward-facing surfaces are considered, reducing the chance of locking onto walls.
+    function updateFloorFollowing(){
+      if(!model) return;
+      floorRayOrigin.set(camera.position.x, camera.position.y + 4.0, camera.position.z);
+      floorRaycaster.set(floorRayOrigin, floorRayDirection);
+      const hits=floorRaycaster.intersectObject(model,true);
+      let candidate=null;
+      for(const hit of hits){
+        if(!hit.face) continue;
+        const normal=hit.face.normal.clone().transformDirection(hit.object.matrixWorld);
+        if(normal.y < 0.65) continue;
+        const y=hit.point.y;
+        // Ignore surfaces that are implausibly high/low relative to the current floor.
+        if(currentFloorY!==null && Math.abs(y-currentFloorY)>1.25) continue;
+        if(candidate===null || y>candidate) candidate=y;
+      }
+      if(candidate===null) return;
+      if(currentFloorY===null) currentFloorY=candidate;
+      else currentFloorY=THREE.MathUtils.lerp(currentFloorY,candidate,Math.min(1,dtFloorFollow()));
+      const targetEyeY=currentFloorY+humanEyeHeight;
+      camera.position.y=THREE.MathUtils.lerp(camera.position.y,targetEyeY,0.35);
+    }
+    function dtFloorFollow(){return 0.18;}
     animate();
 
     interiorWalkCleanup=()=>{
