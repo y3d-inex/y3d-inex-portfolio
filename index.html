@@ -4320,9 +4320,13 @@
     let model=null, raf=0, loaded=false;
     const loader=new GLTFLoader();
     const baseCandidates=[
+      // Vercel path (deployed assets)
       new URL(src, document.baseURI).href,
       new URL('/assets/projects/project-01-interior.glb', document.baseURI).href,
-      new URL('/assets/projects/project-01.glb', document.baseURI).href
+      // GitHub raw fallback (works even if Vercel asset deployment is stale)
+      'https://raw.githubusercontent.com/y3d-inex/y3d-inex-portfolio/main/assets/projects/project-01-interior.glb',
+      new URL('/assets/projects/project-01.glb', document.baseURI).href,
+      'https://raw.githubusercontent.com/y3d-inex/y3d-inex-portfolio/main/assets/projects/project-01.glb'
     ].filter((url,index,arr)=>arr.indexOf(url)===index);
     let candidateIndex=0;
     const loadNext=()=>{
