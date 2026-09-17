@@ -3271,6 +3271,86 @@
   }
 }
 
+
+/* INTERACTIVE 3D VIEWER */
+.model-3d-viewer{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:none;
+  flex-direction:column;
+  background:#10100f;
+  color:#f5f2eb;
+}
+.model-3d-viewer.open{display:flex}
+.model-3d-header{
+  height:64px;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.model-3d-title{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  opacity:.9;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-right:20px;
+}
+.model-3d-close{
+  width:38px;
+  height:38px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+}
+.model-3d-close:hover{background:#fff;color:#111}
+.model-3d-stage{
+  position:relative;
+  flex:1;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(255,255,255,.07),transparent 42%),
+    #10100f;
+}
+.model-3d-stage model-viewer{
+  width:min(100%,1100px);
+  height:100%;
+  min-height:360px;
+  background:transparent;
+  --poster-color:transparent;
+}
+.model-3d-hint{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  opacity:.6;
+  text-align:center;
+  pointer-events:none;
+}
+@media(max-width:700px){
+  .model-3d-header{height:58px;padding:0 12px}
+  .model-3d-title{font-size:9px}
+  .model-3d-stage{padding:8px}
+  .model-3d-hint{bottom:12px;font-size:8px}
+}
+
 </style>
 </head>
 
@@ -3800,12 +3880,34 @@
       <p id="modalDescription"></p>
       <div class="modal-meta" id="modalYear"></div>
       <button class="project-pdf-button" id="projectPdfButton" type="button" style="display:none;margin-top:18px;padding:11px 16px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:10px;letter-spacing:.12em;cursor:pointer">VIEW PDF ↗</button>
+      <button class="project-3d-button" id="project3dButton" type="button" style="display:none;margin-top:10px;padding:11px 16px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:10px;letter-spacing:.12em;cursor:pointer">VIEW 3D MODEL ↗</button>
       <div class="gallery-hint">← → TO BROWSE · ESC TO CLOSE</div>
     </div>
   </div>
 </div>
 
 
+
+
+<div class="model-3d-viewer" id="model3dViewer" aria-hidden="true">
+  <div class="model-3d-header">
+    <div class="model-3d-title" id="model3dTitle">INTERACTIVE 3D MODEL</div>
+    <button class="model-3d-close" id="model3dClose" type="button" aria-label="Close 3D model">×</button>
+  </div>
+  <div class="model-3d-stage">
+    <model-viewer id="model3dElement"
+      camera-controls
+      touch-action="pan-y"
+      interaction-prompt="auto"
+      shadow-intensity="1"
+      exposure="1"
+      camera-orbit="0deg 75deg auto"
+      ar
+      alt="Interactive architectural 3D model">
+    </model-viewer>
+    <div class="model-3d-hint">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</div>
+  </div>
+</div>
 
 <div class="secure-pdf-viewer" id="securePdfViewer" aria-hidden="true">
   <div class="secure-pdf-header">
@@ -3948,6 +4050,7 @@
         "assets/projects/project-12-07.png"
       ],
       pdf:"assets/projects/project-12.pdf",
+      model:"assets/projects/project-12.glb",
       description:"Residential architecture and 3D visualization project."
     }
   ];
@@ -3968,6 +4071,11 @@
   const galleryPrev = document.getElementById("galleryPrev");
   const galleryNext = document.getElementById("galleryNext");
   const projectPdfButton = document.getElementById("projectPdfButton");
+  const project3dButton = document.getElementById("project3dButton");
+  const model3dViewer = document.getElementById("model3dViewer");
+  const model3dElement = document.getElementById("model3dElement");
+  const model3dTitle = document.getElementById("model3dTitle");
+  const model3dClose = document.getElementById("model3dClose");
   const securePdfViewer = document.getElementById("securePdfViewer");
   const securePdfTitle = document.getElementById("securePdfTitle");
   const securePdfCanvas = document.getElementById("securePdfCanvas");
@@ -4065,6 +4173,8 @@
         modalYear.textContent = "2026 PORTFOLIO · " + activeGallery.length + " IMAGES";
         projectPdfButton.style.display = project.pdf ? "inline-flex" : "none";
         projectPdfButton.onclick = (event)=>{ event.stopPropagation(); if(project.pdf) openSecurePdf(project.pdf, project.name); };
+        project3dButton.style.display = project.model ? "inline-flex" : "none";
+        project3dButton.onclick = (event)=>{ event.stopPropagation(); if(project.model) open3DModel(project.model, project.name); };
         renderGallery();
         modal.classList.add("open");
         modal.setAttribute("aria-hidden","false");
@@ -4114,6 +4224,28 @@
       galleryThumbs.appendChild(button);
     });
   }
+
+
+  function open3DModel(src,title){
+    model3dTitle.textContent = title || "INTERACTIVE 3D MODEL";
+    model3dElement.setAttribute("src", src);
+    model3dElement.setAttribute("alt", (title || "Project") + " interactive 3D model");
+    model3dViewer.classList.add("open");
+    model3dViewer.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+
+  function close3DModel(){
+    model3dViewer.classList.remove("open");
+    model3dViewer.setAttribute("aria-hidden","true");
+    model3dElement.removeAttribute("src");
+    document.body.style.overflow="";
+  }
+
+  model3dClose.addEventListener("click", close3DModel);
+  model3dViewer.addEventListener("click", (event)=>{
+    if(event.target === model3dViewer) close3DModel();
+  });
 
   async function openSecurePdf(src,title){
     securePdfTitle.textContent=title||"PROJECT DOCUMENT"; securePdfViewer.classList.add("open"); securePdfViewer.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
@@ -4307,6 +4439,16 @@ document.addEventListener("DOMContentLoaded", function(){
   document.querySelectorAll(".nav a").forEach(function(link){
     link.setAttribute("data-nav-label", link.textContent.trim());
   });
+});
+</script>
+
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+<script>
+document.addEventListener("keydown", function(event){
+  if(event.key === "Escape" && model3dViewer.classList.contains("open")){
+    close3DModel();
+  }
 });
 </script>
 
