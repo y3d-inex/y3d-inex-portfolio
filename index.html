@@ -3362,7 +3362,7 @@
 .interior-walk-title{font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 .interior-walk-close{border:1px solid #ffffff88;background:#111;color:#fff;width:36px;height:36px;font-size:24px;cursor:pointer}
 #interiorWalkCanvas{width:100%;height:100%;display:block}
-.interior-walk-help{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:10px;letter-spacing:.12em;text-align:center;line-height:1.8;color:#ddd;background:#111b;padding:8px 13px;white-space:nowrap}
+.interior-walk-help{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:10px;letter-spacing:.12em;text-align:center;line-height:1.8;color:#ddd;background:#111b;padding:8px 13px;white-space:nowrap}.mobile-controls{display:none;position:absolute;inset:0;z-index:4;pointer-events:none}.mobile-pad{position:absolute;left:18px;bottom:72px;display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,48px);gap:6px;pointer-events:auto}.mobile-pad button{border:1px solid #ffffff88;background:#111b;color:#fff;border-radius:10px;font-size:20px;touch-action:none}.mobile-pad .up{grid-column:2}.mobile-pad .left{grid-column:1;grid-row:2}.mobile-pad .down{grid-column:2;grid-row:2}.mobile-pad .right{grid-column:3;grid-row:2}.mobile-look-hint{position:absolute;right:18px;bottom:26px;width:150px;text-align:center;color:#fff9;background:#1118;border:1px solid #fff4;padding:9px;font-size:9px;letter-spacing:.08em}.mobile-controls.active{display:block}@media(max-width:600px){.interior-walk-help{bottom:12px;font-size:8px;padding:6px 9px}}
 .interior-walk-start{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;pointer-events:none}
 .interior-walk-start button{pointer-events:auto;border:1px solid #fff;background:#111;color:#fff;padding:14px 20px;font-size:10px;letter-spacing:.14em;cursor:pointer}
 .interior-walk-status{position:absolute;top:75px;left:28px;font-size:10px;letter-spacing:.08em;color:#bbb}
@@ -3944,7 +3944,7 @@
   <div class="interior-walk-start" id="interiorWalkStart">
     <button id="interiorWalkStartBtn">CLICK TO WALK THROUGH INTERIOR</button>
   </div>
-  <div class="interior-walk-help">W A S D / ARROW KEYS TO MOVE · MOUSE TO LOOK · ESC TO EXIT POINTER LOCK</div>
+  <div class="interior-walk-help">DESKTOP: W A S D + MOUSE · MOBILE: BUTTONS TO MOVE + SWIPE TO LOOK</div><div class="mobile-controls" id="mobileControls"><div class="mobile-pad"><button class="up" data-move="forward">▲</button><button class="left" data-move="left">◀</button><button class="down" data-move="back">▼</button><button class="right" data-move="right">▶</button></div><div class="mobile-look-hint">SWIPE AREA UNTUK MELIHAT SEKITAR</div></div>
 </div>
 
 <div class="secure-pdf-viewer" id="securePdfViewer" aria-hidden="true">
@@ -4300,6 +4300,8 @@
     const {GLTFLoader}=await import("https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js");
     const {DRACOLoader}=await import("https://esm.sh/three@0.160.0/examples/jsm/loaders/DRACOLoader.js");
     const {PointerLockControls}=await import("https://esm.sh/three@0.160.0/examples/jsm/controls/PointerLockControls.js");
+    const mobileControls=document.getElementById("mobileControls");
+    const isMobile=window.matchMedia("(max-width: 600px), (pointer: coarse)").matches;
 
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -4318,6 +4320,8 @@
     const controls=new PointerLockControls(camera,document.body);
     controls.pointerSpeed=0.7;
     const clock=new THREE.Clock(), keys={};
+    const mobileMove={forward:false,back:false,left:false,right:false};
+    let lookTouch=null;
     let model=null, raf=0, loaded=false;
     const loader=new GLTFLoader();
     const dracoLoader=new DRACOLoader();
@@ -4365,19 +4369,28 @@
 
     const onKey=(e)=>{keys[e.code]=e.type==="keydown";};
     const onResize=()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);};
-    const onStart=()=>{if(loaded){controls.lock();start.style.display="none";status.textContent="WALK MODE · W A S D + MOUSE";}};
+    const onStart=()=>{if(loaded){start.style.display="none";if(isMobile){mobileControls.classList.add("active");status.textContent="WALK MODE · SWIPE TO LOOK";}else{controls.lock();status.textContent="WALK MODE · W A S D + MOUSE";}}};
     const onLock=()=>{if(controls.isLocked) start.style.display="none";};
-    const onUnlock=()=>{if(loaded){start.style.display="flex";status.textContent="PAUSED · CLICK TO CONTINUE";}};
+    const onUnlock=()=>{if(loaded&&!isMobile){start.style.display="flex";status.textContent="PAUSED · CLICK TO CONTINUE";}};
     window.addEventListener("keydown",onKey); window.addEventListener("keyup",onKey);
+    const moveButtons=[...mobileControls.querySelectorAll("[data-move]")];
+    const setMobileMove=(e,val)=>{e.preventDefault();mobileMove[val]=true;};
+    const clearMobileMove=(e)=>{e.preventDefault();for(const k of Object.keys(mobileMove))mobileMove[k]=false;};
+    moveButtons.forEach(btn=>{const val=btn.dataset.move;btn.addEventListener("pointerdown",e=>setMobileMove(e,val));btn.addEventListener("pointerup",clearMobileMove);btn.addEventListener("pointercancel",clearMobileMove);btn.addEventListener("pointerleave",e=>{if(e.buttons===0)clearMobileMove(e);});});
+    const onTouchStart=(e)=>{if(!isMobile||!loaded)return;const t=e.changedTouches[0];if(t.clientX>window.innerWidth*.38){lookTouch={id:t.identifier,x:t.clientX,y:t.clientY};}};
+    const onTouchMove=(e)=>{if(!lookTouch)return;for(const t of e.changedTouches){if(t.identifier!==lookTouch.id)continue;const dx=t.clientX-lookTouch.x,dy=t.clientY-lookTouch.y;camera.rotation.y-=dx*0.004;camera.rotation.x-=dy*0.003;camera.rotation.x=Math.max(-Math.PI/2.2,Math.min(Math.PI/2.2,camera.rotation.x));lookTouch.x=t.clientX;lookTouch.y=t.clientY;e.preventDefault();}};
+    const onTouchEnd=(e)=>{if(!lookTouch)return;for(const t of e.changedTouches){if(t.identifier===lookTouch.id)lookTouch=null;}};
+    canvas.addEventListener("touchstart",onTouchStart,{passive:false});canvas.addEventListener("touchmove",onTouchMove,{passive:false});canvas.addEventListener("touchend",onTouchEnd,{passive:false});canvas.addEventListener("touchcancel",onTouchEnd,{passive:false});
+
     window.addEventListener("resize",onResize); startBtn.addEventListener("click",onStart);
     controls.addEventListener("lock",onLock); controls.addEventListener("unlock",onUnlock);
     const animate=()=>{
       raf=requestAnimationFrame(animate);
       const dt=Math.min(clock.getDelta(),0.05);
-      if(controls.isLocked){
-        const speed=3.0;
-        const forward=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0);
-        const side=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0);
+      if(controls.isLocked||isMobile&&loaded){
+        const speed=isMobile?2.2:3.0;
+        const forward=(keys.KeyW||keys.ArrowUp||mobileMove.forward?1:0)-(keys.KeyS||keys.ArrowDown||mobileMove.back?1:0);
+        const side=(keys.KeyD||keys.ArrowRight||mobileMove.right?1:0)-(keys.KeyA||keys.ArrowLeft||mobileMove.left?1:0);
         if(forward) controls.moveForward(forward*speed*dt);
         if(side) controls.moveRight(side*speed*dt);
         camera.position.y=Math.max(camera.position.y, floorYSafe()+1.55);
@@ -4390,6 +4403,8 @@
     interiorWalkCleanup=()=>{
       cancelAnimationFrame(raf);
       controls.unlock();
+      mobileControls.classList.remove("active");
+      canvas.removeEventListener("touchstart",onTouchStart);canvas.removeEventListener("touchmove",onTouchMove);canvas.removeEventListener("touchend",onTouchEnd);canvas.removeEventListener("touchcancel",onTouchEnd);
       window.removeEventListener("keydown",onKey);window.removeEventListener("keyup",onKey);
       window.removeEventListener("resize",onResize);startBtn.removeEventListener("click",onStart);
       controls.removeEventListener("lock",onLock);controls.removeEventListener("unlock",onUnlock);
