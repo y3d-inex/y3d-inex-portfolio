@@ -4097,6 +4097,7 @@
       description:"Residential architecture and 3D visualization project."
     }
   ];
+  window.y3dProjects = projects;
 
   const grid = document.getElementById("projectGrid");
   const moreButton = document.getElementById("projectsMore");
@@ -4713,6 +4714,330 @@ document.addEventListener("keydown", function(event){
     close3DModel();
   }
 });
+</script>
+
+
+
+<style>
+/* LANGUAGE SWITCHER */
+.language-switcher{
+  display:flex;align-items:center;gap:4px;
+  margin-left:4px;padding:4px;
+  border:1px solid rgba(255,255,255,.20);
+  background:rgba(12,12,11,.38);backdrop-filter:blur(6px);
+  border-radius:3px;white-space:nowrap;
+}
+.language-switcher button{
+  border:0;background:transparent;color:#fff;cursor:pointer;
+  padding:5px 7px;font-size:9px;font-weight:700;letter-spacing:.12em;
+  opacity:.48;transition:.2s;
+}
+.language-switcher button.active,.language-switcher button:hover{opacity:1;background:rgba(255,255,255,.14)}
+@media(max-width:800px){
+  .language-switcher{position:absolute;right:55px;top:18px;margin:0}
+  .language-switcher button{font-size:8px;padding:5px 6px}
+}
+</style>
+<script>
+/* =========================
+   BILINGUAL ID / EN
+   ========================= */
+(function(){
+  const I18N={
+    EN:{
+      HOME:'HOME',PROJECTS:'PROJECTS',ABOUT:'ABOUT',SERVICES:'SERVICES',CONTACT:'CONTACT',
+      eyebrow:'ARCHITECTURE · INTERIOR · 3D VISUALIZATION',
+      heroSub:'Transforming architectural ideas into precise, immersive visual experiences.',
+      viewProjects:'VIEW PROJECTS →',getInTouch:'GET IN TOUCH',scroll:'SCROLL ↓',
+      selectedWork:'SELECTED WORK',projects:'Projects',
+      projectsIntro:'A selection of architecture, interior design and 3D visualization work developed through more than ten years in architectural design.',
+      all:'ALL',architecture:'ARCHITECTURE',interior:'INTERIOR',visualization:'3D VISUALIZATION',
+      moreProjects:'MORE PROJECTS',showLess:'SHOW LESS',
+      aboutLabel:'ABOUT / THE PERSON BEHIND THE VISUALS',about:'ABOUT',role:'Architectural 3D Artist',
+      lead:'I don\'t just make renders.<br><em>I make ideas visible.</em>',
+      aboutP1:'I transform architectural ideas into clear, immersive visual experiences — combining architecture, design thinking, 3D modeling, and photorealistic visualization.',
+      aboutP2:'With more than ten years in architectural 3D design, I work across <strong>architecture, interior design, exterior design, and visualization</strong> — creating images that help people understand a space before it is built.',
+      discover:'DISCOVER MY STORY',lessDiscover:'LESS / DISCOVER MY STORY',
+      storyKicker:'01 / THE STORY',storyTitle:'Where Architecture<br><em>Meets Visual Storytelling.</em>',
+      contact:'CONTACT',services:'SERVICES',
+      view3d:'VIEW 3D MODEL ↗',viewInterior:'VIEW INTERIOR 3D ↗',viewExterior:'VIEW EXTERIOR 3D ↗',
+      projectDocument:'PROJECT DOCUMENT',loadingDocument:'LOADING DOCUMENT…',
+      interiorTitle:'INTERIOR WALKTHROUGH',walkStart:'CLICK TO WALK THROUGH INTERIOR'
+    },
+    ID:{
+      HOME:'BERANDA',PROJECTS:'PROYEK',ABOUT:'TENTANG',SERVICES:'LAYANAN',CONTACT:'KONTAK',
+      eyebrow:'ARSITEKTUR · INTERIOR · VISUALISASI 3D',
+      heroSub:'Mengubah ide arsitektur menjadi pengalaman visual yang presisi dan imersif.',
+      viewProjects:'LIHAT PROYEK →',getInTouch:'HUBUNGI SAYA',scroll:'GULIR ↓',
+      selectedWork:'KARYA TERPILIH',projects:'Proyek',
+      projectsIntro:'Kumpulan karya arsitektur, desain interior, dan visualisasi 3D yang dikembangkan melalui lebih dari sepuluh tahun pengalaman dalam desain arsitektur.',
+      all:'SEMUA',architecture:'ARSITEKTUR',interior:'INTERIOR',visualization:'VISUALISASI 3D',
+      moreProjects:'PROYEK LAINNYA',showLess:'TAMPILKAN LEBIH SEDIKIT',
+      aboutLabel:'TENTANG / SOSOK DI BALIK VISUAL',about:'TENTANG',role:'3D Artist Arsitektur',
+      lead:'Saya tidak hanya membuat render.<br><em>Saya membuat ide menjadi nyata secara visual.</em>',
+      aboutP1:'Saya mengubah ide arsitektur menjadi pengalaman visual yang jelas dan imersif — memadukan arsitektur, pemikiran desain, pemodelan 3D, dan visualisasi fotorealistik.',
+      aboutP2:'Dengan pengalaman lebih dari sepuluh tahun dalam desain 3D arsitektur, saya bekerja pada <strong>arsitektur, desain interior, desain eksterior, dan visualisasi</strong> — menciptakan gambar yang membantu orang memahami sebuah ruang sebelum dibangun.',
+      discover:'LIHAT CERITA SAYA',lessDiscover:'KEMBALI / LIHAT CERITA SAYA',
+      storyKicker:'01 / CERITA',storyTitle:'Di Mana Arsitektur<br><em>Bertemu Visual Storytelling.</em>',
+      contact:'KONTAK',services:'LAYANAN',
+      view3d:'LIHAT MODEL 3D ↗',viewInterior:'LIHAT INTERIOR 3D ↗',viewExterior:'LIHAT EKSTERIOR 3D ↗',
+      projectDocument:'DOKUMEN PROYEK',loadingDocument:'MEMUAT DOKUMEN…',
+      interiorTitle:'WALKTHROUGH INTERIOR',walkStart:'KLIK UNTUK MENJELAJAHI INTERIOR'
+    }
+  };
+
+  const projectID={
+    'Interior and 3D visualization project.':'Proyek interior dan visualisasi 3D.',
+    'Architecture and 3D visualization project.':'Proyek arsitektur dan visualisasi 3D.',
+    'Architecture, interior and 3D visualization project.':'Proyek arsitektur, interior, dan visualisasi 3D.',
+    'Interior design and 3D visualization project.':'Proyek desain interior dan visualisasi 3D.',
+    'Residential interior design and visualization.':'Desain interior hunian dan visualisasi.',
+    'Residential architecture and 3D visualization.':'Arsitektur hunian dan visualisasi 3D.',
+    'Minimalist residential architecture and visualization.':'Arsitektur hunian minimalis dan visualisasi.',
+    'Exterior architecture and 3D visualization.':'Arsitektur eksterior dan visualisasi 3D.'
+  };
+
+  let lang=localStorage.getItem('y3d-language')||'EN';
+  const $=s=>document.querySelector(s);
+  const $$=s=>document.querySelectorAll(s);
+
+  function projectText(project,key){
+    if(lang==='EN') return project[key];
+    if(key==='description') return projectID[project.description]||project.description;
+    if(key==='category') return ({Interior:'Interior',Architecture:'Arsitektur','Architecture · Interior':'Arsitektur · Interior','Residential Architecture':'Arsitektur Hunian'}[project.category]||project.category);
+    if(key==='modelLabel') return project.modelLabel?.includes('INTERIOR')?I18N.ID.viewInterior:(project.modelLabel?.includes('EXTERIOR')?I18N.ID.viewExterior:I18N.ID.view3d);
+    return project[key];
+  }
+
+  function addSwitcher(){
+    if($('.language-switcher')) return;
+    const nav=$('#nav'); if(!nav) return;
+    const wrap=document.createElement('div'); wrap.className='language-switcher';
+    wrap.innerHTML='<button type="button" data-lang="ID">ID</button><button type="button" data-lang="EN">EN</button>';
+    nav.appendChild(wrap);
+    wrap.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+  }
+
+  function replaceText(selector,text,html=false){
+    const el=$(selector); if(!el)return;
+    if(html)el.innerHTML=text; else el.textContent=text;
+  }
+
+  function applyStatic(){
+    const d=I18N[lang];
+    document.documentElement.lang=lang==='ID'?'id':'en';
+    document.title=lang==='ID'?'YUDHA 3D DESIGN — Interior Eksterior':'YUDHA 3D DESIGN — Interior Exterior';
+    const meta=document.querySelector('meta[name="description"]');
+    if(meta)meta.content=lang==='ID'?'Yudha 3D Design — Arsitektur, Desain Interior dan Visualisasi 3D oleh Yudhanto Hendra P., ST.':'Yudha 3D Design — Architecture, Interior Design and 3D Visualization by Yudhanto Hendra P., ST.';
+
+    const navs=$$('#nav > a');
+    ['HOME','PROJECTS','ABOUT','SERVICES','CONTACT'].forEach((k,i)=>{if(navs[i])navs[i].textContent=d[k]});
+    replaceText('.eyebrow',d.eyebrow);
+    replaceText('.hero-sub','',true);
+    $('.hero-sub').innerHTML=d.heroSub;
+    replaceText('.hero-actions .btn-light',d.viewProjects);
+    replaceText('.hero-actions .btn:not(.btn-light)',d.getInTouch);
+    replaceText('.scroll',d.scroll);
+    replaceText('#projects .kicker',d.selectedWork);
+    replaceText('#projects h2',d.projects);
+    const intro=$('#projects .section-head p');if(intro)intro.textContent=d.projectsIntro;
+    const filterMap={all:d.all,architecture:d.architecture,interior:d.interior,visualization:d.visualization};
+    $$('#projects .filter').forEach(b=>{b.textContent=filterMap[b.dataset.filter]||b.textContent});
+    replaceText('#projectsMore span',projectsExpanded?d.showLess:d.moreProjects);
+    replaceText('.about-v2-label',d.aboutLabel);
+    replaceText('.about-v2-intro .kicker',d.about);
+    replaceText('.about-v2-role',d.role);
+    const lead=$('.about-v2-lead');if(lead)lead.innerHTML=d.lead;
+    const ps=$$('.about-v2-intro > p:not(.about-v2-lead)'); if(ps[0])ps[0].innerHTML=d.aboutP1;if(ps[1])ps[1].innerHTML=d.aboutP2;
+    const disc=$('.discover-label');if(disc)disc.textContent=$('.about-v2').classList.contains('story-open')?d.lessDiscover:d.discover;
+    const sk=$('.about-v2-story-head .kicker');if(sk)sk.textContent=d.storyKicker;
+    const st=$('.about-v2-story-head h3');if(st)st.innerHTML=d.storyTitle;
+    const pdoc=$('#securePdfTitle');if(pdoc)pdoc.textContent=d.projectDocument;
+    const load=$('#securePdfLoading');if(load && load.textContent.includes('LOADING'))load.textContent=d.loadingDocument;
+    const walkTitle=$('#interiorWalkTitle');if(walkTitle)walkTitle.textContent=d.interiorTitle;
+    const walkStart=$('#interiorWalkStart');if(walkStart)walkStart.textContent=d.walkStart;
+    $$('.language-switcher button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  }
+
+  const oldRenderProjects=window.renderProjects;
+  function rerenderProjects(){
+    if(typeof renderProjects==='function'){
+      const active=document.querySelector('.filter.active')?.dataset.filter||'all';
+      renderProjects(active);
+    }
+  }
+
+  // Wrap the existing renderer after it has been defined by the original page script.
+  const observer=new MutationObserver(()=>{
+    $$('.project-title').forEach(el=>{ /* project names stay unchanged */ });
+  });
+
+  function patchRenderer(){
+    if(typeof window.renderProjects!=='function') return;
+  }
+
+  // Replace the original renderProjects function by injecting translations into its output.
+  // We do this by observing newly created project cards and translating their metadata.
+  const grid=$('#projectGrid');
+  if(grid){
+    const obs=new MutationObserver(()=>{
+      $$('#projectGrid .project').forEach((card)=>{
+        const number=card.querySelector('.project-number')?.textContent||'';
+        const idx=Math.max(0,parseInt(number,10)-1);
+        const p=window.y3dProjects?.[idx] || [] [idx];
+        if(!p)return;
+        const loc=card.querySelector('.project-location');
+        const type=card.querySelector('.project-title');
+        // category is not printed on cards; location/name remain unchanged.
+        if(loc)loc.textContent=p.location;
+      });
+    });
+    obs.observe(grid,{childList:true});
+  }
+
+  // Re-apply translations to dynamic modal text when a project is opened.
+  const originalOpen3D=window.open3DModel;
+  document.addEventListener('click',()=>setTimeout(()=>{
+    const btn=$('#project3dButton');
+    if(btn && btn.style.display!=='none'){
+      const txt=btn.textContent||'';
+      if(lang==='ID')btn.textContent=txt.includes('INTERIOR')?I18N.ID.viewInterior:(txt.includes('EXTERIOR')?I18N.ID.viewExterior:I18N.ID.view3d);
+      else btn.textContent=txt.includes('INTERIOR')?I18N.EN.viewInterior:(txt.includes('EXTERIOR')?I18N.EN.viewExterior:I18N.EN.view3d);
+    }
+  },30));
+
+  window.setLanguage=function(next){
+    lang=next==='ID'?'ID':'EN';
+    localStorage.setItem('y3d-language',lang);
+    applyStatic();
+    // Dynamic project cards are rendered by the original code and remain intentionally unchanged in names/locations.
+    if(typeof window.closeModal==='function' && document.querySelector('.modal.open')){
+      const desc=document.querySelector('#modalDescription');
+      const title=document.querySelector('#modalTitle');
+      // description is refreshed when the card is clicked below via the click patch.
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    addSwitcher();
+    applyStatic();
+    // Patch project opening text using event delegation after original handlers.
+    document.addEventListener('click',()=>setTimeout(()=>{
+      const title=$('#modalTitle'); const desc=$('#modalDescription'); const type=$('#modalType');
+      if(!title||!desc||!type||!$('.modal.open'))return;
+      const p=(window.projects||[]).find(x=>x.name===title.textContent);
+      if(!p)return;
+      if(lang==='ID'){
+        desc.textContent=projectID[p.description]||p.description;
+        type.textContent=({Interior:'Interior',Architecture:'Arsitektur','Architecture · Interior':'Arsitektur · Interior','Residential Architecture':'Arsitektur Hunian'}[p.category]||p.category);
+      }else{
+        desc.textContent=p.description; type.textContent=p.category;
+      }
+    },40));
+  });
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   FINAL BILINGUAL PATCH — SERVICES / SOFTWARE / CONTACT
+   ========================================================= */
+(function(){
+  const $=(s,r=document)=>r.querySelector(s);
+  const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+  const D={
+    EN:{
+      servicesKicker:"CAPABILITIES",servicesTitle:"What I Create",
+      servicesIntro:"Architecture, interior design, and photorealistic visualization crafted to transform ideas into spaces that can be understood, experienced, and built.",
+      cards:[
+        ["ARCHITECTURE","Ideas Into Architecture.","Architecture","From the first concept to a refined architectural vision—balancing function, proportion, material, and identity into thoughtful spaces with clear design direction.",["PLANNING","FACADE","DESIGN DEVELOPMENT"],"EXPLORE ARCHITECTURE"],
+        ["INTERIOR DESIGN","Spaces With Character.","Interior Design","Designing interiors that feel as good as they look through carefully considered layouts, materials, lighting, furniture, and atmosphere for residential and commercial spaces.",["SPACE PLANNING","MATERIAL","LIGHTING"],"EXPLORE INTERIORS"],
+        ["3D VISUALIZATION","Visualize Before You Build.","3D Visualization","Transforming drawings and ideas into photorealistic visuals that communicate scale, material, lighting, and atmosphere—helping clients experience the design before construction begins.",["EXTERIOR","INTERIOR","PHOTOREALISTIC"],"VIEW VISUALIZATION"]
+      ],
+      software:"SOFTWARE SKILLS",
+      groups:["2D DRAFTING","3D MODELING","3D RENDERING"],
+      contactKicker:"CONTACT",contactTitle:"Let’s build something considered.",
+      contactIntro:"For project enquiries, collaboration and architectural visualization work, get in touch.",
+      galleryHint:"← → TO BROWSE · ESC TO CLOSE",pdf:"VIEW PDF ↗"
+    },
+    ID:{
+      servicesKicker:"KEMAMPUAN",servicesTitle:"Yang Saya Ciptakan",
+      servicesIntro:"Arsitektur, desain interior, dan visualisasi fotorealistik yang dirancang untuk mengubah ide menjadi ruang yang dapat dipahami, dialami, dan dibangun.",
+      cards:[
+        ["ARSITEKTUR","Ide Menjadi Arsitektur.","Arsitektur","Dari konsep awal hingga visi arsitektur yang matang—menyeimbangkan fungsi, proporsi, material, dan identitas menjadi ruang yang terarah dan penuh pertimbangan.",["PERENCANAAN","FASAD","PENGEMBANGAN DESAIN"],"LIHAT ARSITEKTUR"],
+        ["DESAIN INTERIOR","Ruang Dengan Karakter.","Desain Interior","Merancang interior yang terasa sebaik tampilannya melalui tata ruang, material, pencahayaan, furnitur, dan atmosfer yang dipertimbangkan dengan matang untuk ruang hunian maupun komersial.",["TATA RUANG","MATERIAL","PENCAHAYAAN"],"LIHAT INTERIOR"],
+        ["VISUALISASI 3D","Visualisasikan Sebelum Dibangun.","Visualisasi 3D","Mengubah gambar kerja dan ide menjadi visual fotorealistik yang menyampaikan skala, material, pencahayaan, dan atmosfer—membantu klien merasakan desain sebelum konstruksi dimulai.",["EKSTERIOR","INTERIOR","FOTOREALISTIK"],"LIHAT VISUALISASI"]
+      ],
+      software:"KEMAMPUAN SOFTWARE",
+      groups:["DRAFTING 2D","PEMODELAN 3D","RENDERING 3D"],
+      contactKicker:"KONTAK",contactTitle:"Mari membangun sesuatu yang dirancang dengan matang.",
+      contactIntro:"Untuk kebutuhan proyek, kolaborasi, dan pekerjaan visualisasi arsitektur, silakan hubungi saya.",
+      galleryHint:"← → UNTUK MENJELAJAHI · ESC UNTUK MENUTUP",pdf:"LIHAT PDF ↗"
+    }
+  };
+
+  function apply(){
+    const d=D[(localStorage.getItem('y3d-language')||'EN')==='ID'?'ID':'EN'];
+
+    const head=$('#services .section-head');
+    if(head){
+      const k=$('.kicker',head),h=$('h2',head),p=$('.services-intro',head);
+      if(k)k.textContent=d.servicesKicker;
+      if(h)h.textContent=d.servicesTitle;
+      if(p)p.textContent=d.servicesIntro;
+    }
+
+    $$('.service-card').forEach((card,i)=>{
+      const s=d.cards[i]; if(!s)return;
+      const label=$('.service-label',card),sub=$('.service-subtitle',card);
+      const title=$('.service-content h3',card),desc=$('.service-description',card);
+      const link=$('.service-link',card);
+      if(label)label.textContent=s[0];
+      if(sub)sub.textContent=s[1];
+      if(title)title.textContent=s[2];
+      if(desc)desc.textContent=s[3];
+      $$('.service-tags span',card).forEach((el,j)=>{if(s[4][j]!==undefined)el.textContent=s[4][j];});
+      if(link){
+        const arrow=$('.arrow',link);
+        while(link.firstChild)link.removeChild(link.firstChild);
+        link.append(document.createTextNode(s[5]+' '));
+        if(arrow){} // retained only for compatibility
+        const a=document.createElement('span');a.className='arrow';a.textContent='→';link.appendChild(a);
+      }
+    });
+
+    const sw=$('.software > .kicker');if(sw)sw.textContent=d.software;
+    $$('.software-group h3').forEach((el,i)=>{if(d.groups[i])el.textContent=d.groups[i];});
+
+    const c=$('#contact');
+    if(c){
+      const k=$('.kicker',c),h=$('h2',c),p=$('.contact-intro',c);
+      if(k)k.textContent=d.contactKicker;
+      if(h)h.textContent=d.contactTitle;
+      if(p)p.textContent=d.contactIntro;
+    }
+
+    const pdf=$('#projectPdfButton');if(pdf)pdf.textContent=d.pdf;
+    const hint=$('.gallery-hint');if(hint)hint.textContent=d.galleryHint;
+  }
+
+  function hook(){
+    if(typeof window.setLanguage==='function'&&!window.setLanguage.__servicesFix){
+      const base=window.setLanguage;
+      const wrapped=function(next){base(next);setTimeout(apply,20);setTimeout(apply,120);};
+      wrapped.__servicesFix=true;
+      window.setLanguage=wrapped;
+    }
+    apply();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(hook,50));
+  else setTimeout(hook,50);
+
+  document.addEventListener('click',()=>setTimeout(apply,100));
+})();
 </script>
 
 </body>
