@@ -5040,5 +5040,264 @@ document.addEventListener("keydown", function(event){
 })();
 </script>
 
+
+<script>
+/* =========================================================
+   FINAL ID / EN PATCH — COMPLETE ABOUT + SERVICES + CONTACT
+   ========================================================= */
+(function(){
+  const $=(s,r=document)=>r.querySelector(s);
+  const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+  const ID={
+    /* ABOUT / STORY */
+    storyKicker:"01 / CERITA",
+    storyTitle:"Di Mana Arsitektur<br><em>Bertemu Visual Storytelling.</em>",
+    storyBig1:"Arsitektur mengajarkan saya cara memahami ruang.",
+    storyP1:"Latar belakang saya di bidang arsitektur membentuk cara saya melihat proporsi, fungsi, material, cahaya, serta hubungan antara manusia dan ruang.",
+    storyBig2:"Visualisasi 3D mengajarkan saya<br><em>cara mengomunikasikannya.</em>",
+    storyP2:"Seiring waktu, visualisasi menjadi lebih dari sekadar keterampilan teknis. Visualisasi menjadi cara saya menerjemahkan gambar kerja, konsep, dan ide menjadi sesuatu yang dapat dilihat, dirasakan, dan dipahami.",
+
+    approachKicker:"02 / PENDEKATAN SAYA",
+    approachTitle:"Saya tidak hanya membuat<br>gambar yang indah.",
+    principles:[
+      ["LIHAT","Mengubah gambar kerja, sketsa, dan konsep menjadi visual yang dapat langsung dipahami."],
+      ["RASAKAN","Menggunakan cahaya, material, komposisi, dan atmosfer untuk menyampaikan bagaimana sebuah ruang seharusnya terasa."],
+      ["PAHAMI","Menciptakan visual yang membantu klien melihat desain dengan jelas dan mengambil keputusan dengan lebih yakin."]
+    ],
+
+    creativeKicker:"03 / PIKIRAN KREATIF",
+    creativeTitle:"Pikiran di Balik<br><em>Y3D-INEX</em>",
+    creativeStatement:"Y3D-INEX tumbuh dari sebuah ide sederhana.",
+    creativeStrong:"arsitektur seharusnya lebih mudah dilihat sebelum dibangun.",
+    flow:[
+      ["ARSITEKTUR","Memahami ruang."],
+      ["DESAIN","Membentuk ide."],
+      ["PEMODELAN 3D","Membangunnya secara digital."],
+      ["VISUALISASI","Membuatnya terasa nyata."],
+      ["AI","Menjelajahi kemungkinan berikutnya."]
+    ],
+    brandNote:"Saya memadukan pengetahuan arsitektur, keterampilan visual, dan teknologi yang terus berkembang untuk mengeksplorasi cara baru dalam mengomunikasikan desain.",
+
+    personalKicker:"04 / DI LUAR PORTOFOLIO",
+    personalTitle:"Arsitektur adalah bidang yang saya pelajari.<br><em>Visualisasi adalah sesuatu yang saya bangun.</em>",
+    personalP:"Di balik setiap proyek terdapat proses mengamati, berpikir, menguji, dan menyempurnakan. Saya memiliki rasa ingin tahu terhadap cara ruang bekerja, bagaimana visual memengaruhi persepsi, dan bagaimana teknologi dapat membuat proses desain menjadi lebih baik.",
+    education:"RIWAYAT PENDIDIKAN",
+    edu:["Arsitektur","Sekolah Menengah Atas","Sekolah Menengah Pertama"],
+
+    finalTitle:"Dari Ide<br><em>Menjadi Visual.</em>",
+    finalP:"Desain · Visualisasi · Pengalaman",
+    finalLink:"LIHAT KARYA SAYA",
+    closeStory:"KEMBALI / LIHAT CERITA SAYA",
+
+    /* SERVICES */
+    servicesKicker:"KEMAMPUAN",
+    servicesTitle:"Yang Saya Ciptakan",
+    servicesIntro:"Arsitektur, desain interior, dan visualisasi fotorealistik yang dirancang untuk mengubah ide menjadi ruang yang dapat dipahami, dialami, dan dibangun.",
+    services:[
+      ["ARSITEKTUR","Ide Menjadi Arsitektur.","Arsitektur","Dari konsep awal hingga visi arsitektur yang matang—menyeimbangkan fungsi, proporsi, material, dan identitas menjadi ruang yang terarah dan penuh pertimbangan.",["PERENCANAAN","FASAD","PENGEMBANGAN DESAIN"],"LIHAT ARSITEKTUR"],
+      ["DESAIN INTERIOR","Ruang Dengan Karakter.","Desain Interior","Merancang interior yang terasa sebaik tampilannya melalui tata ruang, material, pencahayaan, furnitur, dan atmosfer yang dipertimbangkan dengan matang untuk ruang hunian maupun komersial.",["TATA RUANG","MATERIAL","PENCAHAYAAN"],"LIHAT INTERIOR"],
+      ["VISUALISASI 3D","Visualisasikan Sebelum Dibangun.","Visualisasi 3D","Mengubah gambar kerja dan ide menjadi visual fotorealistik yang menyampaikan skala, material, pencahayaan, dan atmosfer—membantu klien merasakan desain sebelum konstruksi dimulai.",["EKSTERIOR","INTERIOR","FOTOREALISTIK"],"LIHAT VISUALISASI"]
+    ],
+    software:"KEMAMPUAN SOFTWARE",
+    groups:["DRAFTING 2D","PEMODELAN 3D","RENDERING 3D"],
+
+    /* CONTACT / UI */
+    contactKicker:"KONTAK",
+    contactTitle:"Mari membangun sesuatu yang dirancang dengan matang.",
+    contactIntro:"Untuk kebutuhan proyek, kolaborasi, dan pekerjaan visualisasi arsitektur, silakan hubungi saya.",
+    pdf:"LIHAT PDF ↗",
+    galleryHint:"← → UNTUK MENJELAJAHI · ESC UNTUK MENUTUP",
+    model:"MODEL 3D INTERAKTIF",
+    walk:"WALKTHROUGH INTERIOR",
+    walkStart:"KLIK UNTUK MENJELAJAHI INTERIOR"
+  };
+
+  const EN={
+    storyKicker:"01 / THE STORY",
+    storyTitle:"Where Architecture<br><em>Meets Visual Storytelling.</em>",
+    storyBig1:"Architecture taught me how to understand space.",
+    storyP1:"My background in architecture shaped the way I see proportion, function, material, light, and the relationship between people and space.",
+    storyBig2:"3D visualization taught me<br><em>how to communicate it.</em>",
+    storyP2:"Over the years, visualization became more than a technical skill. It became my way of translating drawings, concepts, and ideas into something people can see, feel, and understand.",
+
+    approachKicker:"02 / MY APPROACH",
+    approachTitle:"I don't just make<br>beautiful images.",
+    principles:[
+      ["SEE IT","Turning drawings, sketches, and concepts into visuals people can immediately understand."],
+      ["FEEL IT","Using light, material, composition, and atmosphere to communicate how a space should feel."],
+      ["UNDERSTAND IT","Creating visuals that help clients see the design clearly and make confident decisions."]
+    ],
+
+    creativeKicker:"03 / THE CREATIVE MIND",
+    creativeTitle:"The Mind Behind<br><em>Y3D-INEX</em>",
+    creativeStatement:"Y3D-INEX grew from a simple idea.",
+    creativeStrong:"architecture should be easier to see before it is built.",
+    flow:[
+      ["ARCHITECTURE","Understand space."],
+      ["DESIGN","Shape the idea."],
+      ["3D MODELING","Build it digitally."],
+      ["VISUALIZATION","Make it feel real."],
+      ["AI","Explore what’s next."]
+    ],
+    brandNote:"I combine architectural knowledge, visual craftsmanship, and emerging technology to explore new ways of communicating design.",
+
+    personalKicker:"04 / BEYOND THE PORTFOLIO",
+    personalTitle:"Architecture is what I studied.<br><em>Visualization is what I built.</em>",
+    personalP:"Behind every project is a process of observing, thinking, testing, and refining. I'm naturally curious about how spaces work, how visuals influence perception, and how technology can make the design process better.",
+    education:"EDUCATION",
+    edu:["Architecture","Senior High School","Junior High School"],
+
+    finalTitle:"From Ideas<br><em>to Visuals.</em>",
+    finalP:"Design · Visualize · Experience",
+    finalLink:"EXPLORE MY WORK",
+    closeStory:"LESS / DISCOVER MY STORY",
+
+    servicesKicker:"CAPABILITIES",
+    servicesTitle:"What I Create",
+    servicesIntro:"Architecture, interior design, and photorealistic visualization crafted to transform ideas into spaces that can be understood, experienced, and built.",
+    services:[
+      ["ARCHITECTURE","Ideas Into Architecture.","Architecture","From the first concept to a refined architectural vision—balancing function, proportion, material, and identity into thoughtful spaces with clear design direction.",["PLANNING","FACADE","DESIGN DEVELOPMENT"],"EXPLORE ARCHITECTURE"],
+      ["INTERIOR DESIGN","Spaces With Character.","Interior Design","Designing interiors that feel as good as they look through carefully considered layouts, materials, lighting, furniture, and atmosphere for residential and commercial spaces.",["SPACE PLANNING","MATERIAL","LIGHTING"],"EXPLORE INTERIORS"],
+      ["3D VISUALIZATION","Visualize Before You Build.","3D Visualization","Transforming drawings and ideas into photorealistic visuals that communicate scale, material, lighting, and atmosphere—helping clients experience the design before construction begins.",["EXTERIOR","INTERIOR","PHOTOREALISTIC"],"VIEW VISUALIZATION"]
+    ],
+    software:"SOFTWARE SKILLS",
+    groups:["2D DRAFTING","3D MODELING","3D RENDERING"],
+    contactKicker:"CONTACT",
+    contactTitle:"Let’s build something considered.",
+    contactIntro:"For project enquiries, collaboration and architectural visualization work, get in touch.",
+    pdf:"VIEW PDF ↗",
+    galleryHint:"← → TO BROWSE · ESC TO CLOSE",
+    model:"INTERACTIVE 3D MODEL",
+    walk:"INTERIOR WALKTHROUGH",
+    walkStart:"CLICK TO WALK THROUGH INTERIOR"
+  };
+
+  function data(){
+    return (localStorage.getItem("y3d-language")||"EN")==="ID"?ID:EN;
+  }
+
+  function applyComplete(){
+    const d=data();
+
+    /* ---------- ABOUT / STORY ---------- */
+    let e=$(".about-v2-story-head .kicker"); if(e)e.textContent=d.storyKicker;
+    e=$(".about-v2-story-head h3"); if(e)e.innerHTML=d.storyTitle;
+
+    const big=$$(".about-v2-story-copy .about-v2-big");
+    if(big[0])big[0].textContent=d.storyBig1;
+    if(big[1])big[1].innerHTML=d.storyBig2;
+
+    const storyP=$$(".about-v2-story-copy > p:not(.about-v2-big)");
+    if(storyP[0])storyP[0].textContent=d.storyP1;
+    if(storyP[1])storyP[1].textContent=d.storyP2;
+
+    e=$(".about-v2-principle-intro .kicker"); if(e)e.textContent=d.approachKicker;
+    e=$(".about-v2-principle-intro h3"); if(e)e.innerHTML=d.approachTitle;
+
+    $$(".about-v2-principle-content").forEach((card,i)=>{
+      const x=d.principles[i]; if(!x)return;
+      const h=$("h4",card),p=$("p",card);
+      if(h)h.textContent=x[0];
+      if(p)p.textContent=x[1];
+    });
+
+    e=$(".about-v2-brand-top .kicker"); if(e)e.textContent=d.creativeKicker;
+    e=$(".about-v2-brand-main h3"); if(e)e.innerHTML=d.creativeTitle;
+
+    const stmt=$(".creative-mind-statement");
+    if(stmt){
+      const sp=$("span",stmt),strong=$("strong",stmt);
+      if(sp)sp.textContent=d.creativeStatement;
+      if(strong)strong.textContent=d.creativeStrong;
+    }
+
+    $$(".about-v2-flow-diagram .flow-node").forEach((node,i)=>{
+      const x=d.flow[i];if(!x)return;
+      const label=$(".flow-label",node),cap=$(".flow-caption",node);
+      if(label)label.textContent=x[0];
+      if(cap)cap.textContent=x[1];
+    });
+
+    e=$(".about-v2-brand-note");if(e)e.textContent=d.brandNote;
+
+    e=$(".about-v2-personal-copy .kicker");if(e)e.textContent=d.personalKicker;
+    e=$(".about-v2-personal-copy h3");if(e)e.innerHTML=d.personalTitle;
+    e=$(".about-v2-personal-copy p");if(e)e.textContent=d.personalP;
+
+    e=$(".about-v2-education > .kicker");if(e)e.textContent=d.education;
+    $$(".about-v2-edu-info small").forEach((x,i)=>{if(d.edu[i])x.textContent=d.edu[i];});
+
+    e=$(".about-v2-final-content h3");if(e)e.innerHTML=d.finalTitle;
+    e=$(".about-v2-final-content p");if(e)e.textContent=d.finalP;
+    e=$(".about-v2-final-content > a");if(e)e.innerHTML=d.finalLink+" <span>↗</span>";
+    e=$(".about-v2-close-story span");if(e)e.textContent=d.closeStory;
+
+    /* ---------- SERVICES ---------- */
+    const sh=$("#services .section-head");
+    if(sh){
+      e=$(".kicker",sh);if(e)e.textContent=d.servicesKicker;
+      e=$("h2",sh);if(e)e.textContent=d.servicesTitle;
+      e=$(".services-intro",sh);if(e)e.textContent=d.servicesIntro;
+    }
+
+    $$(".service-card").forEach((card,i)=>{
+      const x=d.services[i];if(!x)return;
+      e=$(".service-label",card);if(e)e.textContent=x[0];
+      e=$(".service-subtitle",card);if(e)e.textContent=x[1];
+      e=$(".service-content h3",card);if(e)e.textContent=x[2];
+      e=$(".service-description",card);if(e)e.textContent=x[3];
+      $$(".service-tags span",card).forEach((tag,j)=>{if(x[4][j])tag.textContent=x[4][j];});
+      e=$(".service-link",card);
+      if(e){
+        const arrow=$(".arrow",e);
+        if(arrow){
+          [...e.childNodes].filter(n=>n.nodeType===3).forEach(n=>n.remove());
+          e.insertBefore(document.createTextNode(x[5]+" "),arrow);
+        }else e.textContent=x[5]+" →";
+      }
+    });
+
+    e=$(".software > .kicker");if(e)e.textContent=d.software;
+    $$(".software-group h3").forEach((x,i)=>{if(d.groups[i])x.textContent=d.groups[i];});
+
+    /* ---------- CONTACT ---------- */
+    e=$("#contact .kicker");if(e)e.textContent=d.contactKicker;
+    e=$("#contact h2");if(e)e.textContent=d.contactTitle;
+    e=$(".contact-intro");if(e)e.textContent=d.contactIntro;
+
+    /* ---------- VIEWERS ---------- */
+    e=$("#projectPdfButton");if(e)e.textContent=d.pdf;
+    e=$(".gallery-hint");if(e)e.textContent=d.galleryHint;
+    e=$("#model3dTitle");if(e)e.textContent=d.model;
+    e=$("#interiorWalkTitle");if(e)e.textContent=d.walk;
+    e=$("#interiorWalkStart");if(e)e.textContent=d.walkStart;
+  }
+
+  function install(){
+    if(typeof window.setLanguage==="function"&&!window.setLanguage.__completeAbout){
+      const original=window.setLanguage;
+      const wrapped=function(next){
+        original(next);
+        setTimeout(applyComplete,20);
+        setTimeout(applyComplete,150);
+      };
+      wrapped.__completeAbout=true;
+      window.setLanguage=wrapped;
+    }
+    applyComplete();
+  }
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",()=>setTimeout(install,50));
+  }else{
+    setTimeout(install,50);
+  }
+
+  /* Keep the language consistent after opening/closing dynamic sections. */
+  document.addEventListener("click",()=>setTimeout(applyComplete,100));
+})();
+</script>
+
 </body>
 </html>
